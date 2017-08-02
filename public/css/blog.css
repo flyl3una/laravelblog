@@ -1,0 +1,46 @@
+.main-header {
+    background-color: #52768e;
+    color: white;
+    background-size: 100% auto;
+    position: static;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+
+a {
+    /*display: block;*/
+    text-decoration: none;
+    color: white;
+    cursor: auto;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+li {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.word-wrap {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.description {
+    font-size: 24px;
+    line-height: 24px;
+    /*text-align: center;*/
+}
+
+.content-wrap {
+    min-height: 100%;
+    margin-bottom: 60px;
+}
+
+.side {
+    float: left;
+}

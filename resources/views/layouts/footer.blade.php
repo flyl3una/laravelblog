@@ -1,0 +1,3 @@
+@section("footer")
+    footer
+@endsection
