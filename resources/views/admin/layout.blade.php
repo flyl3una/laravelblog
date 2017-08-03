@@ -9,7 +9,7 @@
 <body>
 {{--@extends("layouts.header")--}}
 {{--@extends("layouts.content")--}}
-@yield("header")
+@yield("sidebar")
 @yield("content")
 @yield("footer")
 {{--@extends("layouts.footer")--}}

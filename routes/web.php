@@ -13,21 +13,22 @@
 
 Auth::routes();
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return redirect(route("blog.index"));
+})->name("root");
 
-Route::group(['namespace' => 'Site'], function() {
+Route::group(['namespace' => 'Site', 'prefix' => 'blog'], function() {
 //    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/blog', 'ArticleController@index')->name('blog.index');
-    Route::get('/blog/{id}', 'ArticleController@show')->name('article.show');
-    Route::get('/', function () {
-        return redirect(route("blog.index"));
-    })->name("root");
-
+    Route::get('/', 'ArticleController@index')->name('blog.index');
+    Route::get('/{id}', 'ArticleController@show')->where('id', '[0-9]')->name('article.show');
 });
 
 
 Route::group([ 'prefix' => 'Auth'], function() {
 
+});
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/', 'AdminController@index')->name('admin.index');
+//   Route:resource("/manager")
 });

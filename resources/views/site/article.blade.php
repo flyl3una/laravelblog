@@ -1,4 +1,4 @@
-@extends("site.layout")
+@extends("layouts.layout")
 @extends("layouts.header")
 @extends("layouts.content")
 @extends("layouts.footer")

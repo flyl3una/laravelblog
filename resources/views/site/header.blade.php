@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <nav class="navbar site-navbar">
                 <div class="navbar-header navbar-nav">
-                    <a href="{{ route('blog.index') }}" class="navbar-brand">Laravel Blog</a>
+                    <a href="{{ route('blog.index') }}" class="navbar-brand ">Laravel Blog</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">

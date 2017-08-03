@@ -10,14 +10,14 @@
 
 a {
     /*display: block;*/
-    text-decoration: none;
-    color: white;
+    /*text-decoration: none;*/
     cursor: auto;
+    /*cursor: pointer;*/
 }
 
 a:hover {
     text-decoration: none;
-    color: white;
+    /*cursor: pointer;*/
 }
 
 li {
@@ -41,6 +41,10 @@ li {
     margin-bottom: 60px;
 }
 
-.side {
-    float: left;
+.side-left {
+    min-width: 200px;
+    width: 20%;
+    min-height: 100%;
+    color: #000;
+    background-color: #f5f5f5;
 }
