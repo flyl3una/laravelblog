@@ -25,6 +25,10 @@ li {
     word-wrap: break-word;
 }
 
+a.white-color {
+    color:white;
+}
+
 .word-wrap {
     word-break: break-all;
     word-wrap: break-word;
