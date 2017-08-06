@@ -1,4 +1,4 @@
-@extends("layouts.layout")
+@extends("admin.layout")
 @extends("admin.sidebar")
 @extends("admin.content")
 {{--@extends("admin.footer")--}}

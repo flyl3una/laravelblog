@@ -25,7 +25,7 @@
                             <div class="panel-footer">
                                 tags
                                 <div class="nav navbar-right">
-                                    <a class="btn btn-info" href="{{ route("article.show", $article->id) }}">阅读文章</a>
+                                    <a class="btn btn-info" href="{{ route("blog.show", $article->id) }}">阅读文章</a>
                                 </div>
                             </div>
                         </div>

@@ -11,24 +11,27 @@
 |
 */
 
+Route::get('/logout', "Auth\LogoutController@logout")->name('logout');
 Auth::routes();
 
 Route::get('/', function () {
-    return redirect(route("blog.index"));
+    return redirect(route("home.index"));
 })->name("root");
 
-Route::group(['namespace' => 'Site', 'prefix' => 'blog'], function() {
+Route::resource('test', 'TestController', ['only' => ['index', 'create']]);
+
+Route::group(['namespace' => 'Site', 'prefix' => 'home'], function() {
 //    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/', 'ArticleController@index')->name('blog.index');
-    Route::get('/{id}', 'ArticleController@show')->where('id', '[0-9]')->name('article.show');
+    Route::get('/', 'BlogController@index')->name('home.index');
+    Route::get('/{id}', 'BlogController@show')->where('id', '[0-9]')->name('blog.show');
 });
 
-
-Route::group([ 'prefix' => 'Auth'], function() {
-
-});
-
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
-//   Route:resource("/manager")
+    Route::resource('article', 'ArticleController', ['except' => 'show']);//->name('admin.article');
+//    Route::group(['namespace' => 'Site'], function () {
+//        Route::get('article/list/', 'ArticleController@articleList')->name('article.list');
+//        Route::resource('article/', 'ArticleController', ['except' => ['show', 'index']])->name('name.resource');
+//    });
 });
+

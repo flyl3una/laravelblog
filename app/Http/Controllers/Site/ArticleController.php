@@ -13,18 +13,36 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     //
-    public function index() {
-        $articles = Article::paginate(config('blog.article_per_page'));
-        $cates = Categories::all();
-        $tags = Tag::all();
 
-        return view('site.index', compact('articles', 'cates', 'tags'));
+
+    //admin
+    // 文章列表
+    public function articleList() {
+        return 'list';
     }
 
-    public function show($id) {
-        $article = Article::findOrFail($id);
-        $category = Categories::findOrFail($article['id']);
-        $tags = ArticleTag::where('article_id', $article['id']);
-        return view('site.article', compact('article', 'category', 'tags'));
+    // 创建
+    public function create() {
+        return 'create';
+    }
+
+    // 创建后保存
+    public function store(Request $request) {
+        return 'store';
+    }
+
+    // 编辑
+    public function edit($id) {
+        return 'edit';
+    }
+
+    // 编辑后更新
+    public function save() {
+        return 'save';
+    }
+
+    // 删除
+    public function destroy($id) {
+        return 'destroy';
     }
 }

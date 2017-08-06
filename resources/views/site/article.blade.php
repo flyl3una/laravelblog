@@ -1,7 +1,6 @@
 @extends("layouts.layout")
-@extends("layouts.header")
-@extends("layouts.content")
-@extends("layouts.footer")
+@extends("site.header")
+@extends("site.footer")
 
 @extends("layouts.css")
 @extends("layouts.js")
@@ -32,11 +31,13 @@
                             {{--footer--}}
                             {{ $category['name'] }}
                             <ul class="navbar-collapse collapse">
+                                @if($tags)
                                 @foreach($tags as $tag)
                                 <li class="nav navbar">
                                     {{ $tag['name'] }}
                                 </li>
                                 @endforeach
+                                @endif
                             </ul>
                         </div>
                     </div>

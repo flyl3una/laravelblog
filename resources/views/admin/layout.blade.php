@@ -9,9 +9,14 @@
 <body>
 {{--@extends("layouts.header")--}}
 {{--@extends("layouts.content")--}}
-@yield("sidebar")
-@yield("content")
-@yield("footer")
+<div class="container-fluid">
+    <div class="row">
+        @yield("sidebar")
+        @yield("content")
+        {{--@yield("footer")--}}
+    </div>
+</div>
+
 {{--@extends("layouts.footer")--}}
 
 @yield("js")

@@ -13,9 +13,9 @@ class ArticleTagSeeder extends Seeder
     public function run()
     {
         //
-        for ($i = 0; $i < random_int(1, 5); $i++) {
+        for ($i = 0; $i < random_int(20, 30); $i++) {
             DB::table('article_tags')->insert([
-                'article_id' => random_int(1, 10),
+                'article_id' => random_int(1, 20),
                 'tag_id' => random_int(1, 10),
             ]);
         }
