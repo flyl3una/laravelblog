@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Mews\Purifier\Purifier;
 
 class ArticleController extends Controller
 {
@@ -61,6 +62,10 @@ class ArticleController extends Controller
     public function create()
     {
         //
+//        return 'create';
+        $cates = Categories::all();
+        $tagAll = Tag::all();
+        return view('admin.article.edit', compact( 'cates', 'tagAll'));
     }
 
     /**
@@ -73,7 +78,11 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //
-        return 'store';
+//        $markdownContent = $request['markdown_content'];
+        Purifier::clean($request['markdown_content']);
+        Article::insert(['title' => $request['title'], 'description' => $request['description'], 'markdown_content' => $request['markdown_content'],
+            'html_content' => $request['markdown_content']]);
+        return 'store success';
     }
 
     /**
@@ -128,7 +137,7 @@ class ArticleController extends Controller
             ArticleTag::insert(['article_id' => $id, 'tag_id' => $tagId]);
         }
         Article::where('id', $id)->update(['title' => $request['title'], 'description' => $request['description'],
-            'markdown_content' => $request['markdown_content']]);
+            'markdown_content' => $request['markdown_content'], 'html_content' => $request['markdown_content']]);
         return 'update success';
     }
 
@@ -141,6 +150,10 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
-        return 'destroy' . $id;
+//        return 'destroy' . $id;
+        $id = intval($id);
+        ArticleTag::where('article_id', $id)->delete();
+        Article::where('id', $id)->delete();
+        return 'destroy success';
     }
 }

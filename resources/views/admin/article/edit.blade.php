@@ -16,10 +16,10 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ isset($article) ? route('article.update', $article['id']) : route('article')}}">
+                    <form class="form-horizontal" method="POST" action="{{ isset($article) ? route('article.update', $article['id']) : route('article.store')}}">
 {{--                        <input hidden value="{{ csrf_token() }}">--}}
                         {{ csrf_field() }}
-                        @if(isset($article))
+                        @if($article)
                         <input hidden name="_method" value="PUT">
                         @endif
                             <div class="form-group">
@@ -113,5 +113,6 @@
         </div>
     </div>
 {{--</div>--}}
+</div>
 </div>
 @endsection
