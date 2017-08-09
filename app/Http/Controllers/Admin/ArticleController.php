@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Mews\Purifier\Purifier;
 
 class ArticleController extends Controller
@@ -79,9 +80,16 @@ class ArticleController extends Controller
     {
         //
 //        $markdownContent = $request['markdown_content'];
-        Purifier::clean($request['markdown_content']);
-        Article::insert(['title' => $request['title'], 'description' => $request['description'], 'markdown_content' => $request['markdown_content'],
+//        Purifier::clean($request['markdown_content']);
+        //所有参数均为过滤
+        $userid = Auth::user()->id;
+        $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $request['category'],
+            'title' => $request['title'], 'description' => $request['description'], 'markdown_content' => $request['markdown_content'],
             'html_content' => $request['markdown_content']]);
+        foreach($request['tags'] as $tagId) {
+            ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
+        }unset($tagId);
+
         return 'store success';
     }
 
@@ -111,7 +119,7 @@ class ArticleController extends Controller
         $tagIds = ArticleTag::where('article_id', $article['id'])->get();
         $tags = Array();
         foreach ($tagIds as $tagId) {
-            $tag = Tag::where('id', $tagId['id'])->first();
+            $tag = Tag::where('id', $tagId['tag_id'])->first();
             $tags[] = $tag;
         }
         $cates = Categories::all();

@@ -19,13 +19,13 @@
                     <form class="form-horizontal" method="POST" action="{{ isset($article) ? route('article.update', $article['id']) : route('article.store')}}">
 {{--                        <input hidden value="{{ csrf_token() }}">--}}
                         {{ csrf_field() }}
-                        @if($article)
+                        @if(isset($article))
                         <input hidden name="_method" value="PUT">
                         @endif
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="titleInput">文章标题</label>
                                 <div class="col-sm-10">
-                                    <input id="titleInput" placeholder="title" type="text" class="form-control" name="title" value="{{ $article['title'] }}">
+                                    <input id="titleInput" placeholder="title" type="text" class="form-control" name="title" value="{{ isset($article) ? $article['title'] : ''}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -33,8 +33,8 @@
                                 <div class="col-sm-10">
                                     {{--<input id="categoryInput" class="form-control" name="category">--}}
                                     <select id="categoryInput" class="form-control" name="category">
-                                        @foreach($cates as $cate)
-                                            <option value="{{ $cate['id'] }}">{{ $cate['name'] }}</option>
+                                        @foreach($cates as $cate1)
+                                            <option value="{{ $cate1['id'] }}" @if(isset($cate) && $cate['id'] === $cate1['id']) selected @endif>{{ $cate1['name'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -49,7 +49,7 @@
                                             {{--<option value="{{ $tag['id'] }}">{{ $tag['name'] }}</option>--}}
                                         {{--@endforeach--}}
                                         @foreach($tagAll as $tag)
-                                            @if(isset($tag))
+                                            @if(isset($tags) && in_array($tag, $tags))
                                                 <option value="{{ $tag->id }}" selected>{{ $tag->name }}</option>
                                             @else
                                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -66,18 +66,20 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="description">文章描述</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="description" name="description" value="{{ $article['description'] }}">
+                                    <input type="text" class="form-control" id="description" name="description" value=
+                                    "{{ isset($article) ? $article['description'] : ''}}">
                                 </div>
                             </div>
                             {{--<div class="form-group">--}}
                             {{--<label class="col-sm-2 control-label" for="markdown"--}}
                             {{--</div>--}}
                             <div class="form-group">
-                                <label for="post-content-textarea" class="control-label">文章内容*</label>
+                                <label for="post-content-textarea" class="control-label">文章内容</label>
                                 <textarea spellcheck="false" id="post-content-textarea" class="form-control" name="markdown_content"
                                           rows="20"
                                           placeholder="请使用 Markdown 格式书写"
-                                          style="resize: vertical">{{ $article['markdown_content'] }}</textarea>
+                                          style="resize: vertical"
+                                >{{ isset($article) ? $article['markdown_content'] : ''}}</textarea>
                                 {{--@if($errors->has('content'))--}}
                                 {{--<span class="help-block">--}}
                                 {{--<strong>{{ $errors->first('content') }}</strong>--}}
@@ -87,7 +89,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6">
-                                    <input type="submit" class="btn btn-primary" value="更改">
+                                    <input type="submit" class="btn btn-primary" value="{{ isset($article) ? "更改" : "创建"}}">
                                 </div>
                                 {{--<div class="radio radio-inline">--}}
                                 {{--<label>--}}
