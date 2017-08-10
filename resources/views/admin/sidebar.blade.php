@@ -27,7 +27,7 @@
     </ul>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="{{ route('tags.index') }}">标签管理</a>
+            <a href="{{ route('tag.index') }}">标签管理</a>
         </li>
     </ul>
     <ul class="list-group">

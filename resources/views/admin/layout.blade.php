@@ -2,12 +2,12 @@
 <head>
     <title>Laravel Blog</title>
     @yield("css")
-
+    <meta name="_token" content="{{ csrf_token() }}"/>
     {{--<link href="/css/boostrap-theme.css" rel="stylesheet">--}}
 </head>
 
 <body>
-{{--@extends("layouts.header")--}}
+@yield("header")
 {{--@extends("layouts.content")--}}
 <div class="container-fluid">
     <div class="row">

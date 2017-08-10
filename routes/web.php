@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource('article', 'ArticleController', ['except' => 'show']);//->name('admin.article');
     Route::resource('categories', 'CategoriesController', ['except' => 'show']);
-    Route::resource('tags', 'TagController', ['except' => 'show']);
+    Route::resource('tag', 'TagController', ['except' => 'show']);
     Route::resource('link', 'LinkController');
 //    Route::group(['namespace' => 'Site'], function () {
 //        Route::get('article/list/', 'ArticleController@articleList')->name('article.list');

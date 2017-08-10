@@ -52,7 +52,7 @@ a.white-color {
 .side-left {
     min-width: 200px;
     width: 20%;
-    min-height: 100%;
+    min-height: 80%;
     color: #000;
     background-color: #f5f5f5;
     float: left;

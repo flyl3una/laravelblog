@@ -23,9 +23,21 @@
                                             <td>{{ $link['name'] }}</td>
                                             <td><a href="{{$link['url']}}">{{ $link['url'] }}</a></td>
                                             <td>
-                                                <button class="btn btn-success">编辑</button>
-                                                <button class="btn btn-danger">删除</button>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <a class="btn btn-success" href="{{ route('link.edit', $link['id'])}}">编辑</a>
+                                                    </div>
+                                                    {{--<a class="btn btn-danger" name="{{ route('categories.destroy', $cate['id']) }}">删除</a>--}}
+                                                    <form class="col-sm-6" method="POST" action="{{ route('link.destroy', $link['id']) }}">
+                                                        {{--更改隐身提交方法为DELETE--}}
+                                                        <input type="hidden" name="_method" value="DELETE" />
+                                                        {{--添加csrf认证--}}
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                        <input type="submit" value="删除" class="btn btn-danger"/>
+                                                    </form>
+                                                </div>
                                             </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
