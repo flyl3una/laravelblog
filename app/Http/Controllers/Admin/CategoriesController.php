@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,6 +16,8 @@ class CategoriesController extends Controller
     public function index()
     {
         //
+        $cates = Categories::paginate(config('blog.admin_ul_number'));
+        return view('admin.categories.index', compact('cates'));
     }
 
     /**

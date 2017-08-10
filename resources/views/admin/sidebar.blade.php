@@ -22,17 +22,17 @@
     </ul>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="/admin/categroies" class="">分类管理</a>
+            <a href="{{ route('categories.index') }}" class="">分类管理</a>
         </li>
     </ul>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="#">标签管理</a>
+            <a href="{{ route('tags.index') }}">标签管理</a>
         </li>
     </ul>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="#">友情连接</a>
+            <a href="{{ route('link.index') }}">友情连接</a>
         </li>
     </ul>
 </div>

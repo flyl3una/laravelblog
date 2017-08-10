@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Link;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,6 +17,8 @@ class LinkController extends Controller
     public function index()
     {
         //
+        $links = Link::paginate(config('blog.admin_ul_number'));
+        return view('admin.link.index', compact('links'));
     }
 
     /**

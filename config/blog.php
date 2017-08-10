@@ -10,4 +10,5 @@ return [
     'title' => 'Laravel Blog',
     'article_per_page' => 5,
     'article_list_number' => 6,
+    'admin_ul_number' => 10,
 ];

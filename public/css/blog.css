@@ -11,18 +11,18 @@
 a {
     /*display: block;*/
     /*text-decoration: none;*/
-    cursor: auto;
+    cursor: auto;       !important;
     /*cursor: pointer;*/
 }
 
 a:hover {
-    text-decoration: none;
+    text-decoration: none;      !important;
     /*cursor: pointer;*/
 }
 
-li {
-    word-break: break-all;
-    word-wrap: break-word;
+li, td {
+    word-break: break-all;      !important;
+    word-wrap: break-word;      !important;
 }
 
 a.white-color {
@@ -65,10 +65,37 @@ a.white-color {
     margin-bottom: 60px;
 }
 
+.content-panel {
+    margin: 50px auto 0 auto;
+    width: 840px;
+    min-width: 840px;
+    padding: 0;
+}
+
 .margin-top-50 {
-    margin-top: 50px;
+    margin-top: 50px;   !important;
+}
+
+.margin-top-100 {
+    margin-top: 100px;      !important;
 }
 
 .right {
     float: right;
+}
+
+.ul-list {
+    max-height: 600px;
+}
+
+.li-name {
+    padding: 7px 15px;
+}
+
+.table>tbody>tr>td {
+    vertical-align: middle;     !important;
+}
+
+.table-center>tbody>tr>td, .table-center>tbody>tr>th {
+    text-align: center;
 }
