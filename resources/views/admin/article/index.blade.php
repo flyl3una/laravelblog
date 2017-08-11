@@ -1,4 +1,5 @@
 @extends("admin.layout")
+@extends('admin.header')
 @extends("admin.sidebar")
 
 

@@ -17,7 +17,7 @@ class LinkController extends Controller
     public function index()
     {
         //
-        $links = Link::paginate(config('blog.admin_ul_number'));
+        $links = Link::paginate(config('blog.admin_per_number'));
         return view('admin.link.index', compact('links'));
     }
 

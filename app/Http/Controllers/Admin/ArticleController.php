@@ -27,7 +27,7 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        $articleAll = Article::paginate(config('blog.article_list_number'));
+        $articleAll = Article::paginate(config('blog.admin_per_number'));
         $articleList = Array();
 
         foreach ($articleAll as $articleOne) {

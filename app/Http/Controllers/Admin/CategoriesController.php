@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoriesController extends Controller
 {
@@ -16,7 +17,7 @@ class CategoriesController extends Controller
     public function index()
     {
         //
-        $cates = Categories::paginate(config('blog.admin_ul_number'));
+        $cates = Categories::paginate(config('blog.admin_per_number'));
         return view('admin.categories.index', compact('cates'));
     }
 
@@ -39,6 +40,9 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        $name = $request['cateName'];
+        Categories::insert(['name' => trim($name)]);
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -73,6 +77,10 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $id = intval($id);
+        $name = $request['name'];
+        Categories::where('id', $id)->update(['name' => $name]);
+        return ['state' => 0, 'info' => '更新成功'];
     }
 
     /**
@@ -84,5 +92,8 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         //
+        $id = intval($id);
+//        Categories::where('id', $id)->delete();
+        return "是否要删除对应目录下得所有文件";
     }
 }

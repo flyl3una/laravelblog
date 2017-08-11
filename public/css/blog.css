@@ -52,7 +52,7 @@ a.white-color {
 .side-left {
     min-width: 200px;
     width: 20%;
-    min-height: 80%;
+    min-height: 90%;
     color: #000;
     background-color: #f5f5f5;
     float: left;
@@ -62,7 +62,7 @@ a.white-color {
     float: left;
     width: 80%;
     /*height: 100%;*/
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
 }
 
 .content-panel {
@@ -98,4 +98,8 @@ a.white-color {
 
 .table-center>tbody>tr>td, .table-center>tbody>tr>th {
     text-align: center;
+}
+
+form.form-only-button {
+    margin-bottom: 0;
 }
