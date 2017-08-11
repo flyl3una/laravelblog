@@ -48,14 +48,15 @@
                         </div>
                         {!! $links->render() !!}
                         <form class="form" method="post" action="{{ route('link.store') }}">
+                            {{csrf_field()}}
                             <div class="form-group">
                                 <div class="control-label ">添加链接</div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="链接名称" name="name">
+                                        <input type="text" class="form-control" placeholder="链接名称" name="linkName">
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="url" class="form-control" placeholder="链接url地址" name="url">
+                                        <input type="url" class="form-control" placeholder="链接url地址" name="linkUrl">
                                     </div>
                                     <div class="col-md-2">
                                         <button type="submit" class="form-control btn btn-primary">添加</button>
@@ -81,12 +82,16 @@
                                             {{--添加csrf认证--}}
                                             <input hidden id="modal-token" name="_token" value="{{ csrf_token() }}">
                                             <div class="form-group">
-                                                <label id="link-id" class="control-label">
+                                                <label id="link-name-id" class="control-label">
                                                     链接名称
                                                 </label>
+                                                <input id="editLinkNameInput" type="text" class="form-control" name="linkName" placeholder="目录名称">
                                             </div>
                                             <div class="form-group">
-                                                <input id="editLinkInput" type="text" class="form-control" name="linkName" placeholder="目录名称">
+                                                <label id="link-url-id" class="control-label">
+                                                    链接地址
+                                                </label>
+                                                <input id="editLinkUrlInput" type="url" class="form-control" name="linkUrl" placeholder="链接地址">
                                             </div>
                                             {{--<input type="submit" value="更改" class="btn btn-primary"/>--}}
                                         </form>
@@ -115,7 +120,8 @@
             $("#updateSubmit").click(function(){
                 $.post($("#editForm").attr('action'), {
                     id : $("#link-id").attr('name'),
-                    name : $("#editLinkInput").val(),
+                    name : $("#editLinkNameInput").val(),
+                    url: $("#editLinkUrlInput").val(),
                     _token: $("#modal-token").val(),
                     _method: "PATCH",
                 },function(data, status) {
@@ -135,8 +141,9 @@
             $(".btn-edit").click(function(){
                 $("#editLinkTitle").text("编辑");
                 $("#tag-id").attr('name', $(this).attr('id'));
-                $("#editLinkInput").val($(this).attr('name'));
-                $("#editForm").attr('action', $(this).attr('url'));
+                $("#editLinkNameInput").val($(this).attr('name'));
+                $('#editLinkUrlInput').val($(this).attr('url'));
+                $("#editForm").attr('action', $(this).attr('update-url'));
                 $("#myModal").modal();
             });
         });

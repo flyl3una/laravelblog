@@ -40,6 +40,10 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         //
+        $name = trim($request['linkName']);
+        $url = trim($request['linkUrl']);
+        Link::insert(['name' => $name, 'url' => $url]);
+        return redirect(route('link.index'));
     }
 
     /**
@@ -74,6 +78,11 @@ class LinkController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $id = intval($id);
+        $name = trim($request['name']);
+        $url = trim($request['url']);
+        Link::where('id', $id)->update(['name' => $name, 'url' => $url]);
+        return ['state' => 0, 'info' => '更新成功'];
     }
 
     /**
@@ -85,5 +94,8 @@ class LinkController extends Controller
     public function destroy($id)
     {
         //
+        $id = intval($id);
+        Link::where('id', $id)->delete();
+        return redirect(route('link.index'));
     }
 }
