@@ -1,3 +1,4 @@
+@section('header')
 <div class="container-fluid" style="background-color: #1f648b">
     <nav class="navbar site-navbar">
         <div class="navbar-header navbar-nav">
@@ -21,3 +22,5 @@
 
     </nav>
 </div>
+
+@endsection
