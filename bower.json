@@ -1,0 +1,23 @@
+{
+  "name": "laravelblog",
+  "description": "",
+  "main": "",
+  "authors": [
+    "luna <fly_luna@outlook.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/flyl3una/laravelblog",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "bootstrap-material-design": "^4.0.2"
+  }
+}
