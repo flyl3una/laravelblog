@@ -10,12 +10,130 @@ a:hover {
     text-decoration: none;
 }
 
+.clearfix {
+    clear: both;
+}
+
 .admin-header {
-    height: 70px;
+    height: 60px;
     width: 100%;
+    position: absolute;
+    z-index: 100;
     //background: #1f648b;//darkslategrey;      //#1f648b
+}
+
+.admin-content {
+    min-height: calc(100% - 60px);
+    width: 100%;
+    //position: absolute;
+    margin-top: 60px;
+    float: left;
 }
 
 .navbar-brand {
     //background: #1f648b     !important;
+}
+
+.side-left {
+    //width: 230px;
+    min-height: 100%;
+    float: left;
+    left: 0;
+    top:0;
+    background: #222d32;
+    color: #b8c7ce;
+
+    .user-profile {
+        width: 100%;
+        padding: 10px 10px;
+        float: left;
+        margin-top: 3px;
+        margin-bottom: 10px;
+        .user-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 5px solid white;
+            vertical-align: middle;
+            float: left;
+        }
+
+        .user-info {
+            float: left;
+            margin-left: 10px;
+            line-height: 1.4;
+            p{
+                margin-top: 5px;
+                margin-bottom: 2px;
+            }
+            h4 {
+                color: white;
+                margin: 3px 0;
+            }
+        }
+    }
+}
+
+.admin-right-content {
+    float: left;
+}
+
+.side-md {
+    .side-left{
+        width: 230px;
+    }
+    .admin-right-content {
+        width: calc(100% - 230px);
+    }
+}
+
+.side-menu {
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    .side-treeview {
+        float: left;
+        list-style: none;
+        background: rgb(44, 59, 65);
+        width: 100%;
+        padding-left: 0;
+        li {
+            padding-left: 28px;
+            a {
+                padding: 10px 10px;
+                border-left: 1px solid #425668;
+            }
+            a:before {
+                background: #425668;
+                bottom: auto;
+                content: "";
+                height: 9px;
+                left: 24px;
+                margin-top: 5px;
+                position: absolute;
+                right: auto;
+                width: 9px;
+                z-index: 1;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    //li, .side-treeview li {
+    li {
+        width: 100%;
+        float: left;
+        //padding: 10px 20px;
+        margin-left: 0;
+        display: block;
+        a{
+            padding: 10px 20px;
+            line-height: 1.4;
+            display: block;
+            color: #b8c7ce;
+            span {
+                margin-left: 10px;
+            }
+        }
+    }
 }

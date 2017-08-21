@@ -5,4 +5,4 @@
 {{--@extends("admin.footer")--}}
 
 @extends("layouts.css")
-{{--@extends("layouts.js")--}}
+@extends("layouts.js")

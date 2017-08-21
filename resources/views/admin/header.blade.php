@@ -1,14 +1,16 @@
 @section('header')
-    <div class="container-fluid admin-header">
-        <div class="row">
-            <nav class="navbar navbar-brand">
-                <div class="navbar-header navbar-nav">
+    <div class="admin-header">
+        <div class="navbar nav-default">
+        <div class="container-fluid">
+            {{--<div class="row">--}}
+            {{--<nav class="navbar navbar-header">--}}
+                <div class="navbar-header">
                     <a href="{{ route('home.index') }}" class="navbar-brand white-color">Laravel Blog</a>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="{{ route("home.index") }}" class="btn white-color">归档</a>
+                            <a href="{{ route("home.index") }}" class="white-color">归档</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -21,7 +23,9 @@
                     </ul>
                 </div>
 
-            </nav>
+            {{--</nav>--}}
+            </div>
+        {{--</div>--}}
         </div>
     </div>
 

@@ -15,7 +15,135 @@ a:hover {
 }
 
 /* line 13, ../sass/my.scss */
+.clearfix {
+  clear: both;
+}
+
+/* line 17, ../sass/my.scss */
 .admin-header {
-  height: 70px;
+  height: 60px;
   width: 100%;
+  position: absolute;
+  z-index: 100;
+}
+
+/* line 25, ../sass/my.scss */
+.admin-content {
+  min-height: calc(100% - 60px);
+  width: 100%;
+  margin-top: 60px;
+  float: left;
+}
+
+/* line 37, ../sass/my.scss */
+.side-left {
+  min-height: 100%;
+  float: left;
+  left: 0;
+  top: 0;
+  background: #222d32;
+  color: #b8c7ce;
+}
+/* line 46, ../sass/my.scss */
+.side-left .user-profile {
+  width: 100%;
+  padding: 10px 10px;
+  float: left;
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+/* line 52, ../sass/my.scss */
+.side-left .user-profile .user-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid white;
+  vertical-align: middle;
+  float: left;
+}
+/* line 61, ../sass/my.scss */
+.side-left .user-profile .user-info {
+  float: left;
+  margin-left: 10px;
+  line-height: 1.4;
+}
+/* line 65, ../sass/my.scss */
+.side-left .user-profile .user-info p {
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+/* line 69, ../sass/my.scss */
+.side-left .user-profile .user-info h4 {
+  color: white;
+  margin: 3px 0;
+}
+
+/* line 77, ../sass/my.scss */
+.admin-right-content {
+  float: left;
+}
+
+/* line 82, ../sass/my.scss */
+.side-md .side-left {
+  width: 230px;
+}
+/* line 85, ../sass/my.scss */
+.side-md .admin-right-content {
+  width: calc(100% - 230px);
+}
+
+/* line 90, ../sass/my.scss */
+.side-menu {
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+/* line 94, ../sass/my.scss */
+.side-menu .side-treeview {
+  float: left;
+  list-style: none;
+  background: #2c3b41;
+  width: 100%;
+  padding-left: 0;
+}
+/* line 100, ../sass/my.scss */
+.side-menu .side-treeview li {
+  padding-left: 28px;
+}
+/* line 102, ../sass/my.scss */
+.side-menu .side-treeview li a {
+  padding: 10px 10px;
+  border-left: 1px solid #425668;
+}
+/* line 106, ../sass/my.scss */
+.side-menu .side-treeview li a:before {
+  background: #425668;
+  bottom: auto;
+  content: "";
+  height: 9px;
+  left: 24px;
+  margin-top: 5px;
+  position: absolute;
+  right: auto;
+  width: 9px;
+  z-index: 1;
+  border-radius: 50%;
+}
+/* line 123, ../sass/my.scss */
+.side-menu li {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  display: block;
+}
+/* line 129, ../sass/my.scss */
+.side-menu li a {
+  padding: 10px 20px;
+  line-height: 1.4;
+  display: block;
+  color: #b8c7ce;
+}
+/* line 134, ../sass/my.scss */
+.side-menu li a span {
+  margin-left: 10px;
 }

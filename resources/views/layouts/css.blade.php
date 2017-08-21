@@ -1,3 +1,3 @@
 @section("css")
-    <link href="/css/blog.css" rel="stylesheet">
+    {{--<link href="/css/my.css" rel="stylesheet">--}}
 @endsection
