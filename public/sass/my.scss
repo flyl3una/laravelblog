@@ -1,0 +1,21 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.admin-header {
+    height: 70px;
+    width: 100%;
+    //background: #1f648b;//darkslategrey;      //#1f648b
+}
+
+.navbar-brand {
+    //background: #1f648b     !important;
+}

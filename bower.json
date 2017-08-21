@@ -18,6 +18,8 @@
   "dependencies": {
     "jquery": "^3.2.1",
     "bootstrap": "^3.3.7",
-    "bootstrap-material-design": "0.5.10"
+    "bootstrap-material-design": "0.5.10",
+    "font-awesome": "fontawesome#^4.7.0",
+    "Material Design Icon": "material-design-icon#^0.1.1"
   }
 }

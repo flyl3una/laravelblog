@@ -1,0 +1,21 @@
+/* line 1, ../sass/my.scss */
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 6, ../sass/my.scss */
+a {
+  cursor: pointer;
+}
+
+/* line 9, ../sass/my.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 13, ../sass/my.scss */
+.admin-header {
+  height: 70px;
+  width: 100%;
+}
