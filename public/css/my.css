@@ -138,12 +138,14 @@ a:hover {
 }
 /* line 129, ../sass/my.scss */
 .side-menu li a {
+  text-decoration: none;
+  cursor: pointer;
   padding: 10px 20px;
   line-height: 1.4;
   display: block;
   color: #b8c7ce;
 }
-/* line 134, ../sass/my.scss */
+/* line 136, ../sass/my.scss */
 .side-menu li a span {
   margin-left: 10px;
 }

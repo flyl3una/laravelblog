@@ -127,6 +127,8 @@ a:hover {
         margin-left: 0;
         display: block;
         a{
+            text-decoration: none;
+            cursor: pointer;
             padding: 10px 20px;
             line-height: 1.4;
             display: block;
