@@ -3,11 +3,17 @@
     <div class="side-left">
         <div class="user-profile">
             {{--<div class="welcome">Welcome</div>--}}
-            <img src="/images/img.jpg" alt="" class="user-img">
+            {{--<img src="/images/img.jpg" alt="" class="user-img">--}}
             <div class="user-info">
                 <p>welcome,</p>
                 <h4>Luna</h4>
             </div>
+            <div id="side-toggle" class="side-toggle">
+                <a class="toggle">
+                <i class="fa fa-bars"></i>
+                </a>
+            </div>
+            {{--<i --}}
         </div>
         <div class="clearfix"></div>
 
@@ -15,14 +21,16 @@
             <li>
                 <a href="/admin/user">
                     {{--<i class="md-account-balance"></i>--}}
-                    <i class="glyphicon glyphicon-home"></i>
-                    <span>用户信息</span>
+                    <span class="glyphicon glyphicon-home"></span>
+                    <span class="side-item-name">用户信息</span>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a>
-                    <i class="glyphicon glyphicon-home"></i>
-                    <span>文章管理</span>
+                    <span class="glyphicon glyphicon-home"></span>
+                    {{--<span>文章管理</span>--}}
+                    <span class="side-item-name">文章管理</span>
+                    <i class="fa fa-angle-left"></i>
                 </a>
                 <ul class="side-treeview">
                     <li>
@@ -40,18 +48,19 @@
             </li>
             <li>
                 <a href="{{ route('categories.index') }}">
-                    <i class="fa fa-home"></i>
-                    <span>分类管理</span>
+                    <span class="fa fa-home"></span>
+                    <span class="side-item-name">分类管理</span>
                 </a>
             </li>
             <li><a href="{{ route('tag.index') }}">
-                    <i class="fa fa-home"></i>
-                    <span>标签管理</span>
+                    <span class="fa fa-home"></span>
+                    <span class="side-item-name">标签管理</span>
                 </a></li>
             <li><a href="{{ route('link.index') }}">
-                    <i class="fa fa-home"></i>
-                    <span>友情连接</span>
-                </a></li>
+                    <span class="fa fa-home"></span>
+                    <span class="side-item-name">友情连接</span>
+                </a>
+            </li>
         </ul>
 
         <div class="clearfix"></div>

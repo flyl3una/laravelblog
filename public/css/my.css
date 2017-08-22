@@ -22,32 +22,64 @@ a:hover {
 /* line 17, ../sass/my.scss */
 .admin-header {
   width: 100%;
-  position: absolute;
   z-index: 100;
 }
 /* line 22, ../sass/my.scss */
 .admin-header .navbar {
-  min-height: 60px    !important;
+  margin-bottom: 0;
 }
 
-/* line 28, ../sass/my.scss */
+/* line 30, ../sass/my.scss */
+.dropdown-user .user-img {
+  width: 30px;
+  height: 30px;
+  margin: -5px 5px 0 0;
+  border-radius: 50%;
+  vertical-align: middle;
+  float: left;
+}
+/* line 40, ../sass/my.scss */
+.dropdown-user i {
+  vertical-align: middle;
+}
+
+/* line 47, ../sass/my.scss */
 .admin-content {
-  min-height: calc(100% - 60px);
   width: 100%;
-  margin-top: 60px;
   float: left;
 }
 
-/* line 40, ../sass/my.scss */
+@media screen and (min-width: 1200px) {
+  /* line 56, ../sass/my.scss */
+  .admin-content {
+    min-height: calc(100% - 60px);
+  }
+
+  /* line 59, ../sass/my.scss */
+  .side-left {
+    min-height: calc(100% - 60px);
+  }
+}
+@media screen and (max-width: 1199px) {
+  /* line 64, ../sass/my.scss */
+  .admin-content {
+    min-height: calc(100% - 50px);
+  }
+
+  /* line 67, ../sass/my.scss */
+  .side-left {
+    min-height: calc(100% - 50px);
+  }
+}
+/* line 72, ../sass/my.scss */
 .side-left {
-  min-height: 100%;
   float: left;
   left: 0;
   top: 0;
   background: #222d32;
   color: #b8c7ce;
 }
-/* line 49, ../sass/my.scss */
+/* line 81, ../sass/my.scss */
 .side-left .user-profile {
   width: 100%;
   padding: 10px 10px;
@@ -55,71 +87,147 @@ a:hover {
   margin-top: 3px;
   margin-bottom: 10px;
 }
-/* line 55, ../sass/my.scss */
-.side-left .user-profile .user-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 5px solid white;
-  vertical-align: middle;
-  float: left;
-}
-/* line 64, ../sass/my.scss */
+/* line 96, ../sass/my.scss */
 .side-left .user-profile .user-info {
   float: left;
   margin-left: 10px;
   line-height: 1.4;
 }
-/* line 68, ../sass/my.scss */
+/* line 100, ../sass/my.scss */
 .side-left .user-profile .user-info p {
   margin-top: 5px;
   margin-bottom: 2px;
 }
-/* line 72, ../sass/my.scss */
+/* line 104, ../sass/my.scss */
 .side-left .user-profile .user-info h4 {
   color: white;
   margin: 3px 0;
 }
+/* line 110, ../sass/my.scss */
+.side-left .user-profile .side-toggle {
+  float: right;
+  font-size: 30px;
+  line-height: 30px;
+  margin: 15px 12px 0 0;
+}
+/* line 115, ../sass/my.scss */
+.side-left .user-profile .side-toggle a {
+  color: #b8c7ce;
+}
 
-/* line 80, ../sass/my.scss */
+/* line 122, ../sass/my.scss */
 .admin-right-content {
   float: left;
 }
 
-/* line 85, ../sass/my.scss */
+/* line 127, ../sass/my.scss */
 .side-md .side-left {
   width: 230px;
 }
-/* line 88, ../sass/my.scss */
+/* line 130, ../sass/my.scss */
 .side-md .admin-right-content {
   width: calc(100% - 230px);
 }
 
-/* line 93, ../sass/my.scss */
+/* line 135, ../sass/my.scss */
 .side-menu {
   padding: 0;
   list-style: none;
   width: 100%;
 }
-/* line 97, ../sass/my.scss */
-.side-menu .side-treeview {
+/* line 139, ../sass/my.scss */
+.side-menu li {
+  width: 100%;
   float: left;
-  list-style: none;
-  background: #2c3b41;
+  position: relative;
+  margin-left: 0;
+  display: block;
+}
+/* line 146, ../sass/my.scss */
+.side-menu li .side-treeview {
+  display: none;
+}
+/* line 148, ../sass/my.scss */
+.side-menu li .side-treeview li {
   width: 100%;
   padding-left: 0;
 }
-/* line 103, ../sass/my.scss */
-.side-menu .side-treeview li {
-  padding-left: 28px;
+/* line 153, ../sass/my.scss */
+.side-menu li a {
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  line-height: 1.4;
+  display: block;
+  color: #b8c7ce;
 }
-/* line 105, ../sass/my.scss */
-.side-menu .side-treeview li a {
+/* line 160, ../sass/my.scss */
+.side-menu li a span {
+  margin-right: 5px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+/* line 166, ../sass/my.scss */
+.side-menu li a i.fa {
+  float: right;
+  transition: transform 0.5s;
+}
+
+/* line 175, ../sass/my.scss */
+.side-sm .side-left {
+  width: 70px;
+}
+/* line 178, ../sass/my.scss */
+.side-sm .admin-right-content {
+  width: calc(100% - 70px);
+}
+/* line 183, ../sass/my.scss */
+.side-sm .side-left .user-info, .side-sm .side-left .side-item-name, .side-sm .side-left .side-menu i {
+  display: none;
+}
+/* line 193, ../sass/my.scss */
+.side-sm .side-left .side-menu li.active .side-treeview {
+  display: block;
+  border-left: 5px solid #1ABB9C;
+  padding: 0;
+  margin: 0;
+}
+/* line 201, ../sass/my.scss */
+.side-sm .side-left .side-menu li {
+  display: block;
+  position: relative;
+}
+/* line 205, ../sass/my.scss */
+.side-sm .side-left .side-menu li a > span {
+  font-size: 26px;
+  line-height: 1.4;
+}
+/* line 209, ../sass/my.scss */
+.side-sm .side-left .side-menu li .side-treeview {
+  left: 100%;
+  position: absolute      !important;
+  display: block;
+  top: 0;
+  width: 180px;
+  z-index: 1000;
+  background: #2c3b41;
+}
+/* line 217, ../sass/my.scss */
+.side-sm .side-left .side-menu li .side-treeview li > a > span {
+  font-size: 14px;
+}
+/* line 220, ../sass/my.scss */
+.side-sm .side-left .side-menu li .side-treeview li {
+  position: relative;
+  width: 100%;
+}
+/* line 224, ../sass/my.scss */
+.side-sm .side-left .side-menu li .side-treeview li a {
   padding: 10px 10px;
   border-left: 1px solid #425668;
 }
-/* line 109, ../sass/my.scss */
-.side-menu .side-treeview li a:before {
+/* line 229, ../sass/my.scss */
+.side-sm .side-left .side-menu li .side-treeview li a:before {
   background: #425668;
   bottom: auto;
   content: "";
@@ -129,26 +237,49 @@ a:hover {
   position: absolute;
   right: auto;
   width: 9px;
-  z-index: 1;
   border-radius: 50%;
 }
-/* line 126, ../sass/my.scss */
-.side-menu li {
-  width: 100%;
+
+/* line 249, ../sass/my.scss */
+.side-md > .side-left > .side-menu .side-treeview {
   float: left;
-  margin-left: 0;
-  display: block;
+  list-style: none;
+  background: #2c3b41;
+  width: 100%;
+  padding-left: 0;
 }
-/* line 132, ../sass/my.scss */
-.side-menu li a {
-  text-decoration: none;
-  cursor: pointer;
-  padding: 10px 20px;
-  line-height: 1.4;
-  display: block;
-  color: #b8c7ce;
+/* line 255, ../sass/my.scss */
+.side-md > .side-left > .side-menu .side-treeview li {
+  padding-left: 28px;
+  position: relative;
 }
-/* line 139, ../sass/my.scss */
-.side-menu li a span {
-  margin-left: 10px;
+/* line 258, ../sass/my.scss */
+.side-md > .side-left > .side-menu .side-treeview li a {
+  padding: 10px 10px;
+  border-left: 1px solid #425668;
+}
+/* line 263, ../sass/my.scss */
+.side-md > .side-left > .side-menu .side-treeview li a:before {
+  background: #425668;
+  bottom: auto;
+  content: "";
+  height: 9px;
+  left: 24px;
+  margin-top: 5px;
+  position: absolute;
+  right: auto;
+  width: 9px;
+  border-radius: 50%;
+}
+/* line 280, ../sass/my.scss */
+.side-md > .side-left > .side-menu li.active .side-treeview {
+  border-right: 5px solid #1ABB9C;
+}
+/* line 284, ../sass/my.scss */
+.side-md > .side-left > .side-menu li.active a > i.fa {
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(-90deg);
+  /* Safari and Chrome */
 }
