@@ -27,6 +27,13 @@ a:hover {
     //background: #1f648b;//darkslategrey;      //#1f648b
 }
 
+.nav-admin {
+    margin-left: 33px;
+    li>a>i{
+        font-size: 26px;
+    }
+}
+
 .nav-user {
     .user-img {
         width: 30px;
@@ -155,6 +162,12 @@ a:hover {
         .side-treeview {
             display: none;
             li{
+                a{
+                    overflow: visible;
+                    span{
+                        margin-left: 5px;
+                    }
+                }
                 width: 100%;
                 padding-left: 0;
             }
@@ -193,9 +206,6 @@ a:hover {
     }
     li.active {
         color: white;
-        .side-treeview li a{
-            overflow: visible;
-        }
     }
 }
 
@@ -227,7 +237,6 @@ a:hover {
                     left: 100%;
                     position: absolute      !important;
                     border-left: 5px solid #1ABB9C;
-                    //border-ri
                     padding: 0;
                     margin: 0;
                     top: 0;

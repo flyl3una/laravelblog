@@ -20,7 +20,7 @@
 
         <ul class="side-menu">
             <li>
-                <a href="">
+                <a href="#" data-url="{{ route('admin.index') }}">
                     {{--<i class="md-account-balance"></i>--}}
                     {{--<span class="fa fa-dashboard fa-fw"></span>icon-windows--}}
                     <span class="iconfont icon-computer"></span>
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="/admin/user">
+                <a href="#" data-url="{{ route('admin.index') }}">
                     {{--<i class="md-account-balance"></i>--}}
                     {{--<span class="fa fa-user-circle-o fa-fw"></span>--}}
                     <span class="iconfont icon-personal"></span>
@@ -46,12 +46,12 @@
                 </a>
                 <ul class="side-treeview">
                     <li>
-                        <a href="{{ route('article.index') }}">
+                        <a href="#" data-url="{{ route('article.index') }}">
                             {{--<i class="fa fa-home"></i>--}}
                             <span>文章列表</span>
                         </a>
                     </li>
-                    <li><a href="{{ route('article.create') }}">
+                    <li><a href="#" data-url="{{ route('article.create') }}">
                             {{--<i class="fa fa-home"></i>--}}
                             <span>创建文章</span>
                         </a>

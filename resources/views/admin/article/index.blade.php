@@ -1,10 +1,11 @@
-@extends("admin.layout")
-@extends('admin.header')
-@extends("admin.sidebar")
+{{--@extends("admin.layout")--}}
+{{--@extends('admin.header')--}}
+{{--@extends("admin.sidebar")--}}
 
+{{--@extends("layouts.css")--}}
+{{--@extends("layouts.js")--}}
 
-@extends("layouts.css")
-@extends("layouts.js")
+@extends("admin.index")
 
 @section('content')
 
