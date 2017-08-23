@@ -193,6 +193,9 @@ a:hover {
     }
     li.active {
         color: white;
+        .side-treeview li a{
+            overflow: visible;
+        }
     }
 }
 
@@ -205,12 +208,7 @@ a:hover {
     }
 
     .side-left {
-        .side-item-name, .side-menu i{
-            display: none;
-            text-wrap: none;
-            //opacity: 0;
-        }
-        .user-info {
+        .user-info, .side-item-name, .side-menu i{
             opacity: 0;
         }
 
@@ -269,10 +267,7 @@ a:hover {
 }
 
 .side-md>.side-left{
-    .user-info, .side-item-name, .side-menu i{
-        //white-space: nowrap;
-        //overflow: hidden;
-    }
+
     .side-menu {
         .side-treeview {
             float: left;

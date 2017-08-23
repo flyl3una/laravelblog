@@ -13,15 +13,11 @@
     function initAdmin() {
         $("#side-toggle").click(function () {
             if($(".side-left").width() == 70){
-//                $(".side-item-name").attr("visiblity", "hidden");
-//                $(".side-item-name").attr("opacity", "1");
                 $(".side-left").animate({width: '230px'}, "fast");
             }
             else if($(".side-left").width() == 230){
                 $(".side-left").animate({width: '70px'}, "fast");
-//                $(".side-item-name").hidden();
             }
-//            $(".side-item-name").opacity(0);
             $("#content").toggleClass("side-sm");
             $("#content").toggleClass("side-md");
         });
