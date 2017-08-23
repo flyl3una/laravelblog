@@ -1,3 +1,4 @@
+
 body{
     padding: 0;
     margin: 0;
@@ -26,7 +27,7 @@ a:hover {
     //background: #1f648b;//darkslategrey;      //#1f648b
 }
 
-.dropdown-user {
+.nav-user {
     .user-img {
         width: 30px;
         height: 30px;
@@ -44,9 +45,16 @@ a:hover {
     }
 }
 
+.dropdown-user {
+    font-size: 14px;
+    padding: 0;
+    //background: #009688;
+}
+
 .admin-content {
     //min-height: calc(100% - 60px);
     width: 100%;
+    position: relative;
     //position: absolute;
     //margin-top: 60px;
     float: left;
@@ -54,7 +62,7 @@ a:hover {
 
 @media screen and (min-width: 1200px){
     .admin-content {
-        min-height: calc(100% - 60px);
+        //min-height: calc(100% - 60px);
     }
     .side-left {
         min-height: calc(100% - 60px);
@@ -62,7 +70,7 @@ a:hover {
 }
 @media screen and (max-width: 1199px){
     .admin-content {
-        min-height: calc(100% - 50px);
+        //min-height: calc(100% - 50px);
     }
     .side-left {
         min-height: calc(100% - 50px);
@@ -84,6 +92,7 @@ a:hover {
         float: left;
         margin-top: 3px;
         margin-bottom: 10px;
+        position: relative;
         //.user-img {
         //    width: 50px;
         //    height: 50px;
@@ -97,6 +106,8 @@ a:hover {
             float: left;
             margin-left: 10px;
             line-height: 1.4;
+            overflow: hidden;
+            display: block;
             p{
                 margin-top: 5px;
                 margin-bottom: 2px;
@@ -108,19 +119,17 @@ a:hover {
         }
 
         .side-toggle {
-            float: right;
-            font-size: 26px;
-            line-height: 30px;
+            //float: right;
+            position: absolute;
+            right: 10px;
             margin: 15px 15px 0 0;
-            a {
+            a>i {
                 color: #b8c7ce;
+                font-size: 30px;
+                line-height: 1.2;
             }
         }
     }
-}
-
-.admin-right-content {
-    float: left;
 }
 
 .side-md {
@@ -153,9 +162,13 @@ a:hover {
         a{
             text-decoration: none;
             cursor: pointer;
+            position: relative;
             padding: 10px 20px;
             line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
             display: block;
+
             color: #b8c7ce;
             span {
                 //margin-left: 10px;
@@ -163,8 +176,14 @@ a:hover {
                 font-size: 14px;
                 line-height: 1.4;
             }
-            i.fa {
-                float: right;
+            .iconfont {
+                font-size: 16px;
+            }
+            i {
+                position: absolute;
+                right: 15px;
+                z-index: 20;
+                //float: right;
                 transition: transform 0.5s;
             }
         }
@@ -172,25 +191,27 @@ a:hover {
     li:hover {
         background: #23282d;
     }
+    li.active {
+        color: white;
+    }
 }
 
 .side-sm {
     .side-left {
         width: 70px;
-        //animation:move 0.5s;
-        //@keyframes move{
-        //    0%{width:230px;}
-        //    //50%{width:150px;}
-        //    100%{width:70px;}
-        //}
     }
     .admin-right-content {
         width: calc(100% - 70px);
     }
 
     .side-left {
-        .user-info, .side-item-name, .side-menu i{
+        .side-item-name, .side-menu i{
             display: none;
+            text-wrap: none;
+            //opacity: 0;
+        }
+        .user-info {
+            opacity: 0;
         }
 
         .side-menu {
@@ -233,7 +254,7 @@ a:hover {
                             bottom: auto;
                             content: "";
                             height: 9px;
-                            left: 15px;
+                            left: -5px;
                             margin-top: 5px;
                             position: absolute;
                             right: auto;
@@ -247,43 +268,68 @@ a:hover {
     }
 }
 
-.side-md>.side-left>.side-menu {
-    .side-treeview {
-        float: left;
-        list-style: none;
-        background: rgb(44, 59, 65);
-        width: 100%;
-        padding-left: 0;
-        border-right: 5px solid #1ABB9C;
-        li {
-            padding-left: 28px;
-            position: relative;
-            a {
-                padding: 10px 10px;
-                border-left: 1px solid #425668;
+.side-md>.side-left{
+    .user-info, .side-item-name, .side-menu i{
+        //white-space: nowrap;
+        //overflow: hidden;
+    }
+    .side-menu {
+        .side-treeview {
+            float: left;
+            list-style: none;
+            background: rgb(44, 59, 65);
+            width: 100%;
+            padding-left: 0;
+            border-right: 5px solid #1ABB9C;
+            li {
+                padding-left: 28px;
+                position: relative;
+                a {
+                    padding: 10px 10px;
+                    border-left: 1px solid #425668;
+                    //span {
+                    //    display: inline-block;
+                    //}
+                }
+                //z-index: 10;
+                a:before {
+                    background: #425668;
+                    bottom: auto;
+                    content: "";
+                    height: 9px;
+                    left: -5px;
+                    margin-top: 5px;
+                    position: absolute;
+                    right: auto;
+                    width: 9px;
+                    border-radius: 50%;
+                }
             }
-            //z-index: 10;
-            a:before {
-                background: #425668;
-                bottom: auto;
-                content: "";
-                height: 9px;
-                left: 24px;
-                margin-top: 5px;
-                position: absolute;
-                right: auto;
-                width: 9px;
-                border-radius: 50%;
+        }
+
+        //li, .side-treeview li {
+        li.active {
+            a>i {
+                transform:rotate(-90deg);
+                -ms-transform:rotate(-90deg); /* IE 9 */
+                -webkit-transform:rotate(-90deg); /* Safari and Chrome */
             }
         }
     }
+}
 
-    //li, .side-treeview li {
-    li.active {
-        a>i.fa {
-            transform:rotate(-90deg);
-            -ms-transform:rotate(-90deg); /* IE 9 */
-            -webkit-transform:rotate(-90deg); /* Safari and Chrome */
-        }
+.admin-right-content {
+    float: left;
+}
+
+.side-md {
+    .admin-right-content {
+        max-width: calc(100% - 230px);
+    }
+}
+
+.side-sm {
+    .admin-right-content {
+        max-width: calc(100% - 70px);
     }
 }

@@ -5,7 +5,8 @@
     <link href="/vendors/bootstrap-material-design/dist/css/ripples.css" rel="stylesheet">
     <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
     {{--<link rel="stylesheet" href="/vendors/Material Design Icon/css/md-icon.min.css">--}}
-
+        {{--iconfont--}}
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_394438_fp5vktoktyzgds4i.css">
     {{--<link rel="stylesheet" href="/css/blog.css">--}}
     <link rel="stylesheet" href="/css/my.css">
 @endsection

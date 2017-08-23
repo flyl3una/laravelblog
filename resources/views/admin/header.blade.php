@@ -21,15 +21,16 @@
                         <li><a href="{{ route('logout') }}" class="white-color">登出</a></li>
                         <li><a href="{{ route('admin.index') }}" class="white-color">后台</a></li>
                         <li>
-                            <a href="#" class="dropdown-user" data-toggle="dropdown">
+                            <a href="#" class="nav-user" data-toggle="dropdown">
                                 <img src="/images/img.jpg" alt="" class="user-img">
                                 {{--<span>Luna</span>--}}
                                 Luna
-                                <i class="fa fa-angle-down"></i>
+                                {{--<i class="fa fa-angle-down"></i>--}}
+                                <i class="iconfont icon-unfold"></i>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-user">
                                 <li><a href="#">个人信息</a></li>
-                                <li><a href="{{ route('logout') }}" class="white-color">登出</a></li>
+                                <li><a href="{{ route('logout') }}">登出</a></li>
                             </ul>
                         </li>
                     </ul>

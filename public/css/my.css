@@ -1,36 +1,36 @@
-/* line 1, ../sass/my.scss */
+/* line 2, ../sass/my.scss */
 body {
   padding: 0;
   margin: 0;
 }
 
-/* line 6, ../sass/my.scss */
+/* line 7, ../sass/my.scss */
 a {
   cursor: pointer;
 }
 
-/* line 9, ../sass/my.scss */
+/* line 10, ../sass/my.scss */
 a:hover {
   text-decoration: none;
 }
 
-/* line 13, ../sass/my.scss */
+/* line 14, ../sass/my.scss */
 .clearfix {
   clear: both;
 }
 
-/* line 17, ../sass/my.scss */
+/* line 18, ../sass/my.scss */
 .admin-header {
   width: 100%;
   z-index: 100;
 }
-/* line 22, ../sass/my.scss */
+/* line 23, ../sass/my.scss */
 .admin-header .navbar {
   margin-bottom: 0;
 }
 
-/* line 30, ../sass/my.scss */
-.dropdown-user .user-img {
+/* line 31, ../sass/my.scss */
+.nav-user .user-img {
   width: 30px;
   height: 30px;
   margin: -5px 5px 0 0;
@@ -38,40 +38,37 @@ a:hover {
   vertical-align: middle;
   float: left;
 }
-/* line 40, ../sass/my.scss */
-.dropdown-user i {
+/* line 41, ../sass/my.scss */
+.nav-user i {
   vertical-align: middle;
 }
 
-/* line 47, ../sass/my.scss */
+/* line 48, ../sass/my.scss */
+.dropdown-user {
+  font-size: 14px;
+  padding: 0;
+}
+
+/* line 54, ../sass/my.scss */
 .admin-content {
   width: 100%;
+  position: relative;
   float: left;
 }
 
 @media screen and (min-width: 1200px) {
-  /* line 56, ../sass/my.scss */
-  .admin-content {
-    min-height: calc(100% - 60px);
-  }
-
-  /* line 59, ../sass/my.scss */
+  /* line 67, ../sass/my.scss */
   .side-left {
     min-height: calc(100% - 60px);
   }
 }
 @media screen and (max-width: 1199px) {
-  /* line 64, ../sass/my.scss */
-  .admin-content {
-    min-height: calc(100% - 50px);
-  }
-
-  /* line 67, ../sass/my.scss */
+  /* line 75, ../sass/my.scss */
   .side-left {
     min-height: calc(100% - 50px);
   }
 }
-/* line 72, ../sass/my.scss */
+/* line 80, ../sass/my.scss */
 .side-left {
   float: left;
   left: 0;
@@ -79,63 +76,62 @@ a:hover {
   background: #222d32;
   color: #b8c7ce;
 }
-/* line 81, ../sass/my.scss */
+/* line 89, ../sass/my.scss */
 .side-left .user-profile {
   width: 100%;
   padding: 10px 10px;
   float: left;
   margin-top: 3px;
   margin-bottom: 10px;
+  position: relative;
 }
-/* line 96, ../sass/my.scss */
+/* line 105, ../sass/my.scss */
 .side-left .user-profile .user-info {
   float: left;
   margin-left: 10px;
   line-height: 1.4;
+  overflow: hidden;
+  display: block;
 }
-/* line 100, ../sass/my.scss */
+/* line 111, ../sass/my.scss */
 .side-left .user-profile .user-info p {
   margin-top: 5px;
   margin-bottom: 2px;
 }
-/* line 104, ../sass/my.scss */
+/* line 115, ../sass/my.scss */
 .side-left .user-profile .user-info h4 {
   color: white;
   margin: 3px 0;
 }
-/* line 110, ../sass/my.scss */
+/* line 121, ../sass/my.scss */
 .side-left .user-profile .side-toggle {
-  float: right;
-  font-size: 26px;
-  line-height: 30px;
+  position: absolute;
+  right: 10px;
   margin: 15px 15px 0 0;
 }
-/* line 115, ../sass/my.scss */
-.side-left .user-profile .side-toggle a {
+/* line 126, ../sass/my.scss */
+.side-left .user-profile .side-toggle a > i {
   color: #b8c7ce;
+  font-size: 30px;
+  line-height: 1.2;
 }
 
-/* line 122, ../sass/my.scss */
-.admin-right-content {
-  float: left;
-}
-
-/* line 127, ../sass/my.scss */
+/* line 136, ../sass/my.scss */
 .side-md .side-left {
   width: 230px;
 }
-/* line 130, ../sass/my.scss */
+/* line 139, ../sass/my.scss */
 .side-md .admin-right-content {
   width: calc(100% - 230px);
 }
 
-/* line 135, ../sass/my.scss */
+/* line 144, ../sass/my.scss */
 .side-menu {
   padding: 0;
   list-style: none;
   width: 100%;
 }
-/* line 139, ../sass/my.scss */
+/* line 148, ../sass/my.scss */
 .side-menu li {
   width: 100%;
   float: left;
@@ -143,63 +139,81 @@ a:hover {
   margin-left: 0;
   display: block;
 }
-/* line 146, ../sass/my.scss */
+/* line 155, ../sass/my.scss */
 .side-menu li .side-treeview {
   display: none;
 }
-/* line 148, ../sass/my.scss */
+/* line 157, ../sass/my.scss */
 .side-menu li .side-treeview li {
   width: 100%;
   padding-left: 0;
 }
-/* line 153, ../sass/my.scss */
+/* line 162, ../sass/my.scss */
 .side-menu li a {
   text-decoration: none;
   cursor: pointer;
+  position: relative;
   padding: 10px 20px;
   line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
   display: block;
   color: #b8c7ce;
 }
-/* line 160, ../sass/my.scss */
+/* line 173, ../sass/my.scss */
 .side-menu li a span {
   margin-right: 5px;
   font-size: 14px;
   line-height: 1.4;
 }
-/* line 166, ../sass/my.scss */
-.side-menu li a i.fa {
-  float: right;
+/* line 179, ../sass/my.scss */
+.side-menu li a .iconfont {
+  font-size: 16px;
+}
+/* line 182, ../sass/my.scss */
+.side-menu li a i {
+  position: absolute;
+  right: 15px;
+  z-index: 20;
   transition: transform 0.5s;
 }
-/* line 172, ../sass/my.scss */
+/* line 191, ../sass/my.scss */
 .side-menu li:hover {
   background: #23282d;
 }
+/* line 194, ../sass/my.scss */
+.side-menu li.active {
+  color: white;
+}
 
-/* line 178, ../sass/my.scss */
+/* line 200, ../sass/my.scss */
 .side-sm .side-left {
   width: 70px;
 }
-/* line 187, ../sass/my.scss */
+/* line 203, ../sass/my.scss */
 .side-sm .admin-right-content {
   width: calc(100% - 70px);
 }
-/* line 192, ../sass/my.scss */
-.side-sm .side-left .user-info, .side-sm .side-left .side-item-name, .side-sm .side-left .side-menu i {
+/* line 208, ../sass/my.scss */
+.side-sm .side-left .side-item-name, .side-sm .side-left .side-menu i {
   display: none;
+  text-wrap: none;
 }
-/* line 198, ../sass/my.scss */
+/* line 213, ../sass/my.scss */
+.side-sm .side-left .user-info {
+  opacity: 0;
+}
+/* line 219, ../sass/my.scss */
 .side-sm .side-left .side-menu li {
   display: block;
   position: relative;
 }
-/* line 202, ../sass/my.scss */
+/* line 223, ../sass/my.scss */
 .side-sm .side-left .side-menu li a > span {
   font-size: 20px;
   line-height: 1.4;
 }
-/* line 206, ../sass/my.scss */
+/* line 227, ../sass/my.scss */
 .side-sm .side-left .side-menu li .side-treeview {
   display: none;
   left: 100%;
@@ -212,28 +226,28 @@ a:hover {
   z-index: 1000;
   background: #2c3b41;
 }
-/* line 218, ../sass/my.scss */
+/* line 239, ../sass/my.scss */
 .side-sm .side-left .side-menu li .side-treeview li > a > span {
   font-size: 14px;
 }
-/* line 221, ../sass/my.scss */
+/* line 242, ../sass/my.scss */
 .side-sm .side-left .side-menu li .side-treeview li {
   position: relative;
   width: 100%;
 }
-/* line 225, ../sass/my.scss */
+/* line 246, ../sass/my.scss */
 .side-sm .side-left .side-menu li .side-treeview li a {
   padding: 10px 10px;
   border-left: 1px solid #425668;
   margin-left: 19px;
 }
-/* line 231, ../sass/my.scss */
+/* line 252, ../sass/my.scss */
 .side-sm .side-left .side-menu li .side-treeview li a:before {
   background: #425668;
   bottom: auto;
   content: "";
   height: 9px;
-  left: 15px;
+  left: -5px;
   margin-top: 5px;
   position: absolute;
   right: auto;
@@ -241,8 +255,8 @@ a:hover {
   border-radius: 50%;
 }
 
-/* line 251, ../sass/my.scss */
-.side-md > .side-left > .side-menu .side-treeview {
+/* line 277, ../sass/my.scss */
+.side-md > .side-left .side-menu .side-treeview {
   float: left;
   list-style: none;
   background: #2c3b41;
@@ -250,34 +264,49 @@ a:hover {
   padding-left: 0;
   border-right: 5px solid #1ABB9C;
 }
-/* line 258, ../sass/my.scss */
-.side-md > .side-left > .side-menu .side-treeview li {
+/* line 284, ../sass/my.scss */
+.side-md > .side-left .side-menu .side-treeview li {
   padding-left: 28px;
   position: relative;
 }
-/* line 261, ../sass/my.scss */
-.side-md > .side-left > .side-menu .side-treeview li a {
+/* line 287, ../sass/my.scss */
+.side-md > .side-left .side-menu .side-treeview li a {
   padding: 10px 10px;
   border-left: 1px solid #425668;
 }
-/* line 266, ../sass/my.scss */
-.side-md > .side-left > .side-menu .side-treeview li a:before {
+/* line 295, ../sass/my.scss */
+.side-md > .side-left .side-menu .side-treeview li a:before {
   background: #425668;
   bottom: auto;
   content: "";
   height: 9px;
-  left: 24px;
+  left: -5px;
   margin-top: 5px;
   position: absolute;
   right: auto;
   width: 9px;
   border-radius: 50%;
 }
-/* line 283, ../sass/my.scss */
-.side-md > .side-left > .side-menu li.active a > i.fa {
+/* line 312, ../sass/my.scss */
+.side-md > .side-left .side-menu li.active a > i {
   transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   /* IE 9 */
   -webkit-transform: rotate(-90deg);
   /* Safari and Chrome */
+}
+
+/* line 321, ../sass/my.scss */
+.admin-right-content {
+  float: left;
+}
+
+/* line 326, ../sass/my.scss */
+.side-md .admin-right-content {
+  max-width: calc(100% - 230px);
+}
+
+/* line 332, ../sass/my.scss */
+.side-sm .admin-right-content {
+  max-width: calc(100% - 70px);
 }
