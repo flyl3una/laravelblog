@@ -10,7 +10,7 @@
 <body>
 @yield("header")
 {{--@extends("layouts.content")--}}
-<div id="content" class="admin-content side-sm">
+<div id="content" class="admin-content side-md">
     {{--<div class="container-fluid">--}}
         {{--<div class="row side-md">--}}
             @yield("sidebar")

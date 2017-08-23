@@ -109,9 +109,9 @@ a:hover {
 
         .side-toggle {
             float: right;
-            font-size: 30px;
+            font-size: 26px;
             line-height: 30px;
-            margin: 15px 12px 0 0;
+            margin: 15px 15px 0 0;
             a {
                 color: #b8c7ce;
             }
@@ -169,11 +169,20 @@ a:hover {
             }
         }
     }
+    li:hover {
+        background: #23282d;
+    }
 }
 
 .side-sm {
     .side-left {
         width: 70px;
+        //animation:move 0.5s;
+        //@keyframes move{
+        //    0%{width:230px;}
+        //    //50%{width:150px;}
+        //    100%{width:70px;}
+        //}
     }
     .admin-right-content {
         width: calc(100% - 70px);
@@ -185,31 +194,23 @@ a:hover {
         }
 
         .side-menu {
-            li:hover {
 
-            }
-            li.active {
-                //border-right: 5px solid #1ABB9C;
-                .side-treeview{
-                    display: block;
-                    border-left: 5px solid #1ABB9C;
-                    padding: 0;
-                    margin: 0;
-                }
-                //border-right: 0;
-            }
             li{
                 display: block;
                 position: relative;
 
                 a>span {
-                    font-size: 26px;
+                    font-size: 20px;
                     line-height: 1.4;
                 }
                 .side-treeview {
+                    display: none;
                     left: 100%;
                     position: absolute      !important;
-                    display: block;
+                    border-left: 5px solid #1ABB9C;
+                    //border-ri
+                    padding: 0;
+                    margin: 0;
                     top: 0;
                     width: 180px;
                     z-index: 1000;
@@ -224,6 +225,7 @@ a:hover {
                         a {
                             padding: 10px 10px;
                             border-left: 1px solid #425668;
+                            margin-left: 19px;
                         }
                         //z-index: 10;
                         a:before {
@@ -231,7 +233,7 @@ a:hover {
                             bottom: auto;
                             content: "";
                             height: 9px;
-                            left: 24px;
+                            left: 15px;
                             margin-top: 5px;
                             position: absolute;
                             right: auto;
@@ -252,6 +254,7 @@ a:hover {
         background: rgb(44, 59, 65);
         width: 100%;
         padding-left: 0;
+        border-right: 5px solid #1ABB9C;
         li {
             padding-left: 28px;
             position: relative;
@@ -277,10 +280,6 @@ a:hover {
 
     //li, .side-treeview li {
     li.active {
-        .side-treeview {
-            //display: block;
-            border-right: 5px solid #1ABB9C;
-        }
         a>i.fa {
             transform:rotate(-90deg);
             -ms-transform:rotate(-90deg); /* IE 9 */

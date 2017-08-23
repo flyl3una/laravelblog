@@ -19,15 +19,22 @@
 
         <ul class="side-menu">
             <li>
+                <a href="">
+                    {{--<i class="md-account-balance"></i>--}}
+                    <span class="fa fa-dashboard fa-fw"></span>
+                    <span class="side-item-name">仪表盘</span>
+                </a>
+            </li>
+            <li>
                 <a href="/admin/user">
                     {{--<i class="md-account-balance"></i>--}}
-                    <span class="glyphicon glyphicon-home"></span>
+                    <span class="fa fa-user-circle-o fa-fw"></span>
                     <span class="side-item-name">用户信息</span>
                 </a>
             </li>
-            <li class="active">
+            <li class="">
                 <a>
-                    <span class="glyphicon glyphicon-home"></span>
+                    <span class="fa fa-pencil fa-fw"></span>
                     {{--<span>文章管理</span>--}}
                     <span class="side-item-name">文章管理</span>
                     <i class="fa fa-angle-left"></i>
@@ -48,16 +55,16 @@
             </li>
             <li>
                 <a href="{{ route('categories.index') }}">
-                    <span class="fa fa-home"></span>
+                    <span class="fa fa-bookmark fa-fw"></span>
                     <span class="side-item-name">分类管理</span>
                 </a>
             </li>
             <li><a href="{{ route('tag.index') }}">
-                    <span class="fa fa-home"></span>
+                    <span class="fa fa-tags fa-fw"></span>
                     <span class="side-item-name">标签管理</span>
                 </a></li>
             <li><a href="{{ route('link.index') }}">
-                    <span class="fa fa-home"></span>
+                    <span class="fa fa-link fa-fw"></span>
                     <span class="side-item-name">友情连接</span>
                 </a>
             </li>

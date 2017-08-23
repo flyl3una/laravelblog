@@ -15,14 +15,23 @@
         $.material.init();
 
         $("#side-toggle").click(function () {
+            if($(".side-left").width() == 70){
+                $(".side-left").animate({width: '230px'}, "fast");
+            }
+            else if($(".side-left").width() == 230){
+                $(".side-left").animate({width: '70px'}, "fast");
+            }
             $("#content").toggleClass("side-sm");
             $("#content").toggleClass("side-md");
         });
 
-        $("ul.side-menu>li>a").click(function () {
-            $(this).parent().toggleClass('active');
-            $(this).next().slideToggle("normal");
+        $(".side-md>.side-left>.side-menu>li").click(function () {
+//            $(this).parent().toggleClass('active');
+//            $(this).next().slideToggle("normal");
+            $(this).toggleClass('active');
+            $(this).children(".side-treeview").slideToggle("normal");
         });
+//        $("")
     });
 </script>
 @endsection
