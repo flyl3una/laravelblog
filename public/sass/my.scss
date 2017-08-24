@@ -68,7 +68,7 @@ a:hover {
 }
 
 .admin-right-content {
-
+    margin: 0 20px;
 }
 
 .admin-footer{
@@ -220,7 +220,7 @@ a:hover {
             }
             i {
                 position: absolute;
-                right: 15px;
+                right: 20px;
                 z-index: 20;
                 //float: right;
                 transition: transform 0.5s;
@@ -233,6 +233,19 @@ a:hover {
     li.active {
         color: white;
     }
+    li.active:after {
+        content: '';
+        width: 18px;
+        height: 18px;
+        //border-width: 5px;
+        //border-right: 5px solid white;
+        border-width: 1px 0 0 1px;
+        background: #eee;
+        -webkit-transform: rotate(45deg);
+        position: absolute;
+        right: -10px;
+        top: 13px;
+    }
 }
 
 .side-sm {
@@ -241,7 +254,7 @@ a:hover {
     }
 
     .admin-content {
-        width: calc(100% - 70px);
+        width: calc(100% - 170px);
         margin-left: 70px;
     }
 
@@ -358,12 +371,67 @@ a:hover {
     display: block;
     padding:0;
     color: white;
+    margin-left: 10px;
     li {
         display: inline-block;
         list-style: none;
         float: left;
         padding: 0 5px;
-        margin:0 10px;
+        font-size: 16px;
+        color: #666666;
     }
 }
 
+.table-list-article {
+    font-size: 14px;
+    background: white;
+    td {
+        font-size: 13px;
+        padding: 8px 10px;
+        a, p, span {
+            padding: 5px 0;
+            display: block;
+        }
+    }
+    form {
+        margin: 0;
+        float: left;
+    }
+    .table-article-title {
+        //float: left;
+        word-wrap: break-word;
+        a {
+            //width: 100%;
+            font-weight: bold;
+
+        }
+
+    }
+    .table-article-tags {
+        ul {
+            list-style: none;
+            padding: 0;
+            li {
+                display: inline-flex;
+                float: left;
+                margin: -1 5px;
+                padding: 0 5px;
+                background: #009688;
+                color: #FFFFFF;
+                //border: 1px solid ;
+                border-radius: 1px;
+            }
+        }
+    }
+    .table-article-action {
+        ul {
+            list-style: none;
+            padding: 0;
+            li {
+                display: inline-flex;
+                float: left;
+                padding: 0 5px;
+            }
+        }
+    }
+}

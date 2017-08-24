@@ -14,10 +14,12 @@
 <div class="admin-content">
     {{--<div class="container-fluid">--}}
     {{--<div class="row side-md">--}}
-    <div id="admin_content" class="container-fluid">
-        @yield("content")
-    </div>
+    <div class="admin-right-content">
+        <div id="admin_content" class="container-fluid">
 
+            @yield("content")
+        </div>
+    </div>
     {{--@yield("footer")--}}
     @yield("footer")
     {{--</div>--}}
