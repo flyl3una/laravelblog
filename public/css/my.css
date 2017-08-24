@@ -14,11 +14,6 @@ a:hover {
   text-decoration: none;
 }
 
-/* line 14, ../sass/my.scss */
-.clearfix {
-  clear: both;
-}
-
 /* line 18, ../sass/my.scss */
 .admin-header {
   width: 100%;
