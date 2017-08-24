@@ -11,11 +11,13 @@
 @yield("header")
 @yield("sidebar")
 {{--@extends("layouts.content")--}}
-<div id="content" class="admin-content">
+<div class="admin-content">
     {{--<div class="container-fluid">--}}
     {{--<div class="row side-md">--}}
+    <div id="admin_content" class="container-fluid">
+        @yield("content")
+    </div>
 
-    @yield("content")
     {{--@yield("footer")--}}
     @yield("footer")
     {{--</div>--}}

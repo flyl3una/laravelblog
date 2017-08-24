@@ -23,8 +23,8 @@
             console.log(data_url);
             // bug
             var html_data = $.get(data_url, function(html_data, status) {
-                console.log(html_data);
-                $(".admin-content").html(html_data);
+//                console.log(html_data);
+                $("#admin_content").html(html_data);
             });
         }
     };

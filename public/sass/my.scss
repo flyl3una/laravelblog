@@ -61,7 +61,8 @@ a:hover {
 }
 
 .admin-content {
-    padding: 10px 10px 50px 10px;
+    //padding: 10px 10px 50px 10px;
+    padding-bottom: 50px;
     position: relative;
     float: left;
 }
@@ -72,11 +73,11 @@ a:hover {
 
 .admin-footer{
     position: absolute;
-    height: 50px;
+    height: 56px;
     //margin-left: -10px;
     //margin-right: -10px;
-    //width: 100%;
-    width: calc(100% - 20px);
+    width: 100%;
+    //width: calc(100% - 20px);
 
 }
 
@@ -348,3 +349,21 @@ a:hover {
         }
     }
 }
+
+
+// article
+.select-status {
+    list-style: none;
+    float: left;
+    display: block;
+    padding:0;
+    color: white;
+    li {
+        display: inline-block;
+        list-style: none;
+        float: left;
+        padding: 0 5px;
+        margin:0 10px;
+    }
+}
+
