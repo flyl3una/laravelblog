@@ -7,16 +7,18 @@
     {{--<link href="/css/boostrap-theme.css" rel="stylesheet">--}}
 </head>
 
-<body>
+<body class="side-md">
 @yield("header")
+@yield("sidebar")
 {{--@extends("layouts.content")--}}
-<div id="content" class="admin-content side-md">
+<div id="content" class="admin-content">
     {{--<div class="container-fluid">--}}
-        {{--<div class="row side-md">--}}
-            @yield("sidebar")
-            @yield("content")
-            {{--@yield("footer")--}}
-        {{--</div>--}}
+    {{--<div class="row side-md">--}}
+
+    @yield("content")
+    {{--@yield("footer")--}}
+    @yield("footer")
+    {{--</div>--}}
     {{--</div>--}}
 </div>
 

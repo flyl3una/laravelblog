@@ -18,8 +18,10 @@ a:hover {
 .admin-header {
     //height: 60px;
     width: 100%;
+    position: fixed;
+    top: 0;
     //position: absolute;
-    z-index: 100;
+    z-index: 1000;
     .navbar {
         //max-height: 60px    !important;     //error
         margin-bottom: 0;
@@ -59,37 +61,55 @@ a:hover {
 }
 
 .admin-content {
-    //min-height: calc(100% - 60px);
-    width: 100%;
+    padding: 10px 10px 50px 10px;
     position: relative;
-    //position: absolute;
-    //margin-top: 60px;
     float: left;
+}
+
+.admin-right-content {
+
+}
+
+.admin-footer{
+    position: absolute;
+    height: 50px;
+    //margin-left: -10px;
+    //margin-right: -10px;
+    //width: 100%;
+    width: calc(100% - 20px);
+
 }
 
 @media screen and (min-width: 1200px){
     .admin-content {
-        //min-height: calc(100% - 60px);
+        min-height: calc(100% - 60px);
+        margin-top: 60px;
     }
     .side-left {
         min-height: calc(100% - 60px);
+        top: 60px;
     }
 }
 @media screen and (max-width: 1199px){
     .admin-content {
-        //min-height: calc(100% - 50px);
+        min-height: calc(100% - 50px);
+        margin-top: 50px;
     }
     .side-left {
         min-height: calc(100% - 50px);
+        top: 50px;
     }
 }
 
 .side-left {
     //width: 230px;
     //min-height: calc(100% - 60px);
-    float: left;
+    //float: left;
+    //position: absolute;
+    position: fixed;
+    z-index: 100;
     left: 0;
-    top:0;
+    //top:0;
     background: #222d32;
     color: #b8c7ce;
 
@@ -139,18 +159,23 @@ a:hover {
     }
 }
 
+
 .side-md {
     .side-left{
         width: 230px;
     }
-    .admin-right-content {
+
+    .admin-content {
         width: calc(100% - 230px);
+        margin-left: 230px;
     }
 }
 
 .side-menu {
     padding: 0;
+    position: relative;
     list-style: none;
+    height: auto;
     width: 100%;
     li {
         width: 100%;
@@ -213,8 +238,10 @@ a:hover {
     .side-left {
         width: 70px;
     }
-    .admin-right-content {
+
+    .admin-content {
         width: calc(100% - 70px);
+        margin-left: 70px;
     }
 
     .side-left {
@@ -319,21 +346,5 @@ a:hover {
                 -webkit-transform:rotate(-90deg); /* Safari and Chrome */
             }
         }
-    }
-}
-
-.admin-right-content {
-    float: left;
-}
-
-.side-md {
-    .admin-right-content {
-        max-width: calc(100% - 230px);
-    }
-}
-
-.side-sm {
-    .admin-right-content {
-        max-width: calc(100% - 70px);
     }
 }

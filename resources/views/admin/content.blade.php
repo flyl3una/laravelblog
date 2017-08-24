@@ -1,5 +1,8 @@
 @section("content")
-<div class="admin-right-content">
-    <h2>content</h2>
-</div>
+{{--<div class="admin-right-content">--}}
+    <h1>content</h1>
+<h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1>
+    <h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1><h1>content</h1>
+{{--</div>--}}
+
 @endsection

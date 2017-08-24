@@ -20,15 +20,16 @@
     sideGetView = function(click){
         var data_url = click.attr('data-url');
         if(data_url) {
-//            console.log(data_url);
+            console.log(data_url);
             // bug
-            var html_data = $.get(data_url);
-            console.log(html_data);
-            $(".admin-right-content").html(html_data);
+            var html_data = $.get(data_url, function(html_data, status) {
+                console.log(html_data);
+                $(".admin-content").html(html_data);
+            });
         }
     };
 
-    function initAdmin() {
+    initAdmin = function() {
         $("#side-toggle").click(function () {
 //            $(".side-menu>li.active").toggleClass('active');
             toggleSideTreeView($(".side-menu>li.active>a"));
@@ -38,24 +39,20 @@
             else if($(".side-left").width() == 230){
                 $(".side-left").animate({width: '70px'}, "fast");
             }
-            $("#content").toggleClass("side-sm");
-            $("#content").toggleClass("side-md");
+            $("body").toggleClass("side-sm");
+            $("body").toggleClass("side-md");
         });
 
         $(".side-menu>li>a").click(function () {
-//            $(this).parent().toggleClass('active');
-//            $(this).next().slideToggle("normal");
             toggleSideTreeView($(this));
             sideGetView($(this));
-//            $(this).toggleClass('active');
-//            $(this).children(".side-treeview").slideToggle("normal");
         });
         $(".side-treeview>li>a").click(function() {
             sideGetView($(this));
         });
 
-        $(".side-left").height($(".admin-content").height());
-    }
+//        $(".side-left").height($("#content").height()+$(".footer").height());
+    };
 
 
     $(document).ready(function() {
