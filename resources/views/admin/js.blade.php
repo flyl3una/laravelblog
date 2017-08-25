@@ -3,10 +3,6 @@
     <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/vendors/bootstrap-material-design/dist/js/material.js"></script>
     <script src="/vendors/bootstrap-material-design/dist/js/ripples.js"></script>
-    <script>
-
-    </script>
-
 
     <script>
 
@@ -29,6 +25,12 @@
 
         initCurrentSide = function (id){
             $("#" + id).addClass("current");
+            if($("#" + id).parent().hasClass("side-treeview")) {
+                $("#" + id).parent().parent().addClass("active");
+                $("#" + id).parent().show();
+            }else{
+                $("#" + id).parent().addClass("active");
+            }
         };
 
         initAdmin = function () {
@@ -50,8 +52,10 @@
 //            sideGetView($(this));
             });
 
-            $.each($(".side-menu>li"), function (value, index, array) {
-                value.removeClass("current");
+            $(".side-menu li").each(function (index) {
+                if ($(this).hasClass("current")) {
+                    $(this).removeClass("current");
+                }
             });
 //        $(".side-treeview>li>a").click(function() {
 //            sideGetView($(this));
@@ -64,7 +68,7 @@
             //初始化material
             $.material.init();
             initAdmin();
-            initCurrentSide();
+//            initCurrentSide();
         });
     </script>
 @endsection

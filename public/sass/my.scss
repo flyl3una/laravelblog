@@ -173,6 +173,11 @@ a:hover {
 }
 
 .side-menu {
+    .current {
+        .side-item-name{
+            color: white    !important;
+        }
+    }
     padding: 0;
     position: relative;
     list-style: none;
@@ -229,9 +234,6 @@ a:hover {
     }
     li:hover {
         background: #23282d;
-    }
-    li.active {
-        color: white;
     }
     li.active:after {
         content: '';

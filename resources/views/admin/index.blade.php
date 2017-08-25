@@ -4,5 +4,5 @@
 @extends("admin.content")
 @extends("admin.footer")
 
-@extends("layouts.css")
-@extends("layouts.js")
+@extends("admin.css")
+@extends("admin.js")

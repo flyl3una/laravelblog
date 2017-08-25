@@ -1,21 +1,16 @@
 {{--@extends("admin.layout")--}}
-{{--@extends('admin.header')--}}
+{{--@extends("admin.header")--}}
 {{--@extends("admin.sidebar")--}}
 
-{{--@extends("layouts.css")--}}
-{{--@extends("layouts.js")--}}
+{{--@extends("admin.footer")--}}
 
-{{--@extends("admin.index")--}}
+{{--@extends("admin.css")--}}
+{{--@extends("admin.js")--}}
+@extends("admin.index")
 
-{{--@section('content')--}}
-
-{{--<div class="admin-right-content">--}}
-{{--<div class="container-">--}}
+@section('content')
 
 <h3>文章列表</h3>
-{{--<div class="row">--}}
-{{----}}
-{{--</div>--}}
 <div class="row">
     <ul class="select-status">
         <li class="active"><a>全部 （3）</a>
@@ -27,12 +22,6 @@
     </ul>
 </div>
 
-{{--<div class="content-panel">--}}
-{{--<div class="panel panel-info center-block">--}}
-{{--<div class="panel-heading">--}}
-{{--文章列表--}}
-{{--</div>--}}
-{{--<div class="panel-body">--}}
 <div class="table-responsive">
     <table class="table-list-article table table-striped">
         <tbody>
@@ -47,12 +36,7 @@
         @foreach($articleList as $article)
             <tr>
                 <td class="table-article-title">
-                    {{--<div class="row">--}}
                     <a>{{ $article['title'] }}</a>
-                    {{--</div>--}}
-                    {{--<div class="row">--}}
-
-                    {{--</div>--}}
                 </td>
                 <td><span>{{ $article['user'] }}</span></td>
                 <td><span>{{ $article['cate'] }}</span></td>
@@ -91,9 +75,17 @@
     </table>
     {!! $articleAll->render() !!}
 </div>
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endsection--}}
+@endsection
+{{--@stop--}}
+{{--@override--}}
+
+@section("common_js")
+    @parent
+<script>
+    $(document).ready(function(){
+        initCurrentSide("side_article_list");
+    });
+
+</script>
+@endsection
+{{--@stop--}}

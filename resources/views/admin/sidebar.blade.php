@@ -19,23 +19,23 @@
         <div class="clearfix"></div>
 
         <ul class="side-menu">
-            <li>
-                <a href="#" data-url="{{ route('admin.index') }}">
+            <li id="side_system_info">
+                <a href="{{ route('admin.index') }}" data-url="{{ route('admin.index') }}">
                     {{--<i class="md-account-balance"></i>--}}
                     {{--<span class="fa fa-dashboard fa-fw"></span>icon-windows--}}
                     <span class="iconfont icon-computer"></span>
                     <span class="side-item-name">系统信息</span>
                 </a>
             </li>
-            <li>
-                <a href="#" data-url="{{ route('admin.index') }}">
+            <li id="user_info">
+                <a href="{{ route('admin.index') }}" data-url="{{ route('admin.index') }}">
                     {{--<i class="md-account-balance"></i>--}}
                     {{--<span class="fa fa-user-circle-o fa-fw"></span>--}}
                     <span class="iconfont icon-personal"></span>
                     <span class="side-item-name">用户信息</span>
                 </a>
             </li>
-            <li class="">
+            <li>
                 <a>
                     {{--<span class="fa fa-pencil fa-fw"></span>--}}
                     <span class="iconfont icon-brush"></span>
@@ -45,32 +45,35 @@
                     <i class="iconfont icon-return"></i>
                 </a>
                 <ul class="side-treeview">
-                    <li>
-                        <a href="#" data-url="{{ route('article.index') }}">
+                    <li id="side_article_list" class="">
+                        <a href="{{ route('article.index') }}">
                             {{--<i class="fa fa-home"></i>--}}
-                            <span>文章列表</span>
+                            <span class="side-item-name">文章列表</span>
                         </a>
                     </li>
-                    <li><a href="#" data-url="{{ route('article.create') }}">
+                    <li id="side_article_create">
+                        <a href="{{ route('article.create') }}" data-url="{{ route('article.create') }}">
                             {{--<i class="fa fa-home"></i>--}}
-                            <span>创建文章</span>
+                            <span class="side-item-name">创建文章</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li>
+            <li id="side_categories_manage">
                 <a href="{{ route('categories.index') }}">
                     {{--<span class="fa fa-bookmark fa-fw"></span>--}}
                     <span class="iconfont icon-subscription"></span>
                     <span class="side-item-name">分类管理</span>
                 </a>
             </li>
-            <li><a href="{{ route('tag.index') }}">
+            <li id="side_tags_manage">
+                <a href="{{ route('tag.index') }}">
                     {{--<span class="fa fa-tags fa-fw"></span>--}}
                     <span class="iconfont icon-zhekou"></span>
                     <span class="side-item-name">标签管理</span>
                 </a></li>
-            <li><a href="{{ route('link.index') }}">
+            <li id="side_links_index">
+                <a href="{{ route('link.index') }}">
                     {{--<span class="fa fa-link fa-fw"></span>--}}
                     <span class="iconfont icon-accessory"></span>
                     <span class="side-item-name">友情连接</span>

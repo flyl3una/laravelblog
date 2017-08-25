@@ -27,8 +27,8 @@
 </div>
 
 {{--@extends("layouts.footer")--}}
-
-@yield("js")
+@yield("common_js")
+@yield("page_js")
 </body>
 </html>
 
