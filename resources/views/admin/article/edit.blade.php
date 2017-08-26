@@ -1,12 +1,9 @@
-@extends("admin.layout")
-@extends("admin.sidebar")
-
-@extends("layouts.css")
-@extends("layouts.js")
+@extends('admin.index')
 
 @section('content')
-<div class="admin-content">
-<div class="content-panel">
+    <div class="container">
+        <h5>编辑文章</h5>
+    </div>
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="panel-title">

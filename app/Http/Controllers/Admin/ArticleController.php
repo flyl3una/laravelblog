@@ -66,7 +66,7 @@ class ArticleController extends Controller
 //        return 'create';
         $cates = Categories::all();
         $tagAll = Tag::all();
-        return view('admin.article.edit', compact( 'cates', 'tagAll'));
+        return view('admin.article.create', compact( 'cates', 'tagAll'));
     }
 
     /**

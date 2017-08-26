@@ -62,13 +62,17 @@ a:hover {
 
 .admin-content {
     //padding: 10px 10px 50px 10px;
-    padding-bottom: 50px;
+    //padding-bottom: 50px;
     position: relative;
-    float: left;
+    h5 {
+        padding-top: 30px;
+    }
+    //float: left;
 }
 
 .admin-right-content {
     margin: 0 20px;
+    position: relative;
 }
 
 .admin-footer{
@@ -81,24 +85,24 @@ a:hover {
 
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 600px){
     .admin-content {
-        min-height: calc(100% - 60px);
-        margin-top: 60px;
+        min-height: calc(100% - 64px);
+        margin-top: 64px;
     }
     .side-left {
-        min-height: calc(100% - 60px);
-        top: 60px;
+        min-height: calc(100% - 64px);
+        top: 64px;
     }
 }
-@media screen and (max-width: 1199px){
+@media screen and (max-width: 599px){
     .admin-content {
-        min-height: calc(100% - 50px);
-        margin-top: 50px;
+        min-height: calc(100% - 54px);
+        margin-top: 54px;
     }
     .side-left {
-        min-height: calc(100% - 50px);
-        top: 50px;
+        min-height: calc(100% - 54px);
+        top: 54px;
     }
 }
 
@@ -140,7 +144,7 @@ a:hover {
                 margin-top: 5px;
                 margin-bottom: 2px;
             }
-            h4 {
+            h5 {
                 color: white;
                 margin: 3px 0;
             }
@@ -170,6 +174,10 @@ a:hover {
         width: calc(100% - 230px);
         margin-left: 230px;
     }
+
+    footer {
+        margin-left: 230px;
+    }
 }
 
 .side-menu {
@@ -191,12 +199,13 @@ a:hover {
         margin-left: 0;
         display: block;
         .side-treeview {
-            display: none;
+            //display: none;
             li{
                 a{
                     overflow: visible;
                     span{
                         margin-left: 5px;
+                        color: #b8c7ce  !important;
                     }
                 }
                 width: 100%;
@@ -235,19 +244,19 @@ a:hover {
     li:hover {
         background: #23282d;
     }
-    li.active:after {
-        content: '';
-        width: 18px;
-        height: 18px;
-        //border-width: 5px;
-        //border-right: 5px solid white;
-        border-width: 1px 0 0 1px;
-        background: #eee;
-        -webkit-transform: rotate(45deg);
-        position: absolute;
-        right: -10px;
-        top: 13px;
-    }
+    //li.active:after {
+    //    content: '';
+    //    width: 18px;
+    //    height: 18px;
+    //    //border-width: 5px;
+    //    //border-right: 5px solid white;
+    //    border-width: 1px 0 0 1px;
+    //    background: #eee;
+    //    -webkit-transform: rotate(45deg);
+    //    position: absolute;
+    //    right: -10px;
+    //    top: 13px;
+    //}
 }
 
 .side-sm {
@@ -260,8 +269,12 @@ a:hover {
         margin-left: 70px;
     }
 
+    footer {
+        margin-left: 70px;
+    }
+
     .side-left {
-        .user-info, .side-item-name, .side-menu i{
+        .user-info, .side-menu>li>a>span.side-item-name, .side-menu i{
             opacity: 0;
         }
 
@@ -286,9 +299,6 @@ a:hover {
                     width: 180px;
                     z-index: 1000;
                     background: rgb(44, 59, 65);
-                    li>a>span{
-                        font-size: 14px;
-                    }
                     li{
                         position: relative;
                         width: 100%;
@@ -297,6 +307,11 @@ a:hover {
                             padding: 10px 10px;
                             border-left: 1px solid #425668;
                             margin-left: 19px;
+                            display: block;
+                            span {
+                                font-size: 14px;
+                                color: #b8c7ce;
+                            }
                         }
                         //z-index: 10;
                         a:before {
@@ -388,52 +403,69 @@ a:hover {
     font-size: 14px;
     background: white;
     td {
-        font-size: 13px;
+        //font-size: 13px;
         padding: 8px 10px;
         a, p, span {
             padding: 5px 0;
             display: block;
+        }
+        .row {
+            margin-bottom: 0;
         }
     }
     form {
         margin: 0;
         float: left;
     }
+
     .table-article-title {
-        //float: left;
-        word-wrap: break-word;
-        a {
-            //width: 100%;
-            font-weight: bold;
+        font-weight: 600;
+    }
 
-        }
+    .manage-column {
+        width: 36px;
+    }
+}
 
+.chip-tag {
+    border-radius: 1px;
+}
+
+.pagination{
+    li span {
+        color: #444;
+        display: inline-block;
+        font-size: 1.2rem;
+        padding: 0 10px;
+        line-height: 30px;
     }
-    .table-article-tags {
-        ul {
-            list-style: none;
-            padding: 0;
-            li {
-                display: inline-flex;
-                float: left;
-                margin: -1 5px;
-                padding: 0 5px;
-                background: #009688;
-                color: #FFFFFF;
-                //border: 1px solid ;
-                border-radius: 1px;
-            }
+    li.active {
+        span, a{
+            color: #fff;
         }
     }
-    .table-article-action {
-        ul {
-            list-style: none;
-            padding: 0;
-            li {
-                display: inline-flex;
-                float: left;
-                padding: 0 5px;
-            }
-        }
+}
+
+.article-bottom-option {
+    .btn {
+        margin-top: 15px;
     }
+}
+
+.article-body-content {
+    width: 100%;
+    height: auto;
+    padding-right: 300px;
+    position: relative;
+}
+
+.right-card-list {
+    width: 280px;
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+.input-field {
+    margin-top: 5px;
 }
