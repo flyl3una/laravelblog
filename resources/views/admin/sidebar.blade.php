@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li>
-                <a>
+                <a class="waves-effect waves-light">
                     {{--<span class="fa fa-pencil fa-fw"></span>--}}
                     <span class="iconfont icon-brush"></span>
                     {{--<span>文章管理</span>--}}

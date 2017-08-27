@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Laravel Blog</title>
+    <title>MBlog</title>
     <link href="/css/bootstrap.css" rel="stylesheet">
     <script src="/js/jquery-3.2.1.min.js"></script>
 

@@ -22,10 +22,10 @@
             </ul>
         </div>
         <div class="card z-depth-4">
-            <table class="bordered centered highlight table-list-article">
-                <thead>
+            <table class="bordered highlight table-list">
+                <thead class="grey lighten-4">
                 <tr>
-                    <th width="36px" class="manage-column">
+                    <th class="manage-column">
                         <input type="checkbox" id="all">
                         <label for="all"></label>
                     </th>
@@ -41,28 +41,25 @@
                 @foreach($articleList as $article)
                     <tr>
                         <td>
-                            <input type="checkbox" id="{{ $article['id'] }}">
+                            <input type="checkbox" id="{{ $article['id'] }}" name="articleIds">
                             <label for="{{ $article['id'] }}"></label>
                         </td>
-                        <td class="table-article-title">
+                        <td>
                             <a>{{ $article['title'] }}</a>
                         </td>
                         <td><span>{{ $article['user'] }}</span></td>
                         <td><span>{{ $article['cate'] }}</span></td>
-                        <td class="table-article-tags">
-                            {{--<ul class="article-tags">--}}
-                                @foreach($article['tags'] as $tag)
-                                    {{--<li class="">--}}
-                                        <div class="chip-tag chip left">{{ $tag }}</div>
-                                    {{--</li>--}}
+                        <td>
+                            @foreach($article['tags'] as $tag)
+                                <div class="chip-tag chip left">{{ $tag }}</div>
                                 @endforeach
-                            </ul>
+                                </ul>
                         </td>
 
                         <td><span>5 / {{ $article['click_count'] }}</span></td>
                         {{--<td><a href="article/{{ $article['id'] }}/edit">编辑</a>--}}
                         {{--                                        <a href="article/{{ $article['id'] }}/destroy">删除</a> </td>--}}
-                        <td class="table-article-action">
+                        <td>
                             {{--<a href="{{ route('article.edit', $article['id']) }}"--}}
                             {{--class="btn btn-raised btn-success">编辑</a>--}}
                             {{--<a href="{{ route('article.destroy', $article['id']) }}" class="btn btn-danger">删除</a>--}}
@@ -75,44 +72,26 @@
                             {{--<input type="submit" value="删除" class="btn btn-raised btn-danger"/>--}}
                             {{--</form>--}}
                             {{--<ul class="article-operator">--}}
-                                {{--<li>--}}
-                            <div class="row">
-                                <div class="col m4">
-                                    <a href="">查看</a>
-                                </div>
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                <div class="col m4">
-                                    <a href="">编辑</a>
-                                </div>
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                <div class="col m4">
-                                    <a href="">删除</a>
-                                </div>
-                            </div>
-
-                                {{--</li>--}}
-                            {{--</ul>--}}
+                            <a href="">查看</a>
+                            <a href="">编辑</a>
+                            <a href="">删除</a>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="row article-bottom-option">
+        <div class="row">
             <div class="col m3 s8 input-field">
-                {{--<div class="select-wrapper">--}}
-
-                    <select class="initialized">
-                        <option value="" disabled="" selected="">选择操作</option>
-                        <option>
-                            删除
-                        </option>
-                    </select>
+                <select class="initialized">
+                    <option value="" disabled="" selected="">选择操作</option>
+                    <option>
+                        <a href="#">删除</a>
+                    </option>
+                </select>
             </div>
             <div class="col m2 s4">
-                <button type="submit" class="waves-effect waves-light btn" value="应用">应用</button>
+                <button type="submit" class="waves-effect waves-light btn input-field-button" value="应用">应用</button>
             </div>
             <div class="col m7 s12 right right-align">
                 {!! $articleAll->render() !!}
@@ -120,17 +99,14 @@
         </div>
     </div>
 @endsection
-{{--@stop--}}
-{{--@override--}}
+
 
 @section("js")
     @parent
     <script>
         $(document).ready(function () {
-            initCurrentSide("side_article_list");
-            $('select').material_select();
-//            $('select').material_select('destroy');
+            setCurrentSide("side_article_list");
+
         });
     </script>
 @endsection
-{{--@stop--}}

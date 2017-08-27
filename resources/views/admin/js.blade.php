@@ -5,8 +5,6 @@
     {{--<script src="/vendors/bootstrap-material-design/dist/js/ripples.js"></script>--}}
     <script src="/vendors/materialize/dist/js/materialize.min.js"></script>
 
-
-
     <script>
         toggleSideTreeView = function (click) {
             click.parent().toggleClass('active');
@@ -25,7 +23,7 @@
             }
         };
 
-        initCurrentSide = function (id){
+        setCurrentSide = function (id){
             $("#" + id).addClass("current");
             if($("#" + id).parent().hasClass("side-treeview")) {
                 $("#" + id).parent().parent().addClass("active");
@@ -45,8 +43,8 @@
                 else if ($(".side-left").width() == 230) {
                     $(".side-left").animate({width: '70px'}, "fast");
                 }
-                $("body").toggleClass("side-sm");
-                $("body").toggleClass("side-md");
+                $(".admin-content").toggleClass("side-sm");
+                $(".admin-content").toggleClass("side-md");
             });
 
             $(".side-menu>li>a").click(function () {
@@ -59,18 +57,12 @@
                     $(this).removeClass("current");
                 }
             });
-//        $(".side-treeview>li>a").click(function() {
-//            sideGetView($(this));
-//        });
-
-//        $(".side-left").height($("#content").height()+$(".footer").height());
         };
 
         $(document).ready(function () {
-            //初始化material
-//            $.material.init();
             initAdmin();
-//            initCurrentSide();
+            $('select').material_select();
+            $('.modal').modal();
         });
     </script>
 @endsection

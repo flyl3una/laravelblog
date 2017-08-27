@@ -38,20 +38,18 @@ a:hover {
 
 .nav-user {
     .user-img {
-        width: 30px;
-        height: 30px;
-        margin: -5px 5px 0 0;
+        width: 35px;
+        height: 35px;
+        margin: 15px 5px 0 0;
         border-radius: 50%;
         //border: 5px solid white;
         vertical-align: middle;
         float: left;
     }
 
-    i{
-        //margin-top: 1px;
-        //top: 1px;
-        vertical-align: middle;
-    }
+    //i{
+    //    vertical-align: middle;
+    //}
 }
 
 .dropdown-user {
@@ -87,7 +85,7 @@ a:hover {
 
 @media screen and (min-width: 600px){
     .admin-content {
-        min-height: calc(100% - 64px);
+        //min-height: calc(100% - 64px);
         margin-top: 64px;
     }
     .side-left {
@@ -146,6 +144,7 @@ a:hover {
             }
             h5 {
                 color: white;
+                padding: 5px 0;
                 margin: 3px 0;
             }
         }
@@ -199,7 +198,7 @@ a:hover {
         margin-left: 0;
         display: block;
         .side-treeview {
-            //display: none;
+            display: none;
             li{
                 a{
                     overflow: visible;
@@ -333,7 +332,7 @@ a:hover {
     }
 }
 
-.side-md>.side-left{
+.side-md .side-left{
 
     .side-menu {
         .side-treeview {
@@ -399,15 +398,28 @@ a:hover {
     }
 }
 
-.table-list-article {
+.table-list {
     font-size: 14px;
-    background: white;
+    //background: white;
+    border-top: 1px solid #e0e0e0;
+    tr {
+        border-left: 1px solid #e0e0e0;
+        //padding: 5px 10px;
+        //padding-left: 20px;
+
+    }
+    td, th {
+        border-right: 1px solid #e0e0e0;
+        padding-left: 20px;
+    }
     td {
         //font-size: 13px;
-        padding: 8px 10px;
-        a, p, span {
-            padding: 5px 0;
+        //padding: 15px 5px;
+        a, p, span, button {
+            //padding: 5px 10px;
+            margin-right: 10px;
             display: block;
+            float: left;
         }
         .row {
             margin-bottom: 0;
@@ -446,10 +458,18 @@ a:hover {
     }
 }
 
-.article-bottom-option {
-    .btn {
-        margin-top: 15px;
-    }
+//.article-bottom-option {
+//    .btn {
+//        margin-top: 15px;
+//    }
+//}
+
+.input-field {
+    margin-top: 5px;
+}
+
+.input-field-button {
+    margin-top: 15px;
 }
 
 .article-body-content {
@@ -464,8 +484,4 @@ a:hover {
     right: 0;
     top: 0;
     position: absolute;
-}
-
-.input-field {
-    margin-top: 5px;
 }

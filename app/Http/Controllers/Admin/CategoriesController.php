@@ -6,6 +6,7 @@ use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Mockery\Exception;
 
 class CategoriesController extends Controller
 {
@@ -79,8 +80,14 @@ class CategoriesController extends Controller
         //
         $id = intval($id);
         $name = $request['name'];
-        Categories::where('id', $id)->update(['name' => $name]);
-        return ['state' => 0, 'info' => '更新成功'];
+        try {
+            Categories::where('id', $id)->update(['name' => $name]);
+            $data = ['state' => 0, 'info' => '更新成功'];
+        } catch(Exception $e) {
+            $data = ['state' => 1, 'info' => '更新失败'];
+        }
+        $js = "parent.promptChangeResult(".json_encode($data).")";
+        return $js;
     }
 
     /**

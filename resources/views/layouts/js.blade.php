@@ -45,17 +45,11 @@
 
             $(".side-menu>li>a").click(function () {
                 toggleSideTreeView($(this));
-//            sideGetView($(this));
             });
 
             $.each($(".side-menu>li"), function (value, index, array) {
                 value.removeClass("current");
             });
-//        $(".side-treeview>li>a").click(function() {
-//            sideGetView($(this));
-//        });
-
-//        $(".side-left").height($("#content").height()+$(".footer").height());
         };
 
         $(document).ready(function () {
@@ -63,7 +57,6 @@
 //            $.material.init();
             $(".dropdown-button").dropdown();
             initAdmin();
-            initCurrentSide();
         });
     </script>
 @endsection

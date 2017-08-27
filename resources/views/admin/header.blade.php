@@ -66,8 +66,9 @@
                                 <li><a href="{{ route('admin.index') }}" class="waves-effect waves-light">关于</a></li>
                                 <!-- Dropdown Trigger -->
                                 <li>
-                                    <a class="dropdown-button waves-effect waves-light" href="#" data-activates="dropdown1">
-                                        下拉
+                                    <a class="nav-user dropdown-button waves-effect waves-light" href="#" data-activates="dropdown1">
+                                        <img src="/images/img.jpg" alt="" class="user-img">
+                                        Luna
                                         <i class="iconfont icon-xiangxia right"></i>
                                     </a>
                                 </li>
