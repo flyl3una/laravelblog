@@ -29,7 +29,7 @@ Route::group(['namespace' => 'Site', 'prefix' => 'home'], function() {
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource('article', 'ArticleController', ['except' => 'show']);//->name('admin.article');
-    Route::post('article/deleteMultiple', 'Article@deleteAll')->name('article.deleteMultiple');
+    Route::post('categories/deleteMultiple', 'Article@deleteMultiple')->name('article.deleteMultiple');
     Route::resource('categories', 'CategoriesController', ['except' => 'show']);
     Route::resource('tag', 'TagController', ['except' => 'show']);
     Route::resource('link', 'LinkController');

@@ -25,7 +25,7 @@
                 <tr>
                     <td class="select-row">
                         @if($cate['id'] != 1)
-                            <input type="checkbox" id="{{ $cate['id'] }}" name="delete_cates[]"
+                            <input type="checkbox" id="{{ $cate['id'] }}" class="delete-cate-checkbox"
                                    value="{{ $cate['id'] }}">
                             <label for="{{ $cate['id'] }}"></label>
                         @endif
@@ -53,12 +53,11 @@
             <div class="col m3 s8 input-field">
                 <select id="select_option" class="initialized">
                     <option value="0" disabled="" selected="">选择操作</option>
-                    <option value="1" data-value="删除" data-submit="{{ route('article.deleteMultiple') }}">删除</option>
+                    <option value="1" data-value="删除" data-target="delete_multiple_modal">删除</option>
                 </select>
             </div>
             <div class="col m2 s4">
-                <button id="apply_option" type="submit" data-target="delete_multiple_modal"
-                   class="waves-effect waves-light btn input-field-button">应用</button>
+                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button">应用</button>
             </div>
             <div class="col m7 s12 right right-align">
                 {!! $cates->render() !!}
@@ -75,8 +74,8 @@
                     <label for="add_cate">目录名称</label>
                 </div>
                 <div class="col m2 s4 right-align right">
-                    <button type="submit" class="waves-effect waves-green input-field-button btn btn-success right"
-                            value="添加">添加
+                    <button type="submit"
+                            class="waves-effect waves-green input-field-button btn btn-success right" value="添加">添加
                     </button>
                 </div>
             </div>
@@ -113,14 +112,15 @@
                     <h5>删除目录</h5>
                 </div>
                 <iframe name="target_iframe" hidden frameborder="0"></iframe>
-                <form id="delete_form" class="form" method="POST" target="target_iframe">
+                <form id="delete_form" class="form" method="POST" target="target_iframe"
+                      action="{{ route('article.deleteMultiple') }}">
                     {{--添加csrf认证--}}
                     {{ csrf_field() }}
                     {{--更改隐身提交方法为DELETE--}}
                     <input hidden name="_method" value="DELETE">
-                    <input id="delete_cate_id" type="number" name="id" hidden>
-                    <span>将要删除的目录名称为：</span>
-                    <span id="delete_cate_name" class="teal-text darken-3"></span>
+                    <input id="delete_cate_id" type="number" name="ids[]" hidden>
+                    <span>你选中的目录是 </span>
+                    <span id="delete_cate_name"></span>
                     <span>。<br>该目录下包含 </span>
                     <span id="delete_cate_count" class="teal-text darken-3"></span>
                     <span> 篇文章。<br>删除后该目录下的所有文章将被移至根目录。<br>删除后该目录无法恢复，确定要删除?</span>
@@ -132,7 +132,7 @@
                 <a id="delete_cate_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
-        <!--（Modal）End -->delete_multiple_modal
+        <!--（Modal）End -->
         <!-- 删除目录模态框（Modal） -->
         <div id="delete_multiple_modal" class="modal" style="width: 400px">
             <div class="modal-content">
@@ -143,15 +143,16 @@
                 <form id="delete_multiple_form" class="form" method="POST" target="target_iframe">
                     {{--添加csrf认证--}}
                     {{ csrf_field() }}
-                    {{--更改隐身提交方法为DELETE--}}
-                    <input id="delete_multiple_cate_id" type="number" name="ids[]" hidden>
-                    <span>删除后选中目录下的所有文章将被移至根目录。<br>删除后该目录无法恢复，确定要删除?</span>
+                    <input id="delete_multiple_cate_ids" type="text" name="ids" hidden>
+                    <span>你选中了 </span>
+                    <span id="delete_cate_count" class="teal-text darken-3"></span>
+                    <span> 个目录。<br>删除后选中目录下的所有文章将被移至根目录。<br>删除后该目录无法恢复，确定要删除?</span>
                     <input id="delete_multiple_btn" type="submit" hidden>
                 </form>
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-action modal-close waves-effect waves-light btn grey lighten-2">取消</a>
-                <a id="delete_cate_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
+                <a id="delete_multiple_cate_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
         <!--（Modal）End -->
@@ -163,7 +164,6 @@
 @section('js')
     @parent
     <script>
-
         promptChangeResult = function (data) {
             if (data.state == 0) {
                 location.reload();
@@ -175,6 +175,15 @@
         promptDeleteResult = function (data) {
             if (data.state == 0) {
 //                alert("更改成功");
+                location.reload();
+            } else if (data.state == 1) {
+                alert("删除失败。失败原因：\n" + data.info);
+            }
+        };
+
+        promptDeleteMultipleResult = function() {
+            if (data.state == 0) {
+                ("删除失败。失败原因：\n" + data.info);
                 location.reload();
             } else if (data.state == 1) {
                 alert("删除失败。失败原因：\n" + data.info);
@@ -230,7 +239,7 @@
                     opt_value_obj = $(this);
                 }
             });
-            console.log(opt_value_obj.val());
+//            console.log(opt_value_obj.val());
             return opt_value_obj;
         };
 
@@ -238,38 +247,53 @@
             setCurrentSide("side_categories_manage");
 //            表格行的编辑和删除操作
             rowOption();
-
             $("#update_cate_input").click(function () {
                 $("#update_form").submit();
             });
             $("#delete_cate_input").click(function () {
                 $("#delete_form").submit();
             });
+
+
             $("#apply_option").click(function () {
-                var target = $(this).data('target');
+
                 var option_obj = getOption();
-                var submit = option_obj.data('submit');
-                console.log(submit);
-                $("#delete_multiple_form").attr('action', submit);
-                $("#" + target).modal('open');
-            });
-
-            $("#apply_option").click(function () {
-                var opt_value_obj = getOption();
-                var opt_value = opt_value_obj.val();
-                var submit = opt_value_obj.data('submit');
-                var b_apply = confirm("是否确认删除所选项。\n删除后将无法恢复");
-                if (!b_apply) {
-                    return ;
-                }
-                if (opt_value == 1) {
-                    $.post(submit, function() {
-                        _token: {{ csrf_field() }},
-                    }, function (data, status) {
-
+                var target = option_obj.data('target');
+                var option_value = option_obj.val();
+                if (option_value == 1) {
+                    var select_ids = new Array();
+                    $(".delete-cate-checkbox").each(function() {
+                        if ($(this).is(":checked")) {
+                            console.log($(this).val());
+                            select_ids.push($(this).val());
+                        }
                     });
+                    $("#delete_cate_count").val(select_ids.length);
+//                $("#delete_multiple_form").attr('action', 'admin/categories/deleteMultiple');
+                    $("#delete_multiple_cate_ids").val(select_ids.join(','));
+                    console.log($("#delete_multiple_cate_ids").val());
+                    $("#" + target).modal('open');
                 }
             });
+            $("#delete_multiple_cate_input").click(function () {
+                $("#delete_form").submit();
+            });
+            {{--$("#apply_option").click(function () {--}}
+                {{--var opt_value_obj = getOption();--}}
+                {{--var opt_value = opt_value_obj.val();--}}
+                {{--var submit = opt_value_obj.data('submit');--}}
+                {{--var b_apply = confirm("是否确认删除所选项。\n删除后将无法恢复");--}}
+                {{--if (!b_apply) {--}}
+                    {{--return ;--}}
+                {{--}--}}
+                {{--if (opt_value == 1) {--}}
+                    {{--$.post(submit, function() {--}}
+                        {{--: {{ csrf_field() }},--}}
+                    {{--}, function (data, status) {--}}
+
+                    {{--});--}}
+                {{--}--}}
+            {{--});--}}
 
 //            $('#modal1').modal('open');
 //            $("#updateSubmit").click(function () {

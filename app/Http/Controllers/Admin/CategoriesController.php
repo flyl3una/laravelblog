@@ -50,7 +50,7 @@ class CategoriesController extends Controller
         } catch(Exception $e) {
             $data = ['state' => 1, 'info' => '更新失败'];
         }
-        $js = "<script>parent.promptAddResult(".json_encode($data).")</script>";
+        $js = "<script>window.parent.promptAddResult(".json_encode($data).")</script>";
         return $js;
         return redirect(route('categories.index'));
     }
@@ -95,7 +95,7 @@ class CategoriesController extends Controller
         } catch(Exception $e) {
             $data = ['state' => 1, 'info' => '更新失败'];
         }
-        $js = "<script>parent.promptChangeResult(".json_encode($data).")</script>";
+        $js = "<script>window.parent.promptChangeResult(".json_encode($data).")</script>";
         return $js;
     }
 
@@ -111,7 +111,7 @@ class CategoriesController extends Controller
         $id = intval($id);
         if($id == 1) {
             $data = ['state' => config('error.cate.cannot_delete_root'), 'info' => '不能删除根目录'];
-            $js = "<script>parent.promptDeleteResult(".json_encode($data).")</script>";
+            $js = "<script>window.parent.promptDeleteResult(".json_encode($data).")</script>";
             return $js;
         }
         try {
@@ -121,7 +121,15 @@ class CategoriesController extends Controller
             $data = ['state' => config('error.delete_fail'), 'info' => '删除失败'];
             echo $e;
         }
-        $js = "<script>parent.promptDeleteResult(".json_encode($data).")</script>";
+        $js = "<script>window.parent.promptDeleteResult(".json_encode($data).")</script>";
+        return $js;
+    }
+
+    public function deleteMultiple()
+    {
+        echo "deleteMultiple";
+        $data = ['state' => config('error.success'), 'info' => '选中目录删除成功'];
+        $js = "<script>window.parent.promptDeleteMultipleResult(".json_encode($data).")</script>";
         return $js;
     }
 }
