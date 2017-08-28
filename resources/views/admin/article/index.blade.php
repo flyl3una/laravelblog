@@ -21,13 +21,13 @@
                 <li><a>草稿 ( 2 )</a></li>
             </ul>
         </div>
-        <div class="card z-depth-4">
+        {{--<div class="card z-depth-4">--}}
             <table class="bordered highlight table-list">
                 <thead class="grey lighten-4">
                 <tr>
-                    <th class="manage-column">
-                        <input type="checkbox" id="all">
-                        <label for="all"></label>
+                    <th class="manage-row">
+                        <input type="checkbox" id="all_select">
+                        <label for="all_select"></label>
                     </th>
                     <th width="25%">文章标题</th>
                     <th width="10%">文章作者</th>
@@ -40,8 +40,8 @@
                 <tbody>
                 @foreach($articleList as $article)
                     <tr>
-                        <td>
-                            <input type="checkbox" id="{{ $article['id'] }}" name="articleIds">
+                        <td class="select-row">
+                            <input type="checkbox" class="select-id" id="{{ $article['id'] }}" name="articleIds">
                             <label for="{{ $article['id'] }}"></label>
                         </td>
                         <td>
@@ -53,7 +53,6 @@
                             @foreach($article['tags'] as $tag)
                                 <div class="chip-tag chip left">{{ $tag }}</div>
                                 @endforeach
-                                </ul>
                         </td>
 
                         <td><span>5 / {{ $article['click_count'] }}</span></td>
@@ -80,7 +79,7 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
+        {{--</div>--}}
         <div class="row">
             <div class="col m3 s8 input-field">
                 <select class="initialized">
@@ -104,6 +103,7 @@
 @section("js")
     @parent
     <script>
+
         $(document).ready(function () {
             setCurrentSide("side_article_list");
 

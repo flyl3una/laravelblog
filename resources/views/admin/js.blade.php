@@ -57,6 +57,26 @@
                     $(this).removeClass("current");
                 }
             });
+
+            allSelectColumn();
+        };
+
+        allSelectColumn = function() {
+            $(".manage-row>label").click(function () {
+                if($("#all_select").is(":checked")) {
+                    $(".select-row>input[type='checkbox']").each(function(){
+                        if ($(this).is(':checked')) {
+                            $(this).next().click();
+                        }
+                    });
+                } else {
+                    $(".select-row>input[type='checkbox']").each(function(){
+                        if (!$(this).is(':checked')) {
+                            $(this).next().click();
+                        }
+                    });
+                }
+            });
         };
 
         $(document).ready(function () {

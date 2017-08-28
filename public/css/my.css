@@ -366,48 +366,49 @@ a:hover {
 
 /* line 401, ../sass/my.scss */
 .table-list {
+  width: 100%;
   font-size: 14px;
   border-top: 1px solid #e0e0e0;
 }
-/* line 405, ../sass/my.scss */
+/* line 406, ../sass/my.scss */
 .table-list tr {
   border-left: 1px solid #e0e0e0;
 }
-/* line 411, ../sass/my.scss */
+/* line 412, ../sass/my.scss */
 .table-list td, .table-list th {
   border-right: 1px solid #e0e0e0;
   padding-left: 20px;
 }
-/* line 418, ../sass/my.scss */
+/* line 419, ../sass/my.scss */
 .table-list td a, .table-list td p, .table-list td span, .table-list td button {
   margin-right: 10px;
   display: block;
   float: left;
 }
-/* line 424, ../sass/my.scss */
+/* line 425, ../sass/my.scss */
 .table-list td .row {
   margin-bottom: 0;
 }
-/* line 428, ../sass/my.scss */
+/* line 429, ../sass/my.scss */
 .table-list form {
   margin: 0;
   float: left;
 }
-/* line 433, ../sass/my.scss */
+/* line 434, ../sass/my.scss */
 .table-list .table-article-title {
   font-weight: 600;
 }
-/* line 437, ../sass/my.scss */
+/* line 438, ../sass/my.scss */
 .table-list .manage-column {
   width: 36px;
 }
 
-/* line 442, ../sass/my.scss */
+/* line 443, ../sass/my.scss */
 .chip-tag {
   border-radius: 1px;
 }
 
-/* line 447, ../sass/my.scss */
+/* line 448, ../sass/my.scss */
 .pagination li span {
   color: #444;
   display: inline-block;
@@ -415,22 +416,22 @@ a:hover {
   padding: 0 10px;
   line-height: 30px;
 }
-/* line 455, ../sass/my.scss */
+/* line 456, ../sass/my.scss */
 .pagination li.active span, .pagination li.active a {
   color: #fff;
 }
 
-/* line 467, ../sass/my.scss */
+/* line 468, ../sass/my.scss */
 .input-field {
   margin-top: 5px;
 }
 
-/* line 471, ../sass/my.scss */
+/* line 472, ../sass/my.scss */
 .input-field-button {
   margin-top: 15px;
 }
 
-/* line 475, ../sass/my.scss */
+/* line 476, ../sass/my.scss */
 .article-body-content {
   width: 100%;
   height: auto;
@@ -438,7 +439,7 @@ a:hover {
   position: relative;
 }
 
-/* line 482, ../sass/my.scss */
+/* line 483, ../sass/my.scss */
 .right-card-list {
   width: 280px;
   right: 0;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Article;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -43,6 +44,14 @@ class CategoriesController extends Controller
         //
         $name = $request['cateName'];
         Categories::insert(['name' => trim($name)]);
+        try {
+            Categories::insert(['name' => trim($name)]);
+            $data = ['state' => 0, 'info' => '添加成功'];
+        } catch(Exception $e) {
+            $data = ['state' => 1, 'info' => '更新失败'];
+        }
+        $js = "<script>parent.promptAddResult(".json_encode($data).")</script>";
+        return $js;
         return redirect(route('categories.index'));
     }
 
@@ -86,7 +95,7 @@ class CategoriesController extends Controller
         } catch(Exception $e) {
             $data = ['state' => 1, 'info' => '更新失败'];
         }
-        $js = "parent.promptChangeResult(".json_encode($data).")";
+        $js = "<script>parent.promptChangeResult(".json_encode($data).")</script>";
         return $js;
     }
 
@@ -100,7 +109,19 @@ class CategoriesController extends Controller
     {
         //
         $id = intval($id);
-//        Categories::where('id', $id)->delete();
-        return "是否要删除对应目录下得所有文件";
+        if($id == 1) {
+            $data = ['state' => config('error.cate.cannot_delete_root'), 'info' => '不能删除根目录'];
+            $js = "<script>parent.promptDeleteResult(".json_encode($data).")</script>";
+            return $js;
+        }
+        try {
+            Categories::where('id', $id)->delete();
+            $data = ['state' => config('error.success'), 'info' => '删除成功'];
+        } catch (Exception $e) {
+            $data = ['state' => config('error.delete_fail'), 'info' => '删除失败'];
+            echo $e;
+        }
+        $js = "<script>parent.promptDeleteResult(".json_encode($data).")</script>";
+        return $js;
     }
 }

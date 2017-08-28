@@ -4,10 +4,14 @@
 
     <div class="container">
         <h5>友情链接</h5>
-        <div class="cart z-depth-4">
+        {{--<div class="cart z-depth-4">--}}
             <table class="table-list bordered highlight">
                 <thead class="grey lighten-4">
                 <tr>
+                    <th class="manage-row">
+                        <input type="checkbox" id="all_select">
+                        <label for="all_select"></label>
+                    </th>
                     <th width="25%">名称</th>
                     <th width="55%">链接</th>
                     <th width="20%">操作</th>
@@ -16,6 +20,10 @@
                 <tbody>
                 @foreach($links as $link)
                     <tr>
+                        <td class="select-row">
+                            <input type="checkbox" id="{{ $link['id'] }}" name="cateIds">
+                            <label for="{{ $link['id'] }}"></label>
+                        </td>
                         <td>{{ $link['name'] }}</td>
                         <td><a href="{{$link['url']}}">{{ $link['url'] }}</a></td>
                         <td>
@@ -47,7 +55,7 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
+        {{--</div>--}}
         {!! $links->render() !!}
         <p style="font-weight: bold">添加链接</p>
         <form class="form" method="post" action="{{ route('link.store') }}">

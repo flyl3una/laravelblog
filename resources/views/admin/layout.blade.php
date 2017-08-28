@@ -10,7 +10,7 @@
 
 @yield("header")
 
-<main class="admin-content">
+<main class="admin-content grey lighten-5">
 
     @yield("sidebar")
     @yield("content")

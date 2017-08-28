@@ -4,10 +4,14 @@
 
     <div class="container">
         <h5>标签管理</h5>
-        <div class="cart z-depth-4">
+        {{--<div class="cart z-depth-4">--}}
             <table class="table-list bordered highlight">
                 <thead class="grey lighten-4">
                 <tr>
+                    <th class="manage-row">
+                        <input type="checkbox" id="all_select">
+                        <label for="all_select"></label>
+                    </th>
                     <th width="70%">名称</th>
                     <th width="10%">总数</th>
                     <th width="20%">操作</th>
@@ -17,6 +21,10 @@
 
                 @foreach($tags as $tag)
                     <tr>
+                        <td class="select-row">
+                            <input type="checkbox" id="{{ $tag['id'] }}" name="cateIds">
+                            <label for="{{ $tag['id'] }}"></label>
+                        </td>
                         <td>{{ $tag['name'] }}</td>
                         <td>10</td>
                         <td>
@@ -49,7 +57,7 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
+        {{--</div>--}}
         {!! $tags->render() !!}
         <p style="font-weight: bold">添加标签</p>
         <form class="form" method="POST" action="{{ route('tag.store') }}">

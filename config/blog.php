@@ -7,7 +7,7 @@
  */
 
 return [
-    'title' => 'Laravel Blog',
+    'title' => 'MBlog',
     'article_per_page' => 5,
     'article_list_number' => 6,
     'admin_per_number' => 10,
