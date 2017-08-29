@@ -118,11 +118,12 @@ class CategoriesController extends Controller
         try {
             Categories::where('id', $id)->delete();
 //            将删除的目录下的文章移动到根目录下。
-            Article::where('category_id', $id)->update(['category_id' => 1]);
-            Categories::where('id', 1)->update(['count' => Article::where('category_id', 1)->count()]);
+            Article::where('category_id', $id)->update(['category_id' => config('blog.number.root')]);
+            Categories::where('id', config('blog.number.root'))->update(['count' =>
+                Article::where('category_id', 1)->where('state', config('blog.number.publish'))->count()]);
             $data = ['code' => config('error.code.success'), 'info' => '删除成功'];
         } catch (Exception $e) {
-            $data = ['code' => config('error.code.delete_fail'), 'info' => '删除失败'];
+            $data = ['code' => config('error.code.cate.delete_fail'), 'info' => '删除失败'];
             echo $e;
         }
         $js = '<script>window.parent.promptDeleteResult('.json_encode($data).')</script>';
@@ -142,11 +143,13 @@ class CategoriesController extends Controller
                 continue;
             }
 //            将删除的目录下的文章移动到根目录下。
-            $oldCount = Categories::where('id', 1)->first()['count'];
-            $count = Categories::where('id', $id)->first()['count'];
-            $count += $oldCount;
+//            $oldCount = Categories::where('id', 1)->first()['count'];
+//            $count = Categories::where('id', $id)->first()['count'];
+//            $count += $oldCount;
+//            Categories::where('id', 1)->update(['count' => $count]);
             Categories::where('id', $id)->delete();
-            Categories::where('id', 1)->update(['count' => $count]);
+            Categories::where('id', 1)->update(['count' =>
+                Article::where('category_id', 1)->where('state', config('blog.number.publish'))->count()]);
             Article::where('category_id', $id)->update(['category_id' => 1]);
             $index ++;
         }

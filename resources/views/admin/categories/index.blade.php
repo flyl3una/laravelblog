@@ -25,7 +25,7 @@
                 <tr>
                     <td class="select-row">
                         @if($cate['id'] != 1)
-                            <input type="checkbox" id="{{ $cate['id'] }}" class="delete-cate-checkbox"
+                            <input type="checkbox" id="{{ $cate['id'] }}" class="delete-checkbox"
                                    value="{{ $cate['id'] }}">
                             <label for="{{ $cate['id'] }}"></label>
                         @endif
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col m2 s4 right-align right">
                     <button type="submit"
-                            class="waves-effect waves-green input-field-button btn btn-success right" value="添加">添加
+                            class="waves-effect waves-light input-field-button btn btn-success right" value="添加">添加
                     </button>
                 </div>
             </div>
@@ -116,7 +116,6 @@
                       action="{{ route('categories.deleteMultiple') }}">
                     {{--添加csrf认证--}}
                     {{ csrf_field() }}
-                    <input id="token_id" type="text" name="_token" hidden value="{{ csrf_token() }}">
                     {{--更改隐身提交方法为DELETE--}}
                     {{--<input hidden name="_method" value="DELETE">--}}
                     {{ method_field('DELETE') }}
@@ -143,7 +142,8 @@
                 </div>
                 <form id="delete_multiple_form" class="form" method="POST" target="target_iframe" action="{{ route('categories.deleteMultiple') }}">
                     {{--添加csrf认证--}}
-                    {{ csrf_field() }}
+                    {{--{{ csrf_field() }}--}}
+                    <input id="token_id" type="text" name="_token" hidden value="{{ csrf_token() }}">
                     <input id="delete_multiple_cate_ids" type="text" name="ids" hidden>
                     <span>你选中了 </span>
                     <span id="delete_multiple_cate_count" class="teal-text darken-3"></span>
@@ -174,7 +174,6 @@
 
         promptDeleteResult = function (data) {
             if (data.code == 0) {
-//                alert("更改成功");
                 console.log(data.info);
                 location.reload();
             } else if (data.code == 1) {
@@ -280,9 +279,8 @@
 //        获取表格中选中的行id数组
         getSelectIds = function () {
             var select_ids = new Array();
-            $(".delete-cate-checkbox").each(function() {
+            $(".delete-checkbox").each(function() {
                 if ($(this).is(":checked")) {
-//                    console.log($(this).val());
                     select_ids.push($(this).val());
                 }
             });
@@ -302,51 +300,6 @@
                 $("#delete_form").submit();
             });
 
-
-
-
-
-//            $('#modal1').modal('open');
-//            $("#updateSubmit").click(function () {
-////        console.log('xx');
-//        $.ajax({
-//            type: "POST",
-//            url: $("#editForm").attr('action'),
-//            contentType: "application/json;charset=utf-8",
-//            dataType: "json",
-//            success: function(data) {
-//                console.log(data);
-//            },
-//            error: function(data) {
-//                alert('ajax error');
-//            }
-//        });
-//                $.post($("#editForm").attr('action'), {
-//                    id: $("#cate-id").attr('name'),
-//                    name: $("#editCateInput").val(),
-//                    _token: $("#modal-token").val(),
-//                    _method: "PATCH",
-//                }, function (data, status) {
-//                    console.log(data);
-//                    console.log(status);
-//                    if (status == 'success') {
-//                        if (data.code == 0) {
-//                            // 刷新页面
-//                            history.go(0);
-//                        }
-//                    } else {
-//                        alert('ajax update error');
-//                    }
-//
-//                });
-//            });
-//            $(".btn-edit").click(function () {
-////                $("#editCateTitle").text("编辑");
-//                $("#cate-id").attr('name', $(this).attr('id'));
-//                $("#editCateInput").val($(this).attr('name'));
-//                $("#editForm").attr('action', $(this).attr('url'));
-//                $("#myModal").modal();
-//            });
         });
     </script>
 

@@ -11,4 +11,10 @@ return [
     'article_per_page' => 5,
     'article_list_number' => 6,
     'admin_per_number' => 10,
+    'number' => [
+        'publish' => 0,
+        'draft' => 1,
+        'trash' => 2,
+        'root' => 1,
+    ]
 ];

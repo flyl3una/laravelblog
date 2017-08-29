@@ -24,10 +24,11 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+//    显示已经发布的文章
     public function index()
     {
         //
-        $articleAll = Article::paginate(config('blog.admin_per_number'));
+        $articleAll = Article::where('state', config('blog.number.publish'))->paginate(config('blog.admin_per_number'));
         $articleList = Array();
 
         foreach ($articleAll as $articleOne) {
@@ -157,11 +158,48 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
 //        return 'destroy' . $id;
         $id = intval($id);
-        ArticleTag::where('article_id', $id)->delete();
-        Article::where('id', $id)->delete();
-        return 'destroy success';
+//        return 'destroy success';
+        try {
+            ArticleTag::where('article_id', $id)->delete();
+            Article::where('id', $id)->delete();
+            Categories::where('id', 1)->update(['count' => Article::where('category_id', 1)->count()]);
+            $data = ['code' => config('error.code.success'), 'info' => '删除成功'];
+        } catch (Exception $e) {
+            $data = ['code' => config('error.code.article.delete_fail'), 'info' => '删除失败'];
+            echo $e;
+        }
+        $js = '<script>window.parent.promptDeleteResult('.json_encode($data).')</script>';
+        return $js;
+    }
+
+    public function moveToTrash(Request $request)
+    {
+        $ids = $request['ids'];
+        $option = $request['option_number'];
+
+        $ids = explode(',', $ids);
+        foreach ($ids as $id) {
+            $id = intval($id);
+            try {
+                Article::where('id', $id)->update(['state' => config('blog.number.trash')]);
+                $cate_id = Article::where('id', $id)->first()['category_id'];
+                Categories::where('id', $cate_id)->update(['count' =>
+                    Article::where('category_id', $cate_id)->where('state', config('blog.number.publish'))->count()]);
+                $data = ['code' => config('error.code.success'), 'info' => '删除成功'];
+            } catch (Exception $e) {
+                $data = ['code' => config('error.code.article.delete_fail'), 'info' => '删除失败'];
+                echo $e;
+            }
+        }
+        if (intval($option) == 1) {
+            return json_encode($data);
+        }
+        else {
+            $js = '<script>window.parent.promptDeleteResult('.json_encode($data).')</script>';
+            return $js;
+
+        }
     }
 }

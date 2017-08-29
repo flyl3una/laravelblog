@@ -6,20 +6,25 @@
  * Time: 14:27
  */
 
-$CATEGORY_STATE = 0x10000;
-
+$CATEGORY_CODE = 0x10000;
+$ARTICLE_CODE = 0x10100;
 
 
 return [
     'code' => [
         'success' => 0,
         'cate' => [
-            'update_fail' => $CATEGORY_STATE + 0x10,
-            'delete_fail' => $CATEGORY_STATE + 0x20,
-            'cannot_delete_root' => $CATEGORY_STATE + 0x21,
+            'update_fail' => $CATEGORY_CODE + 0x10,
+            'delete_fail' => $CATEGORY_CODE + 0x20,
+            'cannot_delete_root' => $CATEGORY_CODE + 0x21
         ],
+        'article' => [
+            'update_fail' => $ARTICLE_CODE + 0x10,
+            'delete_fail' => $ARTICLE_CODE + 0x20,
+            'cannot_delete_root' => $ARTICLE_CODE + 0x21
+        ]
     ],
     'info' => [
-        'success' => 'success',
-    ],
+        'success' => 'success'
+    ]
 ];
