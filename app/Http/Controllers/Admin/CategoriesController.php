@@ -43,15 +43,16 @@ class CategoriesController extends Controller
     {
         //
         $name = $request['cateName'];
-        Categories::insert(['name' => trim($name)]);
+        $name = trim($name);
+//        Categories::insert(['name' => trim($name)]);
         try {
             Categories::insert(['name' => trim($name)]);
-            $data = ['state' => 0, 'info' => '添加成功'];
+            $data = ['code' => 0, 'info' => '添加成功'];
         } catch(Exception $e) {
-            $data = ['state' => 1, 'info' => '更新失败'];
+            $data = ['code' => 1, 'info' => '更新失败'];
         }
-        $js = "<script>window.parent.promptAddResult(".json_encode($data).")</script>";
-        return $js;
+//        $js = "<script>window.parent.promptAddResult(".json_encode($data).")</script>";
+//        return $js;
         return redirect(route('categories.index'));
     }
 
@@ -91,9 +92,9 @@ class CategoriesController extends Controller
         $name = $request['name'];
         try {
             Categories::where('id', $id)->update(['name' => $name]);
-            $data = ['state' => 0, 'info' => '更新成功'];
+            $data = ['code' => 0, 'info' => '更新成功'];
         } catch(Exception $e) {
-            $data = ['state' => 1, 'info' => '更新失败'];
+            $data = ['code' => 1, 'info' => '更新失败'];
         }
         $js = "<script>window.parent.promptChangeResult(".json_encode($data).")</script>";
         return $js;
@@ -110,26 +111,52 @@ class CategoriesController extends Controller
         //
         $id = intval($id);
         if($id == 1) {
-            $data = ['state' => config('error.cate.cannot_delete_root'), 'info' => '不能删除根目录'];
+            $data = ['code' => config('error.code.cate.cannot_delete_root'), 'info' => '不能删除根目录'];
             $js = "<script>window.parent.promptDeleteResult(".json_encode($data).")</script>";
             return $js;
         }
         try {
             Categories::where('id', $id)->delete();
-            $data = ['state' => config('error.success'), 'info' => '删除成功'];
+//            将删除的目录下的文章移动到根目录下。
+            Article::where('category_id', $id)->update(['category_id' => 1]);
+            Categories::where('id', 1)->update(['count' => Article::where('category_id', 1)->count()]);
+            $data = ['code' => config('error.code.success'), 'info' => '删除成功'];
         } catch (Exception $e) {
-            $data = ['state' => config('error.delete_fail'), 'info' => '删除失败'];
+            $data = ['code' => config('error.code.delete_fail'), 'info' => '删除失败'];
             echo $e;
         }
-        $js = "<script>window.parent.promptDeleteResult(".json_encode($data).")</script>";
+        $js = '<script>window.parent.promptDeleteResult('.json_encode($data).')</script>';
         return $js;
     }
 
-    public function deleteMultiple()
+    public function deleteMultiple(Request $request)
     {
-        echo "deleteMultiple";
-        $data = ['state' => config('error.success'), 'info' => '选中目录删除成功'];
-        $js = "<script>window.parent.promptDeleteMultipleResult(".json_encode($data).")</script>";
-        return $js;
+        $ids = $request['ids'];
+//        echo "deleteMultiple";
+        $ids = explode(',', $ids);
+        $length = count($ids);
+        $index = 0;
+        foreach ($ids as $id) {
+            $id = intval($id);
+            if ($id == 1) {
+                continue;
+            }
+//            将删除的目录下的文章移动到根目录下。
+            $oldCount = Categories::where('id', 1)->first()['count'];
+            $count = Categories::where('id', $id)->first()['count'];
+            $count += $oldCount;
+            Categories::where('id', $id)->delete();
+            Categories::where('id', 1)->update(['count' => $count]);
+            Article::where('category_id', $id)->update(['category_id' => 1]);
+            $index ++;
+        }
+
+        if ($index == $length) {
+            $data = ['code' => config('error.code.success'), 'info' => '所选目录删除成功'];
+        } else {
+            $data = ['code' => config('error.code.success'), 'info' => '成功删除'.$index.'个目录,有'.($length-$index).'没有删除'];
+        }
+
+        return json_encode($data);
     }
 }

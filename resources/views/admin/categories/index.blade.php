@@ -65,8 +65,8 @@
         </div>
 
         <p style="font-weight: bold">添加目录</p>
-        <iframe hidden name="target_iframe"></iframe>
-        <form class="form" method="POST" action="{{ route('categories.store') }}" target="target_iframe">
+        {{--<iframe hidden name="target_iframe"></iframe>--}}
+        <form class="form" method="POST" action="{{ route('categories.store') }}">
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field col m10 s8">
@@ -80,13 +80,14 @@
                 </div>
             </div>
         </form>
+
         <!-- 编辑目录模态框（Modal） -->
         <div id="edit_modal" class="modal">
             <div class="modal-content">
                 <div class="row">
                     <h6>目录编辑</h6>
                 </div>
-                <iframe name="target_iframe" hidden frameborder="0"></iframe>
+
                 <form id="update_form" class="form" method="POST" target="target_iframe">
                     {{ csrf_field() }}
                     <input hidden name="_method" value="PUT">
@@ -105,19 +106,20 @@
             </div>
         </div>
         <!--（Modal）End -->
-        <!-- 删除目录模态框（Modal） -->
+        <!-- 删除单个目录模态框（Modal） -->
         <div id="delete_modal" class="modal" style="width: 400px">
             <div class="modal-content">
                 <div class="row">
                     <h5>删除目录</h5>
                 </div>
-                <iframe name="target_iframe" hidden frameborder="0"></iframe>
                 <form id="delete_form" class="form" method="POST" target="target_iframe"
-                      action="{{ route('article.deleteMultiple') }}">
+                      action="{{ route('categories.deleteMultiple') }}">
                     {{--添加csrf认证--}}
                     {{ csrf_field() }}
+                    <input id="token_id" type="text" name="_token" hidden value="{{ csrf_token() }}">
                     {{--更改隐身提交方法为DELETE--}}
-                    <input hidden name="_method" value="DELETE">
+                    {{--<input hidden name="_method" value="DELETE">--}}
+                    {{ method_field('DELETE') }}
                     <input id="delete_cate_id" type="number" name="ids[]" hidden>
                     <span>你选中的目录是 </span>
                     <span id="delete_cate_name"></span>
@@ -133,21 +135,19 @@
             </div>
         </div>
         <!--（Modal）End -->
-        <!-- 删除目录模态框（Modal） -->
+        <!-- 删除多个目录模态框（Modal） -->
         <div id="delete_multiple_modal" class="modal" style="width: 400px">
             <div class="modal-content">
                 <div class="row">
                     <h5>删除所选目录</h5>
                 </div>
-                <iframe name="target_iframe" hidden frameborder="0"></iframe>
-                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe">
+                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe" action="{{ route('categories.deleteMultiple') }}">
                     {{--添加csrf认证--}}
                     {{ csrf_field() }}
                     <input id="delete_multiple_cate_ids" type="text" name="ids" hidden>
                     <span>你选中了 </span>
-                    <span id="delete_cate_count" class="teal-text darken-3"></span>
+                    <span id="delete_multiple_cate_count" class="teal-text darken-3"></span>
                     <span> 个目录。<br>删除后选中目录下的所有文章将被移至根目录。<br>删除后该目录无法恢复，确定要删除?</span>
-                    <input id="delete_multiple_btn" type="submit" hidden>
                 </form>
             </div>
             <div class="modal-footer">
@@ -165,35 +165,36 @@
     @parent
     <script>
         promptChangeResult = function (data) {
-            if (data.state == 0) {
+            if (data.code == 0) {
                 location.reload();
-            } else if (data.state == 1) {
+            } else if (data.code == 1) {
                 alert("更改失败。失败原因：\n" + data.info);
             }
         };
 
         promptDeleteResult = function (data) {
-            if (data.state == 0) {
+            if (data.code == 0) {
 //                alert("更改成功");
+                console.log(data.info);
                 location.reload();
-            } else if (data.state == 1) {
+            } else if (data.code == 1) {
                 alert("删除失败。失败原因：\n" + data.info);
             }
         };
 
-        promptDeleteMultipleResult = function() {
-            if (data.state == 0) {
-                ("删除失败。失败原因：\n" + data.info);
+        promptDeleteMultipleResult = function(data) {
+            if (data.code == 0) {
+                console.log(data.info);
                 location.reload();
-            } else if (data.state == 1) {
+            } else if (data.code == 1) {
                 alert("删除失败。失败原因：\n" + data.info);
             }
         };
 
         promptAddResult = function() {
-            if (data.state == 0) {
+            if (data.code == 0) {
                 location.reload();
-            } else if (data.state == 1) {
+            } else if (data.code == 1) {
                 alert("删除失败。失败原因：\n" + data.info);
             }
         };
@@ -227,7 +228,41 @@
             });
         };
 
-//        应用批量删除操作
+        deleteMultiple = function() {
+            $("#apply_option").click(function () {
+
+                var option_obj = getOption();
+                var target = option_obj.data('target');
+                var option_value = option_obj.val();
+                if (option_value == 1) {
+                    var select_ids = getSelectIds();
+                    $("#delete_multiple_cate_count").text(select_ids.length);
+                    $("#delete_multiple_cate_ids").val(select_ids.join(','));
+                    $("#" + target).modal('open');
+                } else {
+                    console.log("没有对应选项的操作");
+                }
+            });
+//                        点击删除按钮
+            $("#delete_multiple_cate_input").click(function () {
+                $.post($("#delete_multiple_form").attr('action'), {
+                    ids: getSelectIds().join(','),
+                    _token: $("#token_id").val()
+                }, function (data, status) {
+                    console.log(data);
+                    console.log(status);
+                    if (status == 'success') {
+                        promptDeleteMultipleResult(data);
+                    } else {
+                        alert('ajax update error');
+                    }
+
+                },
+                'json');
+            });
+        };
+
+//        获取应用批量删除操作的下拉选项选中的对象
         getOption = function() {
             var select_id = $("#select_option").data('select-id');
             var text = $("#select-options-"+select_id+">.selected>span").text();
@@ -239,14 +274,27 @@
                     opt_value_obj = $(this);
                 }
             });
-//            console.log(opt_value_obj.val());
             return opt_value_obj;
+        };
+
+//        获取表格中选中的行id数组
+        getSelectIds = function () {
+            var select_ids = new Array();
+            $(".delete-cate-checkbox").each(function() {
+                if ($(this).is(":checked")) {
+//                    console.log($(this).val());
+                    select_ids.push($(this).val());
+                }
+            });
+            return select_ids;
         };
 
         $(document).ready(function () {
             setCurrentSide("side_categories_manage");
 //            表格行的编辑和删除操作
             rowOption();
+            deleteMultiple();
+
             $("#update_cate_input").click(function () {
                 $("#update_form").submit();
             });
@@ -255,61 +303,24 @@
             });
 
 
-            $("#apply_option").click(function () {
 
-                var option_obj = getOption();
-                var target = option_obj.data('target');
-                var option_value = option_obj.val();
-                if (option_value == 1) {
-                    var select_ids = new Array();
-                    $(".delete-cate-checkbox").each(function() {
-                        if ($(this).is(":checked")) {
-                            console.log($(this).val());
-                            select_ids.push($(this).val());
-                        }
-                    });
-                    $("#delete_cate_count").val(select_ids.length);
-//                $("#delete_multiple_form").attr('action', 'admin/categories/deleteMultiple');
-                    $("#delete_multiple_cate_ids").val(select_ids.join(','));
-                    console.log($("#delete_multiple_cate_ids").val());
-                    $("#" + target).modal('open');
-                }
-            });
-            $("#delete_multiple_cate_input").click(function () {
-                $("#delete_form").submit();
-            });
-            {{--$("#apply_option").click(function () {--}}
-                {{--var opt_value_obj = getOption();--}}
-                {{--var opt_value = opt_value_obj.val();--}}
-                {{--var submit = opt_value_obj.data('submit');--}}
-                {{--var b_apply = confirm("是否确认删除所选项。\n删除后将无法恢复");--}}
-                {{--if (!b_apply) {--}}
-                    {{--return ;--}}
-                {{--}--}}
-                {{--if (opt_value == 1) {--}}
-                    {{--$.post(submit, function() {--}}
-                        {{--: {{ csrf_field() }},--}}
-                    {{--}, function (data, status) {--}}
 
-                    {{--});--}}
-                {{--}--}}
-            {{--});--}}
 
 //            $('#modal1').modal('open');
 //            $("#updateSubmit").click(function () {
 ////        console.log('xx');
-////        $.ajax({
-////            type: "POST",
-////            url: $("#editForm").attr('action'),
-////            contentType: "application/json;charset=utf-8",
-////            dataType: "json",
-////            success: function(data) {
-////                console.log(data);
-////            },
-////            error: function(data) {
-////                alert('ajax error');
-////            }
-////        });
+//        $.ajax({
+//            type: "POST",
+//            url: $("#editForm").attr('action'),
+//            contentType: "application/json;charset=utf-8",
+//            dataType: "json",
+//            success: function(data) {
+//                console.log(data);
+//            },
+//            error: function(data) {
+//                alert('ajax error');
+//            }
+//        });
 //                $.post($("#editForm").attr('action'), {
 //                    id: $("#cate-id").attr('name'),
 //                    name: $("#editCateInput").val(),
@@ -319,7 +330,7 @@
 //                    console.log(data);
 //                    console.log(status);
 //                    if (status == 'success') {
-//                        if (data.state == 0) {
+//                        if (data.code == 0) {
 //                            // 刷新页面
 //                            history.go(0);
 //                        }

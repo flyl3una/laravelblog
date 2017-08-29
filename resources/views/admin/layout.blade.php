@@ -11,7 +11,7 @@
 @yield("header")
 
 <main class="admin-content grey lighten-5">
-
+    <iframe name="target_iframe" hidden frameborder="0"></iframe>
     @yield("sidebar")
     @yield("content")
 

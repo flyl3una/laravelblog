@@ -21,6 +21,7 @@ class ArticleSeeder extends Seeder
                 'description' => str_random(random_int(20, 40)),
                 'markdown_content' => str_random(random_int(50, 200)),
                 'html_content' => str_random(random_int(50, 200)),
+                'state' => random_int(1, 3),
                 'click_count' => random_int(1, 100),
             ]);
         }
