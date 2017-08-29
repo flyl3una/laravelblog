@@ -3,33 +3,27 @@
 @section('content')
     <div class="container">
         <h5>编辑文章</h5>
-    </div>
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <div class="panel-title">
-                编辑文章
-            </div>
-        </div>
-        <div class="panel-body">
             <form class="form-horizontal" method="POST" action="{{ isset($article) ? route('article.update', $article['id']) : route('article.store')}}">
 {{--                        <input hidden value="{{ csrf_token() }}">--}}
                 {{ csrf_field() }}
                 @if(isset($article))
-                <input hidden name="_method" value="PUT">
+                    {{ method_field('PUT') }}
                 @endif
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="titleInput">文章标题</label>
-                        <div class="col-sm-10">
-                            <input id="titleInput" placeholder="title" type="text" class="form-control" name="title" value="{{ isset($article) ? $article['title'] : ''}}">
+                    <div class="row">
+                        <div class="input-field col m12 s12">
+                            <label for="inputTitle">文章标题</label>
+                            <input id="inputTitle" type="text" class="validate" name="title" value="{{ isset($article) ? $article['title'] : ''}}">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="categoryInput">文章目录</label>
-                        <div class="col-sm-10">
+                    <div class="row">
+                        <label class="col m12 s12" for="categoryInput">文章目录</label>
+                        <div class="col m12 s12">
                             {{--<input id="categoryInput" class="form-control" name="category">--}}
-                            <select id="categoryInput" class="form-control" name="category">
+                            <select id="selectCategoryId" class="initialized" name="category">
                                 @foreach($cates as $cate1)
+                                    @if($cate1['id'] != 1)
                                     <option value="{{ $cate1['id'] }}" @if(isset($cate) && $cate['id'] === $cate1['id']) selected @endif>{{ $cate1['name'] }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -37,8 +31,6 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="tags[]">文章标签</label>
                         <div class="col-sm-10">
-                            {{--<div class="form-control">--}}
-                            {{--</div>--}}
                             <select class="form-control" multiple id="tagsInput" name="tags[]">
                                 {{--@foreach($tagAll as $tag)--}}
                                     {{--<option value="{{ $tag['id'] }}">{{ $tag['name'] }}</option>--}}
@@ -86,28 +78,19 @@
                         <div class="col-md-6">
                             <input type="submit" class="btn btn-primary" value="{{ isset($article) ? "更改" : "创建"}}">
                         </div>
-                        {{--<div class="radio radio-inline">--}}
-                        {{--<label>--}}
-                        {{--<input type="radio"--}}
-                        {{--{{ (isset($post)) && $post->status == 1 ? ' checked ':'' }}--}}
-                        {{--name="status"--}}
-                        {{--value="1">发布--}}
-                        {{--</label>--}}
-                        {{--</div>--}}
-                        {{--<div class="radio radio-inline">--}}
-                        {{--<label>--}}
-                        {{--<input type="radio"--}}
-                        {{--{{ (!isset($post)) || $post->status == 0 ? ' checked ':'' }}--}}
-                        {{--name="status"--}}
-                        {{--value="0">草稿--}}
-                        {{--</label>--}}
-                        {{--</div>--}}
-                    </div>
 
+                    </div>
             </form>
         </div>
-    </div>
 {{--</div>--}}
-</div>
-</div>
+@endsection
+
+@section('js')
+    @parent
+    <script>
+    $(document).ready(function(){
+        setCurrentSide("side_article_create");
+        Materialize.updateTextFields();
+    });
+    </script>
 @endsection

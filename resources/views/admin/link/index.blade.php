@@ -112,7 +112,8 @@
         $(document).ready(function () {
 
             setCurrentSide("side_links_index");
-            $('.modal').modal();
+            allSelectColumn();
+
 
             $(".modal-a").click(function () {
                 var target = $(this).attr('data-target');

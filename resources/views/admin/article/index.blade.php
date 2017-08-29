@@ -73,7 +73,7 @@
                             {{--</form>--}}
                             {{--<ul class="article-operator">--}}
                             <a href="">查看</a>
-                            <a href="">编辑</a>
+                            <a href="{{ route('article.edit', $article['id']) }}">编辑</a>
                             <a class="delete-a" href="#delete_modal" data-target="delete_modal"
                                data-id="{{ $article['id'] }}" data-submit="{{ route('article.moveToTrash') }}"
                                data-title="{{ $article['title'] }}">删除</a>
@@ -243,7 +243,7 @@
 
         $(document).ready(function () {
             setCurrentSide("side_article_list");
-
+            allSelectColumn();
             // 单独删除一行
             rowOption();
             deleteMultiple();

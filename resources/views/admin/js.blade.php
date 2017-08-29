@@ -58,7 +58,7 @@
                 }
             });
 
-            allSelectColumn();
+//            allSelectColumn();
         };
 
         allSelectColumn = function() {

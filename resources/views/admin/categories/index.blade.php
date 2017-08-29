@@ -289,6 +289,7 @@
 
         $(document).ready(function () {
             setCurrentSide("side_categories_manage");
+            allSelectColumn();
 //            表格行的编辑和删除操作
             rowOption();
             deleteMultiple();

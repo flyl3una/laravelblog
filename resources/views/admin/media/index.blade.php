@@ -12,10 +12,10 @@
         </div>
         <div class="row">
             {{--<div class="input-filed col m12 s12">--}}
-                <div class="input-field col m10 s8">
-                    <input id="add_cate" type="text" name="cateName" class="validate">
-                    <label for="add_cate">目录名称</label>
-                </div>
+            <div class="input-field col m10 s8">
+                <input id="add_cate" type="text" name="cateName" class="validate">
+                <label for="add_cate">目录名称</label>
+            </div>
             {{--</div>--}}
         </div>
     </div>
@@ -27,7 +27,7 @@
     @parent
     <script>
         $(document).ready(function(){
-            setCurrentSide("side_article_create");
+            setCurrentSide("side_media_manage");
 //            Materialize.updateTextFields();
         });
     </script>
