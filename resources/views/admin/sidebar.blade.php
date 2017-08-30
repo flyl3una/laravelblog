@@ -70,13 +70,13 @@
                 </a>
                 <ul class="side-treeview ">
                     <li id="side_page_list" class="waves-effect waves-light">
-                        <a href="{{ route('article.index') }}" class="">
+                        <a href="{{ route('page.index') }}" class="">
                             {{--<i class="fa fa-home"></i>--}}
                             <span class="side-item-name">所有页面</span>
                         </a>
                     </li>
                     <li id="side_page_create" class="waves-effect waves-light">
-                        <a href="{{ route('article.create') }}" data-url="{{ route('article.create') }}">
+                        <a href="{{ route('page.create') }}">
                             {{--<i class="fa fa-home"></i>--}}
                             <span class="side-item-name">上传页面</span>
                         </a>
