@@ -63,6 +63,19 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'uploads' => [
+            'driver' => 'local',
+            // 文件将上传到storage/app/uploads目录
+            'root' => storage_path('app/uploads'),
+            'url' => env('APP_URL').'/uploads',
+        ],
+
+        'posts' => [
+            'driver' => 'local',
+            // 文件将上传到storage/app/uploads目录
+            'root' => storage_path('app/uploads/posts'),
+            'url' => env('APP_URL').'/uploads/posts',
+        ]
     ],
 
 ];

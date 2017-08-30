@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('categories', 'CategoriesController', ['except' => 'show']);
     Route::post('categories/deleteMultiple', 'CategoriesController@deleteMultiple')->name('categories.deleteMultiple');
 
-    Route::resource('page', 'PageController', ['except' => 'edit']);
+//    Route::resource('page', 'PageController', ['except' => 'edit']);
 
     Route::resource('media', 'MediaController');
 //    Route::get('media/picture', 'MediaController@pictureIndex')->name('media.picture.index');

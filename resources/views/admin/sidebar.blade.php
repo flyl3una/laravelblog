@@ -59,30 +59,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a class="waves-effect waves-light">
-                    {{--<span class="fa fa-pencil fa-fw"></span>--}}
-                    <span class="iconfont icon-copy"></span>
-                    {{--<span>文章管理</span>--}}
-                    <span class="side-item-name">页面</span>
-                    {{--<i class="fa fa-angle-left"></i>--}}
-                    <i class="iconfont icon-return"></i>
-                </a>
-                <ul class="side-treeview ">
-                    <li id="side_page_list" class="waves-effect waves-light">
-                        <a href="{{ route('page.index') }}" class="">
-                            {{--<i class="fa fa-home"></i>--}}
-                            <span class="side-item-name">所有页面</span>
-                        </a>
-                    </li>
-                    <li id="side_page_create" class="waves-effect waves-light">
-                        <a href="{{ route('page.create') }}">
-                            {{--<i class="fa fa-home"></i>--}}
-                            <span class="side-item-name">上传页面</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+
             {{--<li>--}}
                 {{--<a class="waves-effect waves-light">--}}
                     {{--<span class="fa fa-pencil fa-fw"></span>--}}

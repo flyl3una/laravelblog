@@ -19,8 +19,10 @@ class ArticleSeeder extends Seeder
                 'category_id' => random_int(1,10),
                 'title' => str_random(random_int(5,20)),
                 'description' => str_random(random_int(20, 40)),
-                'markdown_content' => str_random(random_int(50, 200)),
-                'html_content' => str_random(random_int(50, 200)),
+                'filename' => str_random(random_int(3,10)),
+                'filepath' => './',
+//                'markdown_content' => str_random(random_int(50, 200)),
+//                'html_content' => str_random(random_int(50, 200)),
                 'state' => random_int(0, 2),
                 'click_count' => random_int(1, 100),
             ]);

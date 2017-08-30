@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Mews\Purifier\Purifier;
 
 class ArticleController extends Controller
@@ -79,19 +80,44 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-//        $markdownContent = $request['markdown_content'];
-//        Purifier::clean($request['markdown_content']);
-        //所有参数均为过滤
+        $title = $request['title'];
+        $description = $request['description'];
+        $cate = $request['category'];
+        $tags = $request['tags'];
+        $file = $request->file('md_file');
+        $filename = $request['file_name'];
+
+        // 文件是否上传成功
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+
+        }
+//        $this->validate($ext, 'md');
+        if($ext != 'md') {
+            $data = ['code' => config('error.code.article.file_ext_error'), 'info' => '只能上传后缀为md的文件'];
+            $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+            return $js;
+        }
+        // 上传文件
+        $filename = date('Y-m-d') . '-' . uniqid() . '.' . $ext;
+        // 使用我们新建的uploads本地存储空间（目录）
+        $bool = Storage::disk('posts')->put($filename, file_get_contents($realPath));
         $userid = Auth::user()->id;
-        $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $request['category'],
-            'title' => $request['title'], 'description' => $request['description'], 'markdown_content' => $request['markdown_content'],
-            'html_content' => $request['markdown_content']]);
-        foreach($request['tags'] as $tagId) {
+        $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title, 'description' => $description,
+            'filename' => $filename, 'state' => 0]);
+        foreach($tags as $tagId) {
             ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
         }unset($tagId);
 
-        return 'store success';
+//        return redirect(route('article.index'));
+        $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];
+        $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+        return $js;
+        //所有参数均为过滤
     }
 
     /**
@@ -140,15 +166,41 @@ class ArticleController extends Controller
     {
         //
         $id = intval($id);
-        $tagIds = $request['tags'];
-        ArticleTag::where('article_id', $id)->delete();
-        foreach ($tagIds as $tagId) {
-            $tagId = intval($tagId);
-            ArticleTag::insert(['article_id' => $id, 'tag_id' => $tagId]);
+        $title = $request['title'];
+        $description = $request['description'];
+        $cate = $request['category'];
+        $tags = $request['tags'];
+        $file = $request->file('md_file');
+        $filename = $request['file_name'];
+
+        // 文件是否上传成功
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
         }
-        Article::where('id', $id)->update(['title' => $request['title'], 'description' => $request['description'],
-            'markdown_content' => $request['markdown_content'], 'html_content' => $request['markdown_content']]);
-        return 'update success';
+        if($ext != 'md') {
+            $data = ['code' => config('error.code.article.file_ext_error'), 'info' => '只能上传后缀为md的文件'];
+            $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+            return $js;
+        }
+        // 上传文件
+        $filename = date('Y-m-d') . '-' . uniqid() . '.' . $ext;
+        // 使用我们新建的uploads本地存储空间（目录）
+        $bool = Storage::disk('posts')->put($filename, file_get_contents($realPath));
+        $userid = Auth::user()->id;
+        $articleId = Article::where('id', $id)->update(['user_id' => $userid, 'category_id' => $cate, 'title' => $title, 'description' => $description,
+            'filename' => $filename, 'state' => 0]);
+        ArticleTag::where('article_id', $id)->delete();
+        foreach($tags as $tagId) {
+            ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
+        }unset($tagId);
+
+//        return redirect(route('article.index'));
+        $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];
+        $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+        return $js;
     }
 
     /**
