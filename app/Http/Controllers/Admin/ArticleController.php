@@ -68,13 +68,13 @@ class ArticleController extends Controller
 //        return 'create';
         $cates = Categories::all();
         $tagAll = Tag::all();
-        return view('admin.article.create', compact( 'cates', 'tagAll'));
+        return view('admin.article.create', compact('cates', 'tagAll'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      *
      */
@@ -87,19 +87,28 @@ class ArticleController extends Controller
         $md = $request['editormd-markdown-doc'];
         $html = $request['editormd-html-code'];
 
-        if (!$title or !$description or !md or !html){
+        if (!$title or !$description or !$md or !$html) {
             $data = ['code' => config('error.code.article.not_null'), 'info' => '文章标题，描述，目录，内容不能为空'];
-            $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+            $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
             return $js;
         }
-        if(!$cate) {
+        if (!$cate) {
             $cate = 1;
         }
-
+        $userid = Auth::user()->id;
+        $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
+            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => 0]);
+        if ($tags) {
+            foreach ($tags as $tagId) {
+                ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
+            }
+            unset($tagId);
+        }
         $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];
-        $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+        $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
         return $js;
     }
+
     public function store1(Request $request)
     {
         $title = $request['title'];
@@ -119,9 +128,9 @@ class ArticleController extends Controller
 
         }
 //        $this->validate($ext, 'md');
-        if($ext != 'md') {
+        if ($ext != 'md') {
             $data = ['code' => config('error.code.article.file_ext_error'), 'info' => '只能上传后缀为md的文件'];
-            $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+            $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
             return $js;
         }
         // 上传文件
@@ -131,13 +140,14 @@ class ArticleController extends Controller
         $userid = Auth::user()->id;
         $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title, 'description' => $description,
             'filename' => $filename, 'state' => 0]);
-        foreach($tags as $tagId) {
+        foreach ($tags as $tagId) {
             ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
-        }unset($tagId);
+        }
+        unset($tagId);
 
 //        return redirect(route('article.index'));
         $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];
-        $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+        $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
         return $js;
         //所有参数均为过滤
     }
@@ -145,7 +155,7 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -157,7 +167,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -168,9 +178,11 @@ class ArticleController extends Controller
         $cate = Categories::where('id', $article['category_id'])->firstOrFail();
         $tagIds = ArticleTag::where('article_id', $article['id'])->get();
         $tags = Array();
-        foreach ($tagIds as $tagId) {
-            $tag = Tag::where('id', $tagId['tag_id'])->first();
-            $tags[] = $tag;
+        if ($tagIds) {
+            foreach ($tagIds as $tagId) {
+                $tag = Tag::where('id', $tagId['tag_id'])->first();
+                $tags[] = $tag;
+            }unset($tagId);
         }
         $cates = Categories::all();
         $tagAll = Tag::all();
@@ -180,21 +192,44 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $id = intval($id);
         $title = $request['title'];
         $description = $request['description'];
         $cate = $request['category'];
         $tags = $request['tags'];
-        $file = $request->file('md_file');
-        $filename = $request['file_name'];
-        $html = $request['test-editormd-html-code'];
-        return 'success';
+        $md = $request['editormd-markdown-doc'];
+        $html = $request['editormd-html-code'];
+
+        if (!$title or !$description or !$md or !$html) {
+            $data = ['code' => config('error.code.article.not_null'), 'info' => '文章标题，描述，目录，内容不能为空'];
+            $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
+            return $js;
+        }
+        if (!$cate) {
+            $cate = 1;
+        }
+        $userid = Auth::user()->id;
+        if (!Article::where('id', $id)->update(['user_id' => $userid, 'category_id' => $cate, 'title' => $title, 'description' => $description,
+            'markdown' => $md, 'html' => $html, 'state' => 0])) {
+            $data = ['code' => config('error.code.article.update_fail'), 'info' => '更新失败'];
+            $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
+            return $js;
+        }
+        ArticleTag::where('article_id', $id)->delete();
+        if ($tags){
+            foreach ($tags as $tagId) {
+                ArticleTag::insert(['article_id' => $id, 'tag_id' => $tagId]);
+            }unset($tagId);
+        }
+
+        $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];
+        $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
+        return $js;
     }
 
     public function update1(Request $request, $id)
@@ -214,9 +249,9 @@ class ArticleController extends Controller
             $ext = $file->getClientOriginalExtension();     // 扩展名
             $realPath = $file->getRealPath();   //临时文件的绝对路径
         }
-        if($ext != 'md') {
+        if ($ext != 'md') {
             $data = ['code' => config('error.code.article.file_ext_error'), 'info' => '只能上传后缀为md的文件'];
-            $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+            $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
             return $js;
         }
         // 上传文件
@@ -227,20 +262,20 @@ class ArticleController extends Controller
         $articleId = Article::where('id', $id)->update(['user_id' => $userid, 'category_id' => $cate, 'title' => $title, 'description' => $description,
             'filename' => $filename, 'state' => 0]);
         ArticleTag::where('article_id', $id)->delete();
-        foreach($tags as $tagId) {
+        foreach ($tags as $tagId) {
             ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
-        }unset($tagId);
+        }
+        unset($tagId);
 
-//        return redirect(route('article.index'));
         $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];
-        $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+        $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
         return $js;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -257,7 +292,7 @@ class ArticleController extends Controller
             $data = ['code' => config('error.code.article.delete_fail'), 'info' => '删除失败'];
             echo $e;
         }
-        $js = '<script>window.parent.promptDeleteResult('.json_encode($data).')</script>';
+        $js = '<script>window.parent.promptDeleteResult(' . json_encode($data) . ')</script>';
         return $js;
     }
 
@@ -282,9 +317,8 @@ class ArticleController extends Controller
         }
         if (intval($option) == 1) {
             return json_encode($data);
-        }
-        else {
-            $js = '<script>window.parent.promptDeleteResult('.json_encode($data).')</script>';
+        } else {
+            $js = '<script>window.parent.promptDeleteResult(' . json_encode($data) . ')</script>';
             return $js;
 
         }

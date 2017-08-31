@@ -1,105 +1,24 @@
-.main-header {
-    background-color: #52768e;
-    color: white;
-    background-size: 100% auto;
-    position: static;
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 30px;
+/* line 1, ../sass/blog.scss */
+body {
+  background: url("/images/header.jpg") no-repeat 100% 100%;
 }
 
-a {
-    /*display: block;*/
-    /*text-decoration: none;*/
-    cursor: auto;       !important;
-    /*cursor: pointer;*/
+/* line 5, ../sass/blog.scss */
+header {
+  height: 40%;
+  width: 100%;
+  background: transparent;
+}
+/* line 13, ../sass/blog.scss */
+header .valign-wrapper {
+  height: 100%;
+}
+/* line 15, ../sass/blog.scss */
+header .valign-wrapper .valign {
+  width: 100%;
 }
 
-a:hover {
-    text-decoration: none;      !important;
-    /*cursor: pointer;*/
-}
-
-li, td {
-    word-break: break-all;      !important;
-    word-wrap: break-word;      !important;
-}
-
-a.white-color {
-    color:white;
-}
-
-.admin-row {
-    /*padding: 0;     !important;*/
-}
-
-.word-wrap {
-    word-break: break-all;
-    word-wrap: break-word;
-}
-
-.description {
-    font-size: 24px;
-    line-height: 24px;
-    /*text-align: center;*/
-}
-
-.content-wrap {
-    /*min-height: 100%;*/
-    margin-bottom: 60px;
-}
-
-.side-left {
-    min-width: 200px;
-    width: 20%;
-    min-height: 90%;
-    color: #000;
-    background-color: #f5f5f5;
-    float: left;
-}
-
-.admin-content {
-    float: left;
-    width: 80%;
-    /*height: 100%;*/
-    /*margin-bottom: 60px;*/
-}
-
-.content-panel {
-    margin: 50px auto 0 auto;
-    width: 840px;
-    min-width: 840px;
-    padding: 0;
-}
-
-.margin-top-50 {
-    margin-top: 50px;   !important;
-}
-
-.margin-top-100 {
-    margin-top: 100px;      !important;
-}
-
-.right {
-    float: right;
-}
-
-.ul-list {
-    max-height: 600px;
-}
-
-.li-name {
-    padding: 7px 15px;
-}
-
-.table>tbody>tr>td {
-    vertical-align: middle;     !important;
-}
-
-.table-center>tbody>tr>td, .table-center>tbody>tr>th {
-    text-align: center;
-}
-
-form.form-only-button {
-    margin-bottom: 0;
+/* line 21, ../sass/blog.scss */
+main {
+  position: relative;
 }

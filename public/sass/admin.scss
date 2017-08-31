@@ -489,3 +489,16 @@ a:hover {
     top: 0;
     position: absolute;
 }
+
+.top-title {
+    font-size: 26px;
+    //font-weight: 400;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.editormd-dialog {
+    //width: auto     !important;
+    top: 20%          !important;
+    height: auto    !important;
+}

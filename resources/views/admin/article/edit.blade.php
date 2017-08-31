@@ -1,15 +1,30 @@
 @extends('admin.index')
 
+@section('css')
+    @parent
+    <link rel="stylesheet" href="/vendors/editor.md/css/editormd.css">
+@endsection
+
 @section('content')
     <div class="container">
-        <h5>编辑文章</h5>
-        <form class="form-horizontal" method="POST" enctype="multipart/form-data"
+        <form class="form-horizontal" method="POST"
               action="{{ route('article.update', $article['id']) }}" target="target_iframe">
             {{--                        <input hidden value="{{ csrf_token() }}">--}}
             {{ csrf_field() }}
             @if(isset($article))
                 {{ method_field('PUT') }}
             @endif
+            <div class="row top-title">
+                <div class="col m10 s10">
+                    {{--<h5>创建文章</h5>--}}
+                    编辑文章
+                </div>
+                <div class="col m2 s2">
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">更新
+                        <i class="iconfont icon-fabu right"></i>
+                    </button>
+                </div>
+            </div>
             <div class="row">
                 <div class="input-field col m12 s12">
                     <label for="inputTitle">文章标题</label>
@@ -52,31 +67,42 @@
                 </div>
             </div>
             <div class="row">
-                <div class="file-field input-field col m12 s12">
-                    <div class="btn">
-                        <span>重新上传markdown文件</span>
-                        <input type="file" name="md_file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" name="file_name" type="text">
-                    </div>
+                <div id="editormd" class="editormd editormd-vertical" style="height: 640px">
+                    <textarea style="display:none;" class="editormd-markdown-textarea" name="editormd-markdown-doc">{{ $article['markdown'] }}</textarea>
                 </div>
             </div>
+            {{--<div class="row">--}}
+            {{--<div class="file-field input-field col m12 s12">--}}
+            {{--<div class="btn">--}}
+            {{--<span>重新上传markdown文件</span>--}}
+            {{--<input type="file" name="md_file">--}}
+            {{--</div>--}}
+            {{--<div class="file-path-wrapper">--}}
+            {{--<input class="file-path validate" name="file_name" type="text">--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
 
-            <div class="form-group">
-                <div class="col-md-6">
-                    <input type="submit" class="btn btn-primary" value="{{ isset($article) ? "更新" : "创建"}}">
-                </div>
-            </div>
         </form>
     </div>
 @endsection
 
 @section('js')
     @parent
+    <script src="/vendors/editor.md/editormd.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var editor = editormd("editormd", {
+                path: "/vendors/editor.md/lib/", // Autoload modules mode, codemirror, marked... dependents libs path
+//                appendMarkdown : md,
+                saveHTMLToTextarea: true
+            });
+
+        });
+    </script>
     <script>
-        showCreateResult = function (data){
-            if(data.code == 0) {
+        showCreateResult = function (data) {
+            if (data.code == 0) {
                 window.location = data.url;
             } else {
                 alert(data.info);
@@ -85,7 +111,7 @@
 
         $(document).ready(function () {
             setCurrentSide("side_article_create");
-//            Materialize.updateTextFields();
+            Materialize.updateTextFields();
         });
     </script>
 @endsection

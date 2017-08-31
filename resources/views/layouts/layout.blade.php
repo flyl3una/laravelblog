@@ -1,23 +1,22 @@
 <html>
 <head>
     <title>MBlog</title>
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <script src="/js/jquery-3.2.1.min.js"></script>
-
-
     @yield("css")
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
 <body>
 
 @yield("header")
-@yield("content")
+
+<main class="admin-content grey lighten-5">
+    <iframe name="target_iframe" hidden frameborder="0"></iframe>
+    @yield("sidebar")
+    @yield("content")
+
+</main>
 @yield("footer")
-
-<script src="/js/bootstrap.min.js"></script>
 @yield("js")
-
 </body>
 </html>
 
