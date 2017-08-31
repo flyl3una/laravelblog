@@ -1,5 +1,10 @@
 @extends('admin.index')
 
+@section('css')
+    @parent
+    <link rel="stylesheet" href="/vendors/editor.md/css/editormd.css">
+@endsection
+
 @section('content')
     @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -14,7 +19,7 @@
     <div class="container">
         <h5>创建文章</h5>
         <div class="row"></div>
-        <form class="form-horizontal" method="POST" enctype="multipart/form-data"
+        <form class="form-horizontal" method="POST"
               action="{{ route('article.store') }}" target="target_iframe">
             {{ csrf_field() }}
             <div class="row">
@@ -57,16 +62,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="file-field input-field col m12 s12">
-                    <div class="btn">
-                        <span>上传markdown文件</span>
-                        <input type="file" name="md_file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" name="file_name" type="text">
-                    </div>
+                <div id="editormd">
+                    <textarea style="display:none;">### Hello Editor.md !</textarea>
                 </div>
             </div>
+            {{--<div class="row">--}}
+            {{--<div class="file-field input-field col m12 s12">--}}
+            {{--<div class="btn">--}}
+            {{--<span>上传markdown文件</span>--}}
+            {{--<input type="file" name="md_file">--}}
+            {{--</div>--}}
+            {{--<div class="file-path-wrapper">--}}
+            {{--<input class="file-path validate" name="file_name" type="text">--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
             <div class="row">
                 <button class="btn waves-effect waves-light right" type="submit" name="action">提交
                     <i class="iconfont icon-fabu right"></i>
@@ -82,9 +92,25 @@
 
 @section('js')
     @parent
+    <script src="/vendors/editor.md/editormd.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var editor = editormd("editormd", {
+                path: "/vendors/editor.md/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+            });
+
+            /*
+            // or
+            var editor = editormd({
+                id   : "editormd",
+                path : "../lib/"
+            });
+            */
+        });
+    </script>
     <script>
-        showCreateResult = function (data){
-            if(data.code == 0) {
+        showCreateResult = function (data) {
+            if (data.code == 0) {
                 window.location = data.url;
             } else {
                 alert(data.info);

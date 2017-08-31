@@ -164,6 +164,19 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $id = intval($id);
+        $title = $request['title'];
+        $description = $request['description'];
+        $cate = $request['category'];
+        $tags = $request['tags'];
+        $file = $request->file('md_file');
+        $filename = $request['file_name'];
+        $html = $request['test-editormd-html-code'];
+        return 'success';
+    }
+
+    public function update1(Request $request, $id)
+    {
         //
         $id = intval($id);
         $title = $request['title'];
@@ -172,7 +185,6 @@ class ArticleController extends Controller
         $tags = $request['tags'];
         $file = $request->file('md_file');
         $filename = $request['file_name'];
-
         // 文件是否上传成功
         if ($file->isValid()) {
             // 获取文件相关信息
