@@ -21,12 +21,14 @@ class ArticleSeeder extends Seeder
                 'title' => str_random(random_int(5,20)),
                 'description' => str_random(random_int(20, 40)),
 //                'filename' => str_random('1.md'),
-                'content' => str_random(random_int(100, 500)),
+                'markdown' => str_random(random_int(100, 500)),
+                'html' => str_random(random_int(100, 500)),
 //                'filepath' => Storage::disk('posts'),
 //                'markdown_content' => str_random(random_int(50, 200)),
 //                'html_content' => str_random(random_int(50, 200)),
                 'state' => random_int(0, 2),
                 'click_count' => random_int(1, 100),
+
             ]);
         }
     }

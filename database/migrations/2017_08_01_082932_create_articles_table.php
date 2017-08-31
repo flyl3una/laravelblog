@@ -21,7 +21,8 @@ class CreateArticlesTable extends Migration
             $table->string('description')->default('')->comment('描述');
 //            $table->string('filename')->null(false)->comment('文章保存文件名称');
 //            $table->string('filepath')->default('./')->comment("文章保存相对路径");
-            $table->text('content')->comment("文章HTML内容");
+            $table->text('markdown')->comment("文章markdown内容");
+            $table->text('html')->comment("文章HTML内容");
             $table->integer('state')->default(1)->comment("文章状态，0为已发布，1为草稿，2为垃圾箱")->index();
             $table->integer('click_count')->unsigned()->default(0)->comment("文章点击次数");
 

@@ -86,7 +86,19 @@ class ArticleController extends Controller
         $tags = $request['tags'];
         $md = $request['editormd-markdown-doc'];
         $html = $request['editormd-html-code'];
-        return 'success';
+
+        if (!$title or !$description or !md or !html){
+            $data = ['code' => config('error.code.article.not_null'), 'info' => '文章标题，描述，目录，内容不能为空'];
+            $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+            return $js;
+        }
+        if(!$cate) {
+            $cate = 1;
+        }
+
+        $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];
+        $js = '<script>window.parent.showCreateResult('.json_encode($data).')</script>';
+        return $js;
     }
     public function store1(Request $request)
     {

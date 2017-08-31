@@ -22,7 +22,8 @@ return [
             'file_ext_error' => $ARTICLE_CODE + 0x11,
             'update_fail' => $ARTICLE_CODE + 0x10,
             'delete_fail' => $ARTICLE_CODE + 0x20,
-            'cannot_delete_root' => $ARTICLE_CODE + 0x21
+            'cannot_delete_root' => $ARTICLE_CODE + 0x21,
+            'not_null' => $ARTICLE_CODE + 0x23,
         ]
     ],
     'info' => [
