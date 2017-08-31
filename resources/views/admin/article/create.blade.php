@@ -62,8 +62,8 @@
                 </div>
             </div>
             <div class="row">
-                <div id="editormd">
-                    <textarea style="display:none;">### Hello Editor.md !</textarea>
+                <div id="editormd" class="editormd editormd-vertical" style="width: 640px">
+                    {{--<textarea style="display:none;">### Hello Editor.md !</textarea>--}}
                 </div>
             </div>
             {{--<div class="row">--}}
@@ -96,7 +96,9 @@
     <script type="text/javascript">
         $(function () {
             var editor = editormd("editormd", {
-                path: "/vendors/editor.md/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+                path: "/vendors/editor.md/lib/", // Autoload modules mode, codemirror, marked... dependents libs path
+//                appendMarkdown : md,
+                saveHTMLToTextarea : true
             });
 
             /*

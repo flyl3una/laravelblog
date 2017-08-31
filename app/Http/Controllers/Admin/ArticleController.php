@@ -84,6 +84,16 @@ class ArticleController extends Controller
         $description = $request['description'];
         $cate = $request['category'];
         $tags = $request['tags'];
+        $md = $request['editormd-markdown-doc'];
+        $html = $request['editormd-html-code'];
+        return 'success';
+    }
+    public function store1(Request $request)
+    {
+        $title = $request['title'];
+        $description = $request['description'];
+        $cate = $request['category'];
+        $tags = $request['tags'];
         $file = $request->file('md_file');
         $filename = $request['file_name'];
 
