@@ -1,39 +1,24 @@
 @section("header")
-    <header class="container-fluid">
-        <div class="valign-wrapper" style="height: 100%">
-            {{--<h5 class="valign">这个应该垂直居中对齐</h5>--}}
-            <div class="valign center">
-                <img src="/images/user.jpg" alt="" class="center-align">
-            </div>
-            <div class="row">
-                xxx
+    <header>
+
+        <div class="parallax-container">
+            <div class="container">
+                <div class="parallax"><img src="/images/header.jpg"></div>
+
+                <div class="valign-wrapper" style="height: 100%">
+                    {{--<h5 class="valign">这个应该垂直居中对齐</h5>--}}
+                    <div class="valign center">
+                        {{--<div class="row">--}}
+                            {{--<img src="/images/user.jpg" alt="" class="center-align user-img">--}}
+                        {{--</div>--}}
+                        <div class="row">
+                            <h4>Luna's Blog</h4>
+                            <p>Welcome to the small home</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
-    {{--<div class="main-header">--}}
-    {{--<div class="container-fluid">--}}
-    {{--<nav class="navbar site-navbar">--}}
-    {{--<div class="navbar-header navbar-nav">--}}
-    {{--<a href="{{ route('home.index') }}" class="navbar-brand white-color">Laravel Blog</a>--}}
-    {{--</div>--}}
-    {{--<div class="navbar-collapse collapse">--}}
-    {{--<ul class="nav navbar-nav">--}}
-    {{--<li>--}}
-    {{--<a href="{{ route("home.index") }}" class="btn white-color">归档</a>--}}
-    {{--</li>--}}
-    {{--</ul>--}}
-    {{--<ul class="nav navbar-nav navbar-right">--}}
-    {{--<li>--}}
-    {{--<a href="{{ route('login') }}" class="white-color">登陆</a>--}}
-    {{--</li>--}}
-    {{--<li><a href="{{ route('register') }}" class="white-color">注册</a></li>--}}
-    {{--<li><a href="{{ route('logout') }}" class="white-color">登出</a></li>--}}
-    {{--<li><a href="{{ route('admin.index') }}" class="white-color">后台</a></li>--}}
-    {{--</ul>--}}
-    {{--</div>--}}
-
-    {{--</nav>--}}
-    {{--</div>--}}
-    {{--</div>--}}
 
 @endsection

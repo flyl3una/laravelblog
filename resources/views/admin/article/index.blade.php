@@ -72,7 +72,7 @@
                             {{--<input type="submit" value="删除" class="btn btn-raised btn-danger"/>--}}
                             {{--</form>--}}
                             {{--<ul class="article-operator">--}}
-                            <a href="">查看</a>
+                            <a href="{{ route('article.show', $article['id']) }}">查看</a>
                             <a href="{{ route('article.edit', $article['id']) }}">编辑</a>
                             <a class="delete-a" href="#delete_modal" data-target="delete_modal"
                                data-id="{{ $article['id'] }}" data-submit="{{ route('article.moveToTrash') }}"

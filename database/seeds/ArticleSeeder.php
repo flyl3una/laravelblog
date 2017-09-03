@@ -28,7 +28,7 @@ class ArticleSeeder extends Seeder
 //                'html_content' => str_random(random_int(50, 200)),
                 'state' => random_int(0, 2),
                 'click_count' => random_int(1, 100),
-
+//                'create_at' =>
             ]);
         }
     }

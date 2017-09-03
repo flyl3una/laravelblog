@@ -44,10 +44,8 @@
                     <select id="select_category_id" class="initialized" name="category">
                         <option value="" disabled selected>选择目录</option>
                         @foreach($cates as $cate1)
-                            @if($cate1['id'] != 1)
-                                <option value="{{ $cate1['id'] }}"
-                                        @if(isset($cate) && $cate['id'] === $cate1['id']) selected @endif>{{ $cate1['name'] }}</option>
-                            @endif
+                            <option value="{{ $cate1['id'] }}"
+                                    @if(isset($cate) && $cate['id'] === $cate1['id']) selected @endif>{{ $cate1['name'] }}</option>
                         @endforeach
                     </select>
                     <label for="select_category_id">文章目录</label>
@@ -68,7 +66,8 @@
             </div>
             <div class="row">
                 <div id="editormd" class="editormd editormd-vertical" style="height: 640px">
-                    <textarea style="display:none;" class="editormd-markdown-textarea" name="editormd-markdown-doc">{{ $article['markdown'] }}</textarea>
+                    <textarea style="display:none;" class="editormd-markdown-textarea"
+                              name="editormd-markdown-doc">{{ $article['markdown'] }}</textarea>
                 </div>
             </div>
             {{--<div class="row">--}}

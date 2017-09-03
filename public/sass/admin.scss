@@ -502,3 +502,10 @@ a:hover {
     top: 20%          !important;
     height: auto    !important;
 }
+
+.card {
+    margin-bottom: 30px;
+    .card-content {
+        word-wrap:break-word;
+    }
+}

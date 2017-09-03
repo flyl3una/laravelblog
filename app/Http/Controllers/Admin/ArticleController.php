@@ -98,6 +98,8 @@ class ArticleController extends Controller
         $userid = Auth::user()->id;
         $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
             'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => 0]);
+        Categories::where('id', $cate)->update(['count' =>
+            Article::where('category_id', $cate)->where('state', config('blog.number.publish'))->count()]);
         if ($tags) {
             foreach ($tags as $tagId) {
                 ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
@@ -162,6 +164,17 @@ class ArticleController extends Controller
     {
         //
 //        return
+        $article = Article::where('id', $id)->firstOrFail();
+        $cate = Categories::where('id', $article['category_id'])->firstOrFail();
+//        $tags = $article->tags();
+        $articleTags = ArticleTag::where('article_id', $id)->get();
+        $tags = [];
+        foreach ($articleTags as $articleTag) {
+            $tags[] = Tag::where('id', $articleTag['tag_id'])->firstOrFail();
+        }unset($articleTag);
+        $article['cate'] = $cate;
+        $article['tags'] = $tags;
+        return view('admin.article.show', compact('article', 'cate', 'tags'));
     }
 
     /**
@@ -220,6 +233,8 @@ class ArticleController extends Controller
             $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
             return $js;
         }
+        Categories::where('id', $cate)->update(['count' =>
+            Article::where('category_id', $cate)->where('state', config('blog.number.publish'))->count()]);
         ArticleTag::where('article_id', $id)->delete();
         if ($tags){
             foreach ($tags as $tagId) {
