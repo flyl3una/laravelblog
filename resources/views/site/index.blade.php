@@ -7,3 +7,14 @@
 
 @extends("layouts.css")
 @extends("layouts.js")
+
+@section('js')
+    @parent
+    <script>
+//        $(document).ready(function() {
+//            selectTab('index_tab_id');
+//            $('ul.tabs').tabs();
+//        });
+
+    </script>
+@endsection

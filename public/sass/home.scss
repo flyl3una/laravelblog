@@ -30,6 +30,9 @@ main {
 #tabs_id {
     border-bottom: 1px solid #EEEEEE;
     margin-bottom: 50px;
+    //.indicator {
+    //    background-color: #29b6f6;
+    //}
 }
 
 #user_card {
@@ -38,7 +41,7 @@ main {
         margin-left: calc(50% - 40px);
         width: 80px;
         height: 80px;
-        border-radius: 50%;
+        //border-radius: 50%;
     }
 }
 
@@ -58,7 +61,7 @@ main {
 }
 
 .card {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     .card-content {
         word-wrap:break-word;
     }
@@ -68,9 +71,11 @@ main {
     margin-right: 30px;
     //border-bottom: 1px solid #EEEEEE;
     //border-left: 5px solid transparent;
-    .card-content, .card-action, .card-title {
-        padding: 30px;
-    }
+    //.card-content, .card-action, .card-title {
+    padding-left: 30px;
+    padding-right: 30px;
+    //padding: 30px;
+    //}
 
     .card-action{
         .row {
@@ -80,12 +85,10 @@ main {
     }
 
     .article-info {
-        display: block;
-
         span {
             padding-right: 8px;
             font-size: 16px;
-            color: #bdbdbd;
+            //color: #bdbdbd;
         }
 
         .breadcrumb:before {

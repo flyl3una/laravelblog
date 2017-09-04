@@ -1,23 +1,28 @@
 @section('left')
+    <div id="index_id" class="container-fluid">
     @foreach($articles as $article)
-        <div class="card a-article hoverable z-depth-3">
-            <div class="card-content teal lighten-1 article-info white-text">
+        <div class="card a-article z-depth-2 hoverable">
+            <div class="card-content ">
                 <h4>
                     {{ $article['title'] }}
                 </h4>
+            {{--</div>--}}
+            {{--<div class="card-content article-info">--}}
+                <div class="grey-text">
                 <span>{{ $article['user']['name'] }}
                 </span>
-                <span>/</span>
-                <span>
+                    <span>/</span>
+                    <span>
                     {{ $article['cate']['name'] }}
                 </span>
-                <span>/</span>
-                <span>2017.1.1</span>
-            </div>
-            <div class="card-content">
-                <p class="grey-text">
+                    <span>/</span>
+                    <span>{{ $article['updated_at'] }}</span>
+                </div>
+                <div>
+                <p class="truncate" style="font-size: 1.3em;">
                     {{ $article['description'] }}
                 </p>
+                </div>
             </div>
             <div class="card-action">
                 <div class="row">
@@ -34,5 +39,18 @@
 
     @endforeach
         {!! $articles->render() !!}
+    </div>
+    <div id="archive_id" class="container-fluid">
+        xx
+    </div>
+@endsection
 
+@section('js')
+    @parent
+    <script>
+//        $(document).ready(function() {
+//            selectTab('index_tab_id');
+//        });
+
+    </script>
 @endsection

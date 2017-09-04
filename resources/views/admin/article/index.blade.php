@@ -57,22 +57,9 @@
                         </td>
 
                         <td><span>5 / {{ $article['click_count'] }}</span></td>
-                        {{--<td><a href="article/{{ $article['id'] }}/edit">编辑</a>--}}
-                        {{--                                        <a href="article/{{ $article['id'] }}/destroy">删除</a> </td>--}}
                         <td>
-                            {{--<a href="{{ route('article.edit', $article['id']) }}"--}}
-                            {{--class="btn btn-raised btn-success">编辑</a>--}}
-                            {{--<a href="{{ route('article.destroy', $article['id']) }}" class="btn btn-danger">删除</a>--}}
-                            {{--<form method="POST"--}}
-                            {{--action="{{ route('article.destroy', $article['id']) }}">--}}
-                            {{--更改隐身提交方法为DELETE--}}
-                            {{--<input type="hidden" name="_method" value="DELETE"/>--}}
-                            {{--添加csrf认证--}}
-                            {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-                            {{--<input type="submit" value="删除" class="btn btn-raised btn-danger"/>--}}
-                            {{--</form>--}}
-                            {{--<ul class="article-operator">--}}
-                            <a href="{{ route('article.show', $article['id']) }}">查看</a>
+
+                            <a href="{{ route('home.show', $article['id']) }}">查看</a>
                             <a href="{{ route('article.edit', $article['id']) }}">编辑</a>
                             <a class="delete-a" href="#delete_modal" data-target="delete_modal"
                                data-id="{{ $article['id'] }}" data-submit="{{ route('article.moveToTrash') }}"

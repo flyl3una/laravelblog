@@ -1,6 +1,6 @@
-{{--@section('left')--}}
-    <div class="card a-article hoverable z-depth-3">
-        <div class="card-content teal lighten-1 article-info white-text">
+@section('left')
+    <div class="card z-depth-2">
+        <div class="card-content blue-grey darken-2 article-info white-text">
             <h4>
                 {{ $article['title'] }}
             </h4>
@@ -11,7 +11,7 @@
                     {{ $article['cate']['name'] }}
                 </span>
             <span>/</span>
-            <span>2017.1.1</span>
+            <span>{{ $article['updated_at'] }}</span>
         </div>
         <div id="article_markdown" hidden data-markdown="{{ $article['markdown'] }}"></div>
         <div id="article_content" class="article_html card-content">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-{{--@endsection--}}
+@endsection
 
 @section('js')
     @parent

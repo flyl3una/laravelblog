@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Site', 'prefix' => 'home'], function() {
 //    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/{id}', 'HomeController@show')->where('id', '[0-9]*')->name('home.show');
+    Route::get('/archive/', 'HomeController@archive')->name('home.archive');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {

@@ -29,8 +29,10 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index() {
-        $articles = Article::paginate(config('blog.article_per_page'));
+    public function index()
+    {
+        $articles = Article::orderBy('updated_at','desc')
+        ->paginate(config('blog.article_per_page'));
         foreach ($articles as &$article) {
             $cate = Categories::where('id', $article['category_id'])->first();
             $articleTags = ArticleTag::where('article_id', $article['id'])->get();
@@ -43,14 +45,29 @@ class HomeController extends Controller
             $article['tags'] = $oneTags;
             $article['cate'] = $cate;
         }
-
+        $groups = Article::selectRaw('year(updated_at)  year, month(updated_at) month, count(*) count')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(updated_at) desc')->get();
+//        $archives = [];
+//        foreach ($groups as $group) {
+//            $year = $group['year'];
+//            $month = $group['month'];
+//            $article = [];
+//            $archive['time'] = $year . ' / ' . $month;
+//            $archive['count'] = $group['count'];
+//            $articles1 = Article::where('updated_at', 'like', '"%'.$year.'-'.$month.'%"')
+//                ->orderBy('updated_at','desc')->get();
+//            $archive['$articles'] = $articles1;
+//            $archives[] = $article;
+//        }
         $cates = Categories::all();
         $tags = Tag::all();
         $links = Link::all();
-        return view('site.index', compact('articles', 'cates', 'tags', 'links'));
+        return view('site.index', compact('articles', 'groups', 'cates', 'tags', 'links'));
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $article = Article::findOrFail($id);
         $category = Categories::findOrFail($article['category_id']);
         $articleTags = ArticleTag::where('article_id', $id)->get();
@@ -68,4 +85,25 @@ class HomeController extends Controller
         return view('site.article', compact('article', 'cates', 'tags', 'links'));
     }
 
+    public function archive()
+    {
+        $groups = Article::selectRaw('year(updated_at)  year, month(updated_at) month, count(*) count')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(updated_at) desc')->get();
+//        $posts = Article::latest()->get();
+        $archives = [];
+        foreach ($groups as $group) {
+            $year = $group['year'];
+            $month = $group['month'];
+            $archives['time'] = $year . ' / ' . $month;
+            $archives['count'] = $group['count'];
+            $articles = Article::where('updated_at', 'like', '"%'.$year.'-'.$month.'%"')
+            ->orderBy('updated_at','desc')->get();
+            $archives['$articles'] = $articles;
+        }
+        $cates = Categories::all();
+        $tags = Tag::all();
+        $links = Link::all();
+        return view('site.index', compact('article', 'cates', 'tags', 'links'));
+    }
 }
