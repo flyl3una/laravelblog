@@ -23,7 +23,7 @@ class ArticleSeeder extends Seeder
     public function run()
     {
         //
-        $start_time = '2010-01-01 00:00:00';
+        $start_time = '2015-01-01 00:00:00';
         $end_time = '2017-09-01 00:00:00';
         for ($i = 0; $i < 40; $i ++) {
             DB::table('articles')->insert([

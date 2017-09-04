@@ -45,8 +45,8 @@ class HomeController extends Controller
             $article['tags'] = $oneTags;
             $article['cate'] = $cate;
         }
-        $groups = Article::selectRaw('year(updated_at)  year, month(updated_at) month, count(*) count')
-            ->groupBy('year', 'month')
+        $groups = Article::selectRaw('year(updated_at)  year, count(*) count')
+            ->groupBy('year')
             ->orderByRaw('min(updated_at) desc')->get();
 //        $archives = [];
 //        foreach ($groups as $group) {
@@ -85,25 +85,46 @@ class HomeController extends Controller
         return view('site.article', compact('article', 'cates', 'tags', 'links'));
     }
 
-    public function archive()
+    public function archive($select_year='0')
     {
-        $groups = Article::selectRaw('year(updated_at)  year, month(updated_at) month, count(*) count')
+        $groups1 = Article::selectRaw('year(updated_at)  year, month(updated_at) month, count(*) count')
             ->groupBy('year', 'month')
             ->orderByRaw('min(updated_at) desc')->get();
-//        $posts = Article::latest()->get();
+        $groups = Article::selectRaw('year(updated_at)  year, count(*) count')
+            ->groupBy('year')
+            ->orderByRaw('min(updated_at) desc')->get();
         $archives = [];
         foreach ($groups as $group) {
+            $archives[$group['year']] = [];
+        } unset($group);
+        foreach ($groups1 as $group) {
             $year = $group['year'];
             $month = $group['month'];
-            $archives['time'] = $year . ' / ' . $month;
-            $archives['count'] = $group['count'];
-            $articles = Article::where('updated_at', 'like', '"%'.$year.'-'.$month.'%"')
+
+            $archive = [];
+            $archive['time'] = $year . ' / ' . $month;
+            $archive['year'] = $year;
+            $archive['month'] = $month;
+            $archive['count'] = $group['count'];
+            $like = '%'.$year.'-'.$month.'%';
+            $articles = Article::where('updated_at', 'like', $like)
             ->orderBy('updated_at','desc')->get();
-            $archives['$articles'] = $articles;
+            $archive['articles'] = $articles;
+//            $archives[] = $archive;
+//            if (!array_key_exists($year, $archives)) {
+//                $archives[$year] = [];
+//            }
+//            if (!array_key_exists($month, $archives[$year])) {
+//                $archives[$year][$month] = [];
+//            }
+            $archives[$year][$month] = $archive;
         }
+        unset($group);
+        unset($archive);
+
         $cates = Categories::all();
         $tags = Tag::all();
         $links = Link::all();
-        return view('site.index', compact('article', 'cates', 'tags', 'links'));
+        return view('site.archive', compact('archives', 'groups', 'cates', 'tags', 'links'));
     }
 }

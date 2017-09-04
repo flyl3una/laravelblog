@@ -7,9 +7,6 @@
                     {{--<p class="grey-text text-lighten-4">你可以用行和列来组织你的页脚内容。</p>--}}
                     <ul>
                         <li>
-                            {{--<div class="col m3 s9 grey-text text-lighten-3">Blog:</div>--}}
-                            {{--<div class="col m9 s9">--}}
-
                             <a class="grey-text text-lighten-3" href="http://www.flyl3una.cc">
                                 <i class="iconfont icon-github"></i>flyl3una
                             </a>

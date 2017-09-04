@@ -24,7 +24,7 @@ main {
     min-height: 60%;
     //margin-top: 40%;
     position: relative;
-    //margin-top: 500px;
+
 }
 
 #tabs_id {
@@ -33,6 +33,10 @@ main {
     //.indicator {
     //    background-color: #29b6f6;
     //}
+}
+
+#main_content_id {
+    margin-top: 60px;
 }
 
 #user_card {
