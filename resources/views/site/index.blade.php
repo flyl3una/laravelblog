@@ -11,10 +11,9 @@
 @section('js')
     @parent
     <script>
-//        $(document).ready(function() {
-//            selectTab('index_tab_id');
-//            $('ul.tabs').tabs();
-//        });
+        $(document).ready(function () {
+            selectTab('index_page_id');
+        });
 
     </script>
 @endsection

@@ -18,6 +18,10 @@
                     <span>/</span>
                     <span>{{ $article['updated_at'] }}</span>
                 </div>
+                <div class="row">
+                    {{--<div class="divider"></div>--}}
+                </div>
+
                 <div>
                 <p class="truncate" style="font-size: 1.3em;">
                     {{ $article['description'] }}
@@ -43,14 +47,4 @@
     <div id="archive_id" class="container-fluid">
         xx
     </div>
-@endsection
-
-@section('js')
-    @parent
-    <script>
-//        $(document).ready(function() {
-//            selectTab('index_tab_id');
-//        });
-
-    </script>
 @endsection

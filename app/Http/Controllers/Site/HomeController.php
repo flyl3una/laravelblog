@@ -104,6 +104,10 @@ class HomeController extends Controller
             $archive = [];
             $archive['time'] = $year . ' / ' . $month;
             $archive['year'] = $year;
+            $archive['month'] = sprintf('%2d', $month);
+            if(strlen(strval($month)) == 1) {
+                $month = '0'.strval($month);
+            }
             $archive['month'] = $month;
             $archive['count'] = $group['count'];
             $like = '%'.$year.'-'.$month.'%';

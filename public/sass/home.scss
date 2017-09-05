@@ -1,6 +1,7 @@
 .parallax-container {
     height: 40%;
 }
+
 header {
 
     .valign-wrapper {
@@ -28,19 +29,40 @@ main {
 }
 
 #tabs_id {
-    border-bottom: 1px solid #EEEEEE;
+    //border-bottom: 1px solid #EEEEEE;
     margin-bottom: 50px;
+    border-bottom: none;
     //.indicator {
     //    background-color: #29b6f6;
     //}
 }
 
+#article_search_form{
+    .input-field label {
+        -webkit-transform: none !important;
+        -moz-transform: none !important;
+        -ms-transform: none !important;
+        -o-transform: none !important;
+        transform: none !important;
+    }
+}
+
+
+#header_id {
+    position: absolute;
+    z-index: 100000;
+    top: 0;
+    background: transparent !important;
+    -webkit-box-shadow: none;
+}
+
 #main_content_id {
-    margin-top: 60px;
+    //margin-top: 60px;
+    //position: relative;
 }
 
 #user_card {
-    img{
+    img {
         margin-top: -40px;
         margin-left: calc(50% - 40px);
         width: 80px;
@@ -49,7 +71,7 @@ main {
     }
 }
 
-.pagination{
+.pagination {
     li span {
         color: #444;
         display: inline-block;
@@ -58,7 +80,7 @@ main {
         line-height: 30px;
     }
     li.active {
-        span, a{
+        span, a {
             color: #fff;
         }
     }
@@ -67,7 +89,7 @@ main {
 .card {
     margin-bottom: 40px;
     .card-content {
-        word-wrap:break-word;
+        word-wrap: break-word;
     }
 }
 
@@ -81,7 +103,7 @@ main {
     //padding: 30px;
     //}
 
-    .card-action{
+    .card-action {
         .row {
             margin-bottom: 0;
         }
@@ -101,8 +123,30 @@ main {
         }
     }
 }
+
 .article_html {
     blockquote {
         font-style: normal;
     }
+}
+
+.archive-container {
+    border-left: 1px solid #e0e0e0;
+    padding-left: 30px;
+    position: absolute;
+    .month-flag {
+        height: 18px;
+        width: 24px;
+        border: 9px solid #00897b;
+        border-right-color: transparent;
+        //border-left-width: 7px;
+        position: absolute;
+        left: -1px;
+        top: 0;
+    }
+
+    h5 {
+        margin-top: -3px;
+    }
+
 }

@@ -19,12 +19,13 @@
         {{--<li>--}}
             {{--<div class="divider"></div>--}}
         {{--</li>--}}
+        
         <ul class="collection with-header">
             <li class="collection-header"><h5>归档</h5></li>
             @foreach($groups as $group)
                 <li class="collection-item">
                     <div>{{ $group['year'] }}
-                        <a href="#!" class="secondary-content">
+                        <a href="{{ route('home.archive', $group['year']) }}" class="secondary-content">
                             <span class="new badge" data-badge-caption="">{{ $group['count'] }}</span>
                         </a>
                     </div>
@@ -44,6 +45,8 @@
     {{--</div>--}}
 
     <div id="main_content_id" class="container">
+        <div class="row"></div>
+        <div class="row"></div>
         <div class="row">
             <div class="col m9 s12">
                 @yield('left')

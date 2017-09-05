@@ -5,10 +5,10 @@
 
     <script>
 
-//        selectTab = function(id) {
-//            $('#tabs_id>li>a').removeClass('active');
-//            $('#'+id).addClass('active');
-//        };
+        selectTab = function(id) {
+            $('#select_page>li').removeClass('active');
+            $('#'+id).addClass('active');
+        };
 
         $(document).ready(function () {
             //初始化material
