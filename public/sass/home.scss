@@ -132,21 +132,67 @@ main {
 
 .archive-container {
     border-left: 1px solid #e0e0e0;
-    padding-left: 30px;
-    position: absolute;
+    padding-left: 80px;
+    //position: absolute;
+
+    .archive-month {
+        position: relative;
+
+        a {
+            color: #000;
+        }
+
+        .card:before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            background: white;
+            //border-left: 1px solid #EEEEEE;
+            //border-bottom: 1px solid #EEEEEE;
+            -webkit-box-shadow: -2px 2px 0px #EEEEEE;
+            -moz-box-shadow: -2px 2px 0px #EEEEEE;
+            box-shadow: -2px 2px 0px #EEEEEE;
+            //border: 10px solid white;
+            //border-width: 5px 10px 15px 10px;
+            //border-right: #EEEEEE;
+            //box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+            position: absolute;
+            left: -10px;
+            top: 45px;
+        }
+    }
+
+    .archive-month-date {
+        position: relative;
+    }
+
     .month-flag {
-        height: 18px;
-        width: 24px;
-        border: 9px solid #00897b;
+        height: 36px;
+        width: 40px;
+        border: 18px solid #00897b;
         border-right-color: transparent;
         //border-left-width: 7px;
         position: absolute;
-        left: -1px;
-        top: 0;
+        left: -81px;
+        //top: 4px;
     }
 
-    h5 {
-        margin-top: -3px;
+    .article-flag {
+        height: 11px;
+        width: 11px;
+        position: absolute;
+        left:-86px;
+        top: 50px;
+        border-radius: 50%;
+        background: #b0bec5;
     }
+    //
+    //h5 {
+    //
+    //}
+
 
 }

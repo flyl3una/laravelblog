@@ -71,6 +71,9 @@ class HomeController extends Controller
         $article = Article::findOrFail($id);
         $category = Categories::findOrFail($article['category_id']);
         $articleTags = ArticleTag::where('article_id', $id)->get();
+        $groups = Article::selectRaw('year(updated_at)  year, count(*) count')
+            ->groupBy('year')
+            ->orderByRaw('min(updated_at) desc')->get();
         $tags = [];
         foreach ($articleTags as $articleTag) {
             $tags[] = Tag::where('id', $articleTag['tag_id'])->first();
@@ -82,7 +85,7 @@ class HomeController extends Controller
         $cates = Categories::all();
         $tags = Tag::all();
         $links = Link::all();
-        return view('site.article', compact('article', 'cates', 'tags', 'links'));
+        return view('site.article', compact('article', 'groups', 'cates', 'tags', 'links'));
     }
 
     public function archive($select_year='0')
@@ -114,13 +117,6 @@ class HomeController extends Controller
             $articles = Article::where('updated_at', 'like', $like)
             ->orderBy('updated_at','desc')->get();
             $archive['articles'] = $articles;
-//            $archives[] = $archive;
-//            if (!array_key_exists($year, $archives)) {
-//                $archives[$year] = [];
-//            }
-//            if (!array_key_exists($month, $archives[$year])) {
-//                $archives[$year][$month] = [];
-//            }
             $archives[$year][$month] = $archive;
         }
         unset($group);
@@ -129,6 +125,6 @@ class HomeController extends Controller
         $cates = Categories::all();
         $tags = Tag::all();
         $links = Link::all();
-        return view('site.archive', compact('archives', 'groups', 'cates', 'tags', 'links'));
+        return view('site.archive', compact('archives', 'groups', 'cates', 'tags', 'links', 'select_year'));
     }
 }

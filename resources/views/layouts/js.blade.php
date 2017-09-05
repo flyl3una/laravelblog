@@ -16,7 +16,7 @@
             $('select').material_select();
             $('.modal').modal();
             $('.parallax').parallax();
-            $('ul.tabs').tabs();
+
             $('.button-collapse').sideNav({
                     menuWidth: 300, // Default is 240
                     edge: 'right', // Choose the horizontal origin

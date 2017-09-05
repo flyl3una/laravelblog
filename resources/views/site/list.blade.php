@@ -44,7 +44,5 @@
     @endforeach
         {!! $articles->render() !!}
     </div>
-    <div id="archive_id" class="container-fluid">
-        xx
-    </div>
+
 @endsection

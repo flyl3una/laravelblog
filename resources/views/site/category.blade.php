@@ -12,15 +12,11 @@
     <div class="container-fluid">
         <ul id="tabs_id" class="tabs">
             @foreach($archives as $year => $archive_month)
-                @if($select_year != '0' && $select_year==$year)
-                    <li class="tab"><a href="#{{ $year }}_id" class="teal-text active">{{ $year }}</a></li>
-                @else
-                    <li class="tab"><a href="#{{ $year }}_id" class="teal-text">{{ $year }}</a></li>
-                @endif
+                <li class="tab"><a href="#{{ $year }}_id" class="teal-text">{{ $year }}</a></li>
             @endforeach
         </ul>
         @foreach($archives as $year => $archive_month)
-            <div id="{{ $year }}_id" class="container-fluid archive-container" style="display: none">
+            <div id="{{ $year }}_id" class="container-fluid archive-container">
                 @foreach($archive_month as $month => $archive)
                     <div class="archive-month" id="month-{{ $month }}">
                         <span class="month-flag"></span>
@@ -40,6 +36,7 @@
                                 </div>
                             </a>
                         @endforeach
+
                     </div>
                 @endforeach
             </div>
@@ -51,10 +48,7 @@
     @parent
     <script>
         $(document).ready(function () {
-            selectTab('archive_page_id');
-            $(".archive-container").show();
-//            $(".archive-container").attr('opacity', 1);
-            $('ul.tabs').tabs();
+            selectTab('category_page_id');
         });
     </script>
 @endsection
