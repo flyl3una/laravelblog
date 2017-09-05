@@ -53,7 +53,6 @@
         $(document).ready(function () {
             selectTab('archive_page_id');
             $(".archive-container").show();
-//            $(".archive-container").attr('opacity', 1);
             $('ul.tabs').tabs();
         });
     </script>

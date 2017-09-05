@@ -93,6 +93,10 @@ main {
     }
 }
 
+.a-article-card {
+    margin-right: 30px;
+}
+
 .a-article {
     margin-right: 30px;
     //border-bottom: 1px solid #EEEEEE;
@@ -130,6 +134,12 @@ main {
     }
 }
 
+.archive-container, .category-container {
+    a {
+        color: #000;
+    }
+}
+
 .archive-container {
     border-left: 1px solid #e0e0e0;
     padding-left: 80px;
@@ -138,9 +148,7 @@ main {
     .archive-month {
         position: relative;
 
-        a {
-            color: #000;
-        }
+
 
         .card:before {
             content: '';

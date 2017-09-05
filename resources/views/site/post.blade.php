@@ -1,5 +1,5 @@
 @section('left')
-    <div class="card z-depth-2">
+    <div class="card z-depth-2 a-article-card">
         <div class="card-content blue-grey darken-2 article-info white-text">
             <h4>
                 {{ $article['title'] }}

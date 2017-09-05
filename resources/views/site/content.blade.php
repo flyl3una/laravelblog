@@ -32,17 +32,7 @@
                 </li>
             @endforeach
         </ul>
-        {{--<li><a class="subheader">子标题</a></li>--}}
-        {{--<li><a class="waves-effect" href="#!">带波纹效果的第三链接</a></li>--}}
     </ul>
-    {{--<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>--}}
-
-    {{--<div class="container">--}}
-    {{--<ul id="tabs_id" class="tabs">--}}
-    {{--<li class="tab right"><a id="archive_tab_id" class="teal-text" href="{{ route('home.archive') }}">归档</a></li>--}}
-    {{--<li class="tab right"><a id="index_tab_id" href="#index_id" class="teal-text active">首页</a></li>--}}
-    {{--</ul>--}}
-    {{--</div>--}}
 
     <div id="main_content_id" class="container">
         <div class="row"></div>
@@ -52,7 +42,7 @@
                 @yield('left')
             </div>
             <div class="col m3 s12">
-                <div id="user_card" class="right-card card z-depth-2">
+                <div id="user_card" class="card z-depth-2">
                     <a href="#" data-activates="slide-out" class="button-collapse">
                         <img src="/images/user.jpg" class="center circle ">
                         {{--<i class="iconfont icon-xitongcaidan1 center circle" style="font-size: 2em;"></i>--}}
@@ -84,9 +74,9 @@
                         @foreach($cates as $cate)
                             <li class="collection-item">
                                 <div>{{ $cate['name'] }}
-                                    <span href="#!" class="secondary-content">
+                                    <a href="{{ route('home.category', $cate['id']) }}" class="secondary-content">
                                         <span class="new badge" data-badge-caption="">{{ $cate['count'] }}</span>
-                                    </span>
+                                    </a>
                                 </div>
                             </li>
                         @endforeach
