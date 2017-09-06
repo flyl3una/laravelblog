@@ -27,7 +27,7 @@
                         <h4>{{ $year }} / {{ $month }}</h4>
                         @foreach($archive['articles'] as $article)
                             <a href="{{ route('home.show', $article['id']) }}">
-                                <div class="card a-article">
+                                <div class="card a-article hoverable">
                                     <span class="article-flag"></span>
                                     <div class="card-content">
                                         <h5>{{ $article['title'] }}</h5>

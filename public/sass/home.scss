@@ -148,8 +148,6 @@ main {
     .archive-month {
         position: relative;
 
-
-
         .card:before {
             content: '';
             width: 20px;
@@ -179,12 +177,12 @@ main {
 
     .month-flag {
         height: 36px;
-        width: 40px;
+        width: 50px;
         border: 18px solid #00897b;
         border-right-color: transparent;
         //border-left-width: 7px;
         position: absolute;
-        left: -81px;
+        left: -91px;
         //top: 4px;
     }
 
