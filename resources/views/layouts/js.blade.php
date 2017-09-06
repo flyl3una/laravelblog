@@ -1,6 +1,5 @@
 @section("js")
     <script src="/vendors/jquery/dist/jquery.min.js"></script>
-
     <script src="/vendors/materialize/dist/js/materialize.min.js"></script>
 
     <script>

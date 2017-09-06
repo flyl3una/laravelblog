@@ -1,8 +1,5 @@
 @section("js")
     <script src="/vendors/jquery/dist/jquery.min.js"></script>
-    {{--<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>--}}
-    {{--<script src="/vendors/bootstrap-material-design/dist/js/material.js"></script>--}}
-    {{--<script src="/vendors/bootstrap-material-design/dist/js/ripples.js"></script>--}}
     <script src="/vendors/materialize/dist/js/materialize.min.js"></script>
 
     <script>
@@ -83,6 +80,7 @@
             initAdmin();
             $('select').material_select();
             $('.modal').modal();
+//            $('#tabs_id').tabs();
         });
     </script>
 @endsection

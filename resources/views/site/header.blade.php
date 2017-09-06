@@ -18,7 +18,7 @@
                         <ul id="select_page" class="right">
                             <li id="index_page_id"><a href="{{ route('home.index') }}" class=" white-text">首页</a></li>
                             <li id="archive_page_id"><a href="{{ route('home.archive') }}" class="white-text">归档</a></li>
-                            <li id="category_page_id"><a href="{{ route('home.category') }}" class="white-text">目录</a></li>
+                            {{--<li id="category_page_id"><a href="{{ route('home.category') }}" class="white-text">目录</a></li>--}}
                             <li id="about_page_id"><a href="#" class="white-text">关于</a></li>
                         </ul>
                     </div>

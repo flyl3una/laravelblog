@@ -1,6 +1,4 @@
-.parallax-container {
-    height: 40%;
-}
+
 
 header {
 
@@ -28,14 +26,10 @@ main {
 
 }
 
-#tabs_id {
-    //border-bottom: 1px solid #EEEEEE;
-    margin-bottom: 50px;
-    border-bottom: none;
-    //.indicator {
-    //    background-color: #29b6f6;
-    //}
-}
+//#tabs_id {
+//    margin-bottom: 50px;
+//    border-bottom: none;
+//}
 
 #article_search_form{
     .input-field label {
@@ -47,12 +41,16 @@ main {
     }
 }
 
+.parallax-container {
+    height: 40%;
+}
 
 #header_id {
     position: absolute;
     z-index: 100000;
     top: 0;
     background: transparent !important;
+    //background: #fafafa;
     -webkit-box-shadow: none;
 }
 

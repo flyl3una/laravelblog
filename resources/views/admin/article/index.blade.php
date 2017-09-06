@@ -12,63 +12,71 @@
     <div class="container">
         <h5>文章列表</h5>
         <div class="row">
-            <ul class="select-status">
-                <li><a class="active" href="#">全部 （3）</a>
-                </li>
-                <li>|</li>
-                <li><a href="#">已发布 ( 3 )</a></li>
-                <li>|</li>
-                <li><a href="#">草稿 ( 2 )</a></li>
-            </ul>
+            <div class="col m12 s12">
+                {{--<ul class="select-status">--}}
+                {{--<li><a class="active" href="#">全部 （3）</a>--}}
+                {{--</li>--}}
+                {{--<li>|</li>--}}
+                {{--<li><a href="#">已发布 ( 3 )</a></li>--}}
+                {{--<li>|</li>--}}
+                {{--<li><a href="#">草稿 ( 2 )</a></li>--}}
+                {{--</ul>--}}
+                <ul id="tabs_id" class="tabs">
+                    <li class="tab"><a class="active" href="#">全部 ( 3 ) </a>
+                    <li class="tab"><a href="#">已发布 ( 3 )</a></li>
+                    <li class="tab"><a href="#">草稿 ( 2 )</a></li>
+                </ul>
+            </div>
         </div>
         {{--<div class="card z-depth-4">--}}
-            <table class="bordered highlight table-list">
-                <thead class="grey lighten-4">
+
+        <table class="bordered highlight table-list">
+            <thead class="grey lighten-4">
+            <tr>
+                <th class="manage-row">
+                    <input type="checkbox" id="all_select">
+                    <label for="all_select"></label>
+                </th>
+                <th width="25%">文章标题</th>
+                <th width="10%">文章作者</th>
+                <th width="10%">文章分类</th>
+                <th width="25%">文章标签</th>
+                <th width="10%">赞 / 查看</th>
+                <th width="20%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($articleList as $article)
                 <tr>
-                    <th class="manage-row">
-                        <input type="checkbox" id="all_select">
-                        <label for="all_select"></label>
-                    </th>
-                    <th width="25%">文章标题</th>
-                    <th width="10%">文章作者</th>
-                    <th width="10%">文章分类</th>
-                    <th width="25%">文章标签</th>
-                    <th width="10%">赞 / 查看</th>
-                    <th width="20%">操作</th>
+                    <td class="select-row">
+                        <input type="checkbox" id="{{ $article['id'] }}" class="delete-checkbox"
+                               value="{{ $article['id'] }}">
+                        <label for="{{ $article['id'] }}"></label>
+                    </td>
+                    <td>
+                        <a>{{ $article['title'] }}</a>
+                    </td>
+                    <td><span>{{ $article['user'] }}</span></td>
+                    <td><span>{{ $article['cate'] }}</span></td>
+                    <td>
+                        @foreach($article['tags'] as $tag)
+                            <div class="chip-tag chip left">{{ $tag }}</div>
+                        @endforeach
+                    </td>
+
+                    <td><span>5 / {{ $article['click_count'] }}</span></td>
+                    <td>
+
+                        <a href="{{ route('home.show', $article['id']) }}">查看</a>
+                        <a href="{{ route('article.edit', $article['id']) }}">编辑</a>
+                        <a class="delete-a" href="#delete_modal" data-target="delete_modal"
+                           data-id="{{ $article['id'] }}" data-submit="{{ route('article.moveToTrash') }}"
+                           data-title="{{ $article['title'] }}">删除</a>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                @foreach($articleList as $article)
-                    <tr>
-                        <td class="select-row">
-                            <input type="checkbox" id="{{ $article['id'] }}" class="delete-checkbox"
-                                   value="{{ $article['id'] }}">
-                            <label for="{{ $article['id'] }}"></label>
-                        </td>
-                        <td>
-                            <a>{{ $article['title'] }}</a>
-                        </td>
-                        <td><span>{{ $article['user'] }}</span></td>
-                        <td><span>{{ $article['cate'] }}</span></td>
-                        <td>
-                            @foreach($article['tags'] as $tag)
-                                <div class="chip-tag chip left">{{ $tag }}</div>
-                            @endforeach
-                        </td>
-
-                        <td><span>5 / {{ $article['click_count'] }}</span></td>
-                        <td>
-
-                            <a href="{{ route('home.show', $article['id']) }}">查看</a>
-                            <a href="{{ route('article.edit', $article['id']) }}">编辑</a>
-                            <a class="delete-a" href="#delete_modal" data-target="delete_modal"
-                               data-id="{{ $article['id'] }}" data-submit="{{ route('article.moveToTrash') }}"
-                               data-title="{{ $article['title'] }}">删除</a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+            @endforeach
+            </tbody>
+        </table>
         {{--</div>--}}
         <div class="row">
             <div class="col m3 s8 input-field">
@@ -78,7 +86,9 @@
                 </select>
             </div>
             <div class="col m2 s4">
-                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button" value="应用">应用</button>
+                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button"
+                        value="应用">应用
+                </button>
             </div>
             <div class="col m7 s12 right right-align">
                 {!! $articleAll->render() !!}
@@ -103,7 +113,8 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-action modal-close waves-effect waves-light btn grey lighten-2">取消</a>
-                <a id="delete_article_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
+                <a id="delete_article_input"
+                   class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
         <!--（Modal）End -->
@@ -113,7 +124,8 @@
                 <div class="row">
                     <h5>删除所选文章</h5>
                 </div>
-                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe" action="{{ route('article.moveToTrash') }}">
+                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe"
+                      action="{{ route('article.moveToTrash') }}">
                     {{--添加csrf认证--}}
                     {{--{{ csrf_field() }}--}}
                     <input id="token_id" type="text" name="_token" hidden value="{{ csrf_token() }}">
@@ -125,7 +137,8 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-action modal-close waves-effect waves-light btn grey lighten-2">取消</a>
-                <a id="delete_multiple_cate_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
+                <a id="delete_multiple_cate_input"
+                   class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
         <!--（Modal）End -->
@@ -145,7 +158,7 @@
                 alert("删除失败。失败原因：\n" + data.info);
             }
         };
-        promptDeleteMultipleResult = function(data) {
+        promptDeleteMultipleResult = function (data) {
             if (data.code == 0) {
                 console.log(data.info);
                 location.reload();
@@ -168,12 +181,12 @@
         };
 
         //        获取应用批量删除操作的下拉选项选中的对象
-        getOption = function() {
+        getOption = function () {
             var select_id = $("#select_option").data('select-id');
-            var text = $("#select-options-"+select_id+">.selected>span").text();
+            var text = $("#select-options-" + select_id + ">.selected>span").text();
             var opt_value = "";
             var opt_value_obj = null;
-            $("#select_option>option").each(function() {
+            $("#select_option>option").each(function () {
                 if ($(this).data('value') == text) {
                     opt_value = $(this).val();
                     opt_value_obj = $(this);
@@ -185,7 +198,7 @@
         //        获取表格中选中的行id数组
         getSelectIds = function () {
             var select_ids = new Array();
-            $(".delete-checkbox").each(function() {
+            $(".delete-checkbox").each(function () {
                 if ($(this).is(":checked")) {
                     select_ids.push($(this).val());
                 }
@@ -194,7 +207,7 @@
         };
 
 
-        deleteMultiple = function() {
+        deleteMultiple = function () {
             $("#apply_option").click(function () {
 
                 var option_obj = getOption();
@@ -228,6 +241,11 @@
             });
         };
 
+        selectTab = function(id) {
+            $('#select_page>li').removeClass('active');
+            $('#'+id).addClass('active');
+        };
+
         $(document).ready(function () {
             setCurrentSide("side_article_list");
             allSelectColumn();
@@ -238,6 +256,7 @@
             $("#delete_article_input").click(function () {
                 $("#delete_form").submit();
             });
+
 
 
         });

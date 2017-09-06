@@ -179,6 +179,8 @@ return [
 
         // html过滤防止xss注入
         Mews\Purifier\PurifierServiceProvider::class,
+        //全文检索
+        Laravel\Scout\ScoutServiceProvider::class,
     ],
 
     /*

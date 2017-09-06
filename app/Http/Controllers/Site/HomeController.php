@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $articles = Article::orderBy('updated_at','desc')
+        $articles = Article::where('state', 0)->orderBy('updated_at','desc')
         ->paginate(config('blog.article_per_page'));
         foreach ($articles as &$article) {
             $cate = Categories::where('id', $article['category_id'])->first();
@@ -45,7 +45,7 @@ class HomeController extends Controller
             $article['tags'] = $oneTags;
             $article['cate'] = $cate;
         }
-        $groups = Article::selectRaw('year(updated_at)  year, count(*) count')
+        $groups = Article::where('state', 0)->selectRaw('year(updated_at)  year, count(*) count')
             ->groupBy('year')
             ->orderByRaw('min(updated_at) desc')->get();
         $cates = Categories::all();
@@ -78,10 +78,10 @@ class HomeController extends Controller
 
     public function archive($select_year='0')
     {
-        $groups1 = Article::selectRaw('year(updated_at)  year, month(updated_at) month, count(*) count')
+        $groups1 = Article::where('state', 0)->selectRaw('year(updated_at)  year, month(updated_at) month, count(*) count')
             ->groupBy('year', 'month')
             ->orderByRaw('min(updated_at) desc')->get();
-        $groups = Article::selectRaw('year(updated_at)  year, count(*) count')
+        $groups = Article::where('state', 0)->selectRaw('year(updated_at)  year, count(*) count')
             ->groupBy('year')
             ->orderByRaw('min(updated_at) desc')->get();
         $archives = [];
@@ -102,7 +102,7 @@ class HomeController extends Controller
             $archive['month'] = $month;
             $archive['count'] = $group['count'];
             $like = '%'.$year.'-'.$month.'%';
-            $articles = Article::where('updated_at', 'like', $like)
+            $articles = Article::where('state', 0)->where('updated_at', 'like', $like)
             ->orderBy('updated_at','desc')->get();
             $archive['articles'] = $articles;
             $archives[$year][$month] = $archive;
@@ -122,7 +122,7 @@ class HomeController extends Controller
         if($id == 0) {
             return 'id不能为0';
         }
-        $articles = Article::where('category_id', $id)->paginate(config('blog.article_per_page'));
+        $articles = Article::where('category_id', $id)->where('state', 0)->paginate(config('blog.article_per_page'));
         foreach ($articles as &$article) {
             $cate = Categories::where('id', $article['category_id'])->first();
             $articleTags = ArticleTag::where('article_id', $article['id'])->get();
@@ -135,12 +135,43 @@ class HomeController extends Controller
             $article['tags'] = $oneTags;
             $article['cate'] = $cate;
         }
-        $groups = Article::selectRaw('year(updated_at)  year, count(*) count')
+        $groups = Article::where('state', 0)->selectRaw('year(updated_at)  year, count(*) count')
             ->groupBy('year')
             ->orderByRaw('min(updated_at) desc')->get();
         $cates = Categories::all();
         $tags = Tag::all();
         $links = Link::all();
         return view('site.category', compact('articles', 'groups', 'cates', 'tags', 'links'));
+    }
+
+    public function search($data)
+    {
+        if($data == "") {
+            redirect(route('home.index'));
+        }
+        if($data.length >= 16) {
+            redirect(route('home.index'));
+        }
+
+        $articles = Article::search($data)->where('state', 0)->paginate(config('blog.article_per_page'));
+        foreach ($articles as &$article) {
+            $cate = Categories::where('id', $article['category_id'])->first();
+            $articleTags = ArticleTag::where('article_id', $article['id'])->get();
+            $oneTags = [];
+            foreach ($articleTags as $articleTag) {
+                $oneTags[] = Tag::where('id', $articleTag['tag_id'])->first();
+            }
+            $user = User::where('id', $article['user_id'])->first();
+            $article['user'] = $user;
+            $article['tags'] = $oneTags;
+            $article['cate'] = $cate;
+        }
+        $groups = Article::where('state', 0)->selectRaw('year(updated_at)  year, count(*) count')
+            ->groupBy('year')
+            ->orderByRaw('min(updated_at) desc')->get();
+        $cates = Categories::all();
+        $tags = Tag::all();
+        $links = Link::all();
+        return view('site.index', compact('articles', 'groups', 'cates', 'tags', 'links'));
     }
 }

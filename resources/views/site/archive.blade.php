@@ -10,15 +10,20 @@
 
 @section('left')
     <div class="container-fluid">
-        <ul id="tabs_id" class="tabs">
-            @foreach($archives as $year => $archive_month)
-                @if($select_year != '0' && $select_year==$year)
-                    <li class="tab"><a href="#{{ $year }}_id" class="teal-text active">{{ $year }}</a></li>
-                @else
-                    <li class="tab"><a href="#{{ $year }}_id" class="teal-text">{{ $year }}</a></li>
-                @endif
-            @endforeach
-        </ul>
+        <div class="row">
+            {{--<div class="col m12 s12">--}}
+                <ul id="tabs_id" class="tabs">
+                    @foreach($archives as $year => $archive_month)
+                        @if($select_year != '0' && $select_year==$year)
+                            <li class="tab"><a href="#{{ $year }}_id" class="teal-text active">{{ $year }}</a></li>
+                        @else
+                            <li class="tab"><a href="#{{ $year }}_id" class="teal-text">{{ $year }}</a></li>
+                        @endif
+                    @endforeach
+                </ul>
+            {{--</div>--}}
+        </div>
+
         @foreach($archives as $year => $archive_month)
             <div id="{{ $year }}_id" class="container-fluid archive-container" style="display: none">
                 @foreach($archive_month as $month => $archive)

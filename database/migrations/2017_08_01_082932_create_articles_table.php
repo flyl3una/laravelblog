@@ -14,6 +14,7 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
+//            $table->engine = 'MyISAM';
             $table->increments('id')->comment("文章主键");
             $table->integer('user_id')->unsigned()->commend("文章作者id")->index();
             $table->integer('category_id')->default(1)->commend("文章分类id")->index();
