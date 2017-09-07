@@ -144,12 +144,13 @@ class HomeController extends Controller
         return view('site.category', compact('articles', 'groups', 'cates', 'tags', 'links'));
     }
 
-    public function search($data)
+    public function search(Request $request)
     {
+        $data = $request['data'];
         if($data == "") {
             redirect(route('home.index'));
         }
-        if($data.length >= 16) {
+        if(strlen($data) >= 16) {
             redirect(route('home.index'));
         }
 

@@ -26,11 +26,21 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
 //    显示已经发布的文章
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $articleAll = Article::where('state', config('blog.number.publish'))->paginate(config('blog.admin_per_number'));
+        if (!$request->has('state')) {
+            $state = -1;
+            $articleAll = Article::paginate(config('blog.admin_per_number'));
+        } else {
+            $state = $request['state'];
+            $state = intval($state);
+            $articleAll = Article::where('state', $state)->paginate(config('blog.admin_per_number'));
+        }
+        $currentTab = $state;
+//        $articlePublished = Article::where('state', config('blog.number.publish'))->paginate(config('blog.admin_per_number'));
+//        $articleDraft = Article::where('state', config('blog.number.draft'))->paginate(config('blog.admin_per_number'));
         $articleList = Array();
+//        $articleMap = ["all" => [], "published" => [], "draft" => []];
 
         foreach ($articleAll as $articleOne) {
             $user = User::where('id', $articleOne['user_id'])->select('name')->firstOrFail();
@@ -47,13 +57,12 @@ class ArticleController extends Controller
             $article['user'] = $user['name'];
             $article['cate'] = $cate['name'];
             $article['tags'] = $tags;
-//            $article['name'] = $articleOne['name'];
             $article['title'] = $articleOne['title'];
             $article['click_count'] = $articleOne['click_count'];
 
             $articleList[] = $article;
         }
-        return view('admin.article.index', compact('articleList', 'articleAll'));
+        return view('admin.article.index', compact('articleList', 'articleAll', 'currentTab'));
 //        return 'index';
     }
 

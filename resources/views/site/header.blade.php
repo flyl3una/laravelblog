@@ -4,9 +4,10 @@
             <div class="nav-wrapper transparent container" style="">
                 <div class="row">
                     <div class="col m8 s12">
-                        <form id="article_search_form">
+                        <form id="article_search_form" method="post" action="{{ route("home.search") }}">
+                            {{ csrf_field() }}
                             <div class="input-field">
-                                <input id="search_input" type="search" required placeholder="关键字">
+                                <input id="search_input" type="search" name="data" required placeholder="关键字">
                                 <label class="label-icon" for="search_input">
                                     <i class="iconfont icon-sousuo3 prefix"></i>
                                 </label>

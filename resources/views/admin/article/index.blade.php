@@ -12,21 +12,21 @@
     <div class="container">
         <h5>文章列表</h5>
         <div class="row">
-            <div class="col m12 s12">
-                {{--<ul class="select-status">--}}
-                {{--<li><a class="active" href="#">全部 （3）</a>--}}
-                {{--</li>--}}
-                {{--<li>|</li>--}}
-                {{--<li><a href="#">已发布 ( 3 )</a></li>--}}
-                {{--<li>|</li>--}}
-                {{--<li><a href="#">草稿 ( 2 )</a></li>--}}
-                {{--</ul>--}}
-                <ul id="tabs_id" class="tabs">
-                    <li class="tab"><a class="active" href="#">全部 ( 3 ) </a>
-                    <li class="tab"><a href="#">已发布 ( 3 )</a></li>
-                    <li class="tab"><a href="#">草稿 ( 2 )</a></li>
+            {{--<div class="col m12 s12">--}}
+                <ul class="select-status">
+                <li><a @if ($currentTab == -1) class="active" @endif href="{{ route('article.index') }}">全部 （3）</a>
+                </li>
+                <li>|</li>
+                <li><a @if ($currentTab == 0) class="active" @endif href="{{ route('article.index', 'state=0') }}">已发布 ( 3 )</a></li>
+                <li>|</li>
+                <li><a @if ($currentTab == 1) class="active" @endif href="{{ route('article.index', 'state=1') }}">草稿 ( 2 )</a></li>
                 </ul>
-            </div>
+                {{--<ul id="tabs_id" class="tabs grey lighten-5">--}}
+                    {{--<li class="tab"><a class="active" href="#">全部 ( 3 ) </a>--}}
+                    {{--<li class="tab"><a href="#">已发布 ( 3 )</a></li>--}}
+                    {{--<li class="tab"><a href="#">草稿 ( 2 )</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
         </div>
         {{--<div class="card z-depth-4">--}}
 

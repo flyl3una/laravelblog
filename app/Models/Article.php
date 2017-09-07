@@ -10,17 +10,17 @@ class Article extends Model
     use Searchable;
 
     //
-    public function tags()
-    {
-        return $this->belongsToMany('App\Models\Tag')->withTimestamps();
-    }
+//    public function tags()
+//    {
+//        return $this->belongsToMany('App\Models\Tag')->withTimestamps();
+//    }
 
-    public function toSearchableArray()
-    {
-        $array = $this->toArray();
-
-        // 自定义数组数据...
-
-        return $array;
-    }
+//    public function toSearchableArray()
+//    {
+//        $array = $this->toArray();
+//
+//        // 自定义数组数据...
+//
+//        return $array;
+//    }
 }

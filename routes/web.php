@@ -28,16 +28,20 @@ Route::group(['namespace' => 'Site', 'prefix' => 'home'], function() {
     Route::get('/{id}', 'HomeController@show')->where('id', '[0-9]*')->name('home.show');
     Route::get('/archive/{select_year?}', 'HomeController@archive')->name('home.archive');
     Route::get('/category/{id?}', 'HomeController@category')->name('home.category');
+    Route::post('/search/', 'HomeController@search')->name('home.search');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
 
-    Route::resource('article', 'ArticleController');
     Route::post('article/moveToTrash', 'ArticleController@moveToTrash')->name('article.moveToTrash');
+    Route::resource('article', 'ArticleController', ['parameters' => [
+        'state' => 'state'
+    ]]);
 
-    Route::resource('categories', 'CategoriesController', ['except' => 'show']);
     Route::post('categories/deleteMultiple', 'CategoriesController@deleteMultiple')->name('categories.deleteMultiple');
+    Route::resource('categories', 'CategoriesController', ['except' => 'show']);
+
 
 //    Route::resource('page', 'PageController', ['except' => 'edit']);
 
