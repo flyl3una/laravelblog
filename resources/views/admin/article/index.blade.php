@@ -14,12 +14,12 @@
         <div class="row">
             {{--<div class="col m12 s12">--}}
                 <ul class="select-status">
-                <li><a @if ($currentTab == -1) class="active" @endif href="{{ route('article.index') }}">全部 （3）</a>
+                <li><a @if ($currentTab == -1) class="active" @endif href="{{ route('article.index') }}">全部 ( {{ $count['all'] }} )</a>
                 </li>
                 <li>|</li>
-                <li><a @if ($currentTab == 0) class="active" @endif href="{{ route('article.index', 'state=0') }}">已发布 ( 3 )</a></li>
+                <li><a @if ($currentTab == 0) class="active" @endif href="{{ route('article.published') }}">已发布 ( {{ $count['published'] }} )</a></li>
                 <li>|</li>
-                <li><a @if ($currentTab == 1) class="active" @endif href="{{ route('article.index', 'state=1') }}">草稿 ( 2 )</a></li>
+                <li><a @if ($currentTab == 1) class="active" @endif href="{{ route('article.draft') }}">草稿 ( {{ $count['draft'] }} )</a></li>
                 </ul>
                 {{--<ul id="tabs_id" class="tabs grey lighten-5">--}}
                     {{--<li class="tab"><a class="active" href="#">全部 ( 3 ) </a>--}}
@@ -108,7 +108,7 @@
                     <input id="delete_id" type="number" name="ids" hidden>
                     <span>你选中的文章是 </span>
                     <span id="delete_title"></span>
-                    <span> 。<br>删除后该文章将被移至回收站，可以在回收站找回或者彻底删除。<br>是否删除?</span>
+                    <span> 。<br>删除后该文章将无法找回。<br>是否删除?</span>
                 </form>
             </div>
             <div class="modal-footer">
@@ -127,12 +127,11 @@
                 <form id="delete_multiple_form" class="form" method="POST" target="target_iframe"
                       action="{{ route('article.moveToTrash') }}">
                     {{--添加csrf认证--}}
-                    {{--{{ csrf_field() }}--}}
                     <input id="token_id" type="text" name="_token" hidden value="{{ csrf_token() }}">
                     <input id="delete_multiple_ids" type="text" name="ids" hidden>
                     <span>你选中了 </span>
                     <span id="delete_multiple_count" class="teal-text darken-3"></span>
-                    <span> 篇文章。<br>删除后该文章将被移至回收站，可以在回收站找回或者彻底删除。<br>是否删除?</span>
+                    <span> 篇文章。<br>删除后这些文章将无法找回。<br>是否删除?</span>
                 </form>
             </div>
             <div class="modal-footer">

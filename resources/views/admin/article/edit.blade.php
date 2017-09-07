@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col m6 s12">
+                <div class="input-field col m5 s12">
                     <select id="select_category_id" class="initialized" name="category">
                         <option value="" disabled selected>选择目录</option>
                         @foreach($cates as $cate1)
@@ -50,7 +50,7 @@
                     </select>
                     <label for="select_category_id">文章目录</label>
                 </div>
-                <div class="input-field col m6 s12">
+                <div class="input-field col m5 s12">
                     <select class="form-control" multiple id="select_tags_id" name="tags[]">
                         <option value="" disabled selected>选择标签</option>
                         @foreach($tagAll as $tag)
@@ -62,6 +62,12 @@
                         @endforeach
                     </select>
                     <label for="select_tags_id">文章标签</label>
+                </div>
+                <div class="col m2 s12 right-align">
+                    <p>
+                        <input type="checkbox" class="" name="draft" id="filled-in-box" @if($article['state']!=0) checked @endif />
+                        <label for="filled-in-box">存为草稿</label>
+                    </p>
                 </div>
             </div>
             <div class="row">

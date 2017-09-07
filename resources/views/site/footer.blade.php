@@ -8,7 +8,7 @@
                     <ul>
                         <li>
                             <a class="grey-text text-lighten-3" href="http://www.flyl3una.cc">
-                                <i class="iconfont icon-github"></i>flyl3una
+                                <i class="iconfont icon-github"></i><span> flyl3una</span>
                             </a>
                             {{--</div>--}}
                         </li>

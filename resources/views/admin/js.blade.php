@@ -80,7 +80,7 @@
             initAdmin();
             $('select').material_select();
             $('.modal').modal();
-            $('#tabs_id').tabs();
+//            $('#tabs_id').tabs();
         });
     </script>
 @endsection

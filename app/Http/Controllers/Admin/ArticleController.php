@@ -7,6 +7,7 @@ use App\Models\ArticleTag;
 use App\Models\Categories;
 use App\Models\Tag;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -30,18 +31,21 @@ class ArticleController extends Controller
     {
         if (!$request->has('state')) {
             $state = -1;
-            $articleAll = Article::paginate(config('blog.admin_per_number'));
+            $articleAll = Article::orderBy('updated_at', 'desc')->paginate(config('blog.admin_per_number'));
         } else {
             $state = $request['state'];
             $state = intval($state);
-            $articleAll = Article::where('state', $state)->paginate(config('blog.admin_per_number'));
+            $articleAll = Article::where('state', $state)->orderBy('updated_at', 'desc')->paginate(config('blog.admin_per_number'));
         }
         $currentTab = $state;
 //        $articlePublished = Article::where('state', config('blog.number.publish'))->paginate(config('blog.admin_per_number'));
 //        $articleDraft = Article::where('state', config('blog.number.draft'))->paginate(config('blog.admin_per_number'));
         $articleList = Array();
 //        $articleMap = ["all" => [], "published" => [], "draft" => []];
-
+        $count = [];
+        $count['published'] = Article::where('state', config('blog.number.publish'))->count();
+        $count['draft'] = Article::where('state', config('blog.number.draft'))->count();
+        $count['all'] = $count['published'] + $count['draft'];
         foreach ($articleAll as $articleOne) {
             $user = User::where('id', $articleOne['user_id'])->select('name')->firstOrFail();
             $cate = Categories::where('id', $articleOne['category_id'])->select('name')->firstOrFail();
@@ -62,8 +66,19 @@ class ArticleController extends Controller
 
             $articleList[] = $article;
         }
-        return view('admin.article.index', compact('articleList', 'articleAll', 'currentTab'));
-//        return 'index';
+        return view('admin.article.index', compact('articleList', 'articleAll', 'currentTab', 'count'));
+    }
+
+    public function published(Request $request)
+    {
+        $request['state'] = 0;
+        return $this->index($request);
+    }
+
+    public function draft(Request $request)
+    {
+        $request['state'] = 1;
+        return $this->index($request);
     }
 
     /**
@@ -95,6 +110,10 @@ class ArticleController extends Controller
         $tags = $request['tags'];
         $md = $request['editormd-markdown-doc'];
         $html = $request['editormd-html-code'];
+        $state = 0;
+        if ($request->has('draft')) {
+            $state = 1;
+        }
 
         if (!$title or !$description or !$md or !$html) {
             $data = ['code' => config('error.code.article.not_null'), 'info' => '文章标题，描述，目录，内容不能为空'];
@@ -105,15 +124,21 @@ class ArticleController extends Controller
             $cate = 1;
         }
         $userid = Auth::user()->id;
+//        $article = new Article($userid, 'category_id' => $cate, 'title' => $title,
+//            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state]);
         $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
-            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => 0]);
-        Categories::where('id', $cate)->update(['count' =>
-            Article::where('category_id', $cate)->where('state', config('blog.number.publish'))->count()]);
-        if ($tags) {
-            foreach ($tags as $tagId) {
-                ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
+            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state, 'create_at'=>Carbon::now()]);
+//        $article->save();
+//        $articleId = $article['id'];
+        if ($state == 0) {
+            Categories::where('id', $cate)->update(['count' =>
+                Article::where('category_id', $cate)->where('state', config('blog.number.publish'))->count()]);
+            if ($tags) {
+                foreach ($tags as $tagId) {
+                    ArticleTag::insert(['article_id' => $articleId, 'tag_id' => $tagId]);
+                }
+                unset($tagId);
             }
-            unset($tagId);
         }
         $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];
         $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
@@ -226,7 +251,10 @@ class ArticleController extends Controller
         $tags = $request['tags'];
         $md = $request['editormd-markdown-doc'];
         $html = $request['editormd-html-code'];
-
+        $state = 0;
+        if ($request->has('draft')) {
+            $state = 1;
+        }
         if (!$title or !$description or !$md or !$html) {
             $data = ['code' => config('error.code.article.not_null'), 'info' => '文章标题，描述，目录，内容不能为空'];
             $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
@@ -237,18 +265,20 @@ class ArticleController extends Controller
         }
         $userid = Auth::user()->id;
         if (!Article::where('id', $id)->update(['user_id' => $userid, 'category_id' => $cate, 'title' => $title, 'description' => $description,
-            'markdown' => $md, 'html' => $html, 'state' => 0])) {
+            'markdown' => $md, 'html' => $html, 'state' => $state])) {
             $data = ['code' => config('error.code.article.update_fail'), 'info' => '更新失败'];
             $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
             return $js;
         }
-        Categories::where('id', $cate)->update(['count' =>
-            Article::where('category_id', $cate)->where('state', config('blog.number.publish'))->count()]);
-        ArticleTag::where('article_id', $id)->delete();
-        if ($tags){
-            foreach ($tags as $tagId) {
-                ArticleTag::insert(['article_id' => $id, 'tag_id' => $tagId]);
-            }unset($tagId);
+        if ($state == 0) {
+            Categories::where('id', $cate)->update(['count' =>
+                Article::where('category_id', $cate)->where('state', config('blog.number.publish'))->count()]);
+            ArticleTag::where('article_id', $id)->delete();
+            if ($tags){
+                foreach ($tags as $tagId) {
+                    ArticleTag::insert(['article_id' => $id, 'tag_id' => $tagId]);
+                }unset($tagId);
+            }
         }
 
         $data = ['code' => config('error.code.success'), 'info' => '文件创建成功', "url" => route('article.index')];

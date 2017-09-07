@@ -17,9 +17,9 @@
         </li>
         <li><a href="http://www.flyl3una.cc">www.flyl3una.cc</a></li>
         {{--<li>--}}
-            {{--<div class="divider"></div>--}}
+        {{--<div class="divider"></div>--}}
         {{--</li>--}}
-        
+
         <ul class="collection with-header">
             <li class="collection-header"><h5>归档</h5></li>
             @foreach($groups as $group)
