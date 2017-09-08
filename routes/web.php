@@ -37,9 +37,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::post('article/moveToTrash', 'ArticleController@moveToTrash')->name('article.moveToTrash');
     Route::get('article/published', 'ArticleController@published')->name('article.published');
     Route::get('article/draft', 'ArticleController@draft')->name('article.draft');
-    Route::resource('article', 'ArticleController', ['parameters' => [
-        'state' => 'state'
-    ]]);
+    Route::resource('article', 'ArticleController');
 
     Route::post('categories/deleteMultiple', 'CategoriesController@deleteMultiple')->name('categories.deleteMultiple');
     Route::resource('categories', 'CategoriesController', ['except' => 'show']);

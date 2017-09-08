@@ -127,7 +127,7 @@ class ArticleController extends Controller
 //        $article = new Article($userid, 'category_id' => $cate, 'title' => $title,
 //            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state]);
         $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
-            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state, 'create_at'=>Carbon::now()]);
+            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state, 'created_at'=>Carbon::now()]);
 //        $article->save();
 //        $articleId = $article['id'];
         if ($state == 0) {

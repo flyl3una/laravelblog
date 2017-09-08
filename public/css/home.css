@@ -1,0 +1,161 @@
+/* line 5, ../sass/home.scss */
+header .valign-wrapper {
+  height: 100%;
+  font-weight: bold;
+  color: white;
+}
+/* line 9, ../sass/home.scss */
+header .valign-wrapper .valign {
+  width: 100%;
+}
+/* line 11, ../sass/home.scss */
+header .valign-wrapper .valign .user-img {
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 22, ../sass/home.scss */
+main {
+  min-height: 60%;
+  position: relative;
+}
+
+/* line 35, ../sass/home.scss */
+#article_search_form .input-field label {
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+  -o-transform: none !important;
+  transform: none !important;
+}
+
+/* line 44, ../sass/home.scss */
+.parallax-container {
+  height: 40%;
+}
+
+/* line 48, ../sass/home.scss */
+#header_id {
+  position: absolute;
+  z-index: 100000;
+  top: 0;
+  background: transparent !important;
+  -webkit-box-shadow: none;
+}
+
+/* line 63, ../sass/home.scss */
+#user_card img {
+  margin-top: -40px;
+  margin-left: calc(50% - 40px);
+  width: 80px;
+  height: 80px;
+}
+
+/* line 73, ../sass/home.scss */
+.pagination li span {
+  color: #444;
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 0 10px;
+  line-height: 30px;
+}
+/* line 81, ../sass/home.scss */
+.pagination li.active span, .pagination li.active a {
+  color: #fff;
+}
+
+/* line 87, ../sass/home.scss */
+.card {
+  margin-bottom: 40px;
+}
+/* line 89, ../sass/home.scss */
+.card .card-content {
+  word-wrap: break-word;
+}
+
+/* line 94, ../sass/home.scss */
+.a-article-card {
+  margin-right: 30px;
+}
+
+/* line 98, ../sass/home.scss */
+.a-article {
+  margin-right: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+/* line 109, ../sass/home.scss */
+.a-article .card-action .row {
+  margin-bottom: 0;
+}
+/* line 116, ../sass/home.scss */
+.a-article .article-info span {
+  padding-right: 8px;
+  font-size: 16px;
+}
+/* line 122, ../sass/home.scss */
+.a-article .article-info .breadcrumb:before {
+  content: '/';
+  font-size: 1em;
+}
+
+/* line 130, ../sass/home.scss */
+.article_html blockquote {
+  font-style: normal;
+}
+
+/* line 136, ../sass/home.scss */
+.archive-container a, .category-container a {
+  color: #000;
+}
+
+/* line 141, ../sass/home.scss */
+.archive-container {
+  border-left: 1px solid #e0e0e0;
+  padding-left: 80px;
+}
+/* line 146, ../sass/home.scss */
+.archive-container .archive-month {
+  position: relative;
+}
+/* line 149, ../sass/home.scss */
+.archive-container .archive-month .card:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  background: white;
+  -webkit-box-shadow: -2px 2px 0px #EEEEEE;
+  -moz-box-shadow: -2px 2px 0px #EEEEEE;
+  box-shadow: -2px 2px 0px #EEEEEE;
+  position: absolute;
+  left: -10px;
+  top: 45px;
+}
+/* line 172, ../sass/home.scss */
+.archive-container .archive-month-date {
+  position: relative;
+}
+/* line 176, ../sass/home.scss */
+.archive-container .month-flag {
+  height: 36px;
+  width: 50px;
+  border: 18px solid #00897b;
+  border-right-color: transparent;
+  position: absolute;
+  left: -91px;
+}
+/* line 186, ../sass/home.scss */
+.archive-container .article-flag {
+  height: 11px;
+  width: 11px;
+  position: absolute;
+  left: -86px;
+  top: 50px;
+  border-radius: 50%;
+  background: #b0bec5;
+}
