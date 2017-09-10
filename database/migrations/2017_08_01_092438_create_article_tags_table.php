@@ -17,7 +17,7 @@ class CreateArticleTagsTable extends Migration
             $table->increments('id')->comment("关联文章和标签表的主键");
             $table->integer('article_id')->unsigned()->nullable(false)->comment("文章表的主键id");
             $table->integer('tag_id')->unsigned()->nullable()->comment("标签主键id");
-            $table->timestamps();
+//            $table->timestamps();
         });
     }
 

@@ -3,9 +3,9 @@
         @foreach($articles as $article)
             <div class="card a-article z-depth-2 hoverable">
                 <div class="card-content ">
-                    <h4>
+                    <h5>
                         {{ $article['title'] }}
-                    </h4>
+                    </h5>
                     {{--</div>--}}
                     {{--<div class="card-content article-info">--}}
                     <div class="grey-text">
@@ -16,14 +16,14 @@
                     {{ $article['cate']['name'] }}
                 </span>
                         <span>/</span>
-                        <span>{{ $article['updated_at'] }}</span>
+                        <span>{{ $article['published_at'] }}</span>
                     </div>
                     <div class="row">
                         {{--<div class="divider"></div>--}}
                     </div>
 
                     <div>
-                        <p class="truncate" style="font-size: 1.3em;">
+                        <p class="truncate">
                             {{ $article['description'] }}
                         </p>
                     </div>

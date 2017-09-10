@@ -46,7 +46,10 @@ class CategoriesController extends Controller
         $name = trim($name);
 //        Categories::insert(['name' => trim($name)]);
         try {
-            Categories::insert(['name' => trim($name)]);
+//            Categories::insert(['name' => trim($name)]);
+            $cate = new Categories();
+            $cate['name'] = $name;
+            $cate->save();
             $data = ['code' => 0, 'info' => '添加成功'];
         } catch(Exception $e) {
             $data = ['code' => 1, 'info' => '更新失败'];
@@ -89,9 +92,12 @@ class CategoriesController extends Controller
     {
         //
         $id = intval($id);
-        $name = $request['name'];
+        $name = trim($request['name']);
         try {
-            Categories::where('id', $id)->update(['name' => $name]);
+//            Categories::where('id', $id)->update(['name' => $name]);
+            $cate = Categories::where('id', $id)->first();
+            $cate['name'] = $name;
+            $cate->update();
             $data = ['code' => 0, 'info' => '更新成功'];
         } catch(Exception $e) {
             $data = ['code' => 1, 'info' => '更新失败'];
@@ -133,7 +139,6 @@ class CategoriesController extends Controller
     public function deleteMultiple(Request $request)
     {
         $ids = $request['ids'];
-//        echo "deleteMultiple";
         $ids = explode(',', $ids);
         $length = count($ids);
         $index = 0;

@@ -15,8 +15,8 @@ class CreateLinksTable extends Migration
     {
         Schema::create('links', function (Blueprint $table) {
             $table->increments('id')->comment("友情链接主键");
-            $table->string('name')->unique()->comment("链接名称");
-            $table->string('url')->unique()->comment("友情链接url地址");
+            $table->string('name')->nullable(false)->unique()->comment("链接名称");
+            $table->string('url')->nullable(false)->unique()->comment("友情链接url地址");
             $table->integer('weight')->default(1)->comment("链接权重，越大越靠前");
             $table->timestamps();
         });

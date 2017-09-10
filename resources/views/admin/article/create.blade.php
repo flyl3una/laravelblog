@@ -17,7 +17,8 @@
     @endif
 
     <div class="container">
-        <form class="form-horizontal" method="POST" action="{{ route('article.store') }}" target="target_iframe">
+        <form class="form-horizontal" method="POST" action="{{ route('article.store') }}" target="target_iframe"
+        enctype="multipart/form-data">
             <div class="row top-title">
                 <div class="col m10 s10">
                     {{--<h5>创建文章</h5>--}}
@@ -49,10 +50,10 @@
                     <select id="select_category_id" class="initialized" name="category">
                         <option value="" disabled selected>选择目录</option>
                         @foreach($cates as $cate1)
-                            @if($cate1['id'] != 1)
+                            {{--@if($cate1['id'] != 1)--}}
                                 <option value="{{ $cate1['id'] }}"
                                         @if(isset($cate) && $cate['id'] === $cate1['id']) selected @endif>{{ $cate1['name'] }}</option>
-                            @endif
+                            {{--@endif--}}
                         @endforeach
                     </select>
                     <label for="select_category_id">文章目录</label>

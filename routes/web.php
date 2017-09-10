@@ -49,7 +49,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 //    Route::get('media/picture', 'MediaController@pictureIndex')->name('media.picture.index');
 //    Route::get('media/video', 'MediaController@videoIndex')->name('media.video.index');
 //    Route::get('media/audio', 'MediaController@audioIndex')->name('media.audio.index');
+    Route::post('tag/deleteMultiple', 'TagController@deleteMultiple')->name('tag.deleteMultiple');
     Route::resource('tag', 'TagController', ['except' => 'show']);
+
+    Route::post('link/deleteMultiple', 'LinkController@deleteMultiple')->name('link.deleteMultiple');
     Route::resource('link', 'LinkController');
 //    Route::group(['namespace' => 'Site'], function () {
 //        Route::get('article/list/', 'ArticleController@articleList')->name('article.list');

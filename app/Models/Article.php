@@ -7,7 +7,8 @@ use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
-    use Searchable;
+//    use Searchable;
+
 
     //
 //    public function tags()

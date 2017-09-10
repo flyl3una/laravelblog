@@ -124,12 +124,27 @@ class ArticleController extends Controller
             $cate = 1;
         }
         $userid = Auth::user()->id;
-//        $article = new Article($userid, 'category_id' => $cate, 'title' => $title,
+
+//        $article = new Article(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
 //            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state]);
-        $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
-            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state, 'created_at'=>Carbon::now()]);
-//        $article->save();
-//        $articleId = $article['id'];
+//        $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
+//            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state, 'created_at'=>Carbon::now()]);
+        $article = new Article();
+        $article->user_id = $userid;
+        $article->category_id = $cate;
+        $article['title'] = $title;
+        $article->description = $description;
+        $article->markdown = $md;
+        $article->html = $html;
+        if ($state == 0) {
+            $article['published_at'] = Carbon::now();
+        }
+//        else {
+//            $article['published_at']
+//        }
+        $article->state = $state;
+        $article->save();
+        $articleId = $article['id'];
         if ($state == 0) {
             Categories::where('id', $cate)->update(['count' =>
                 Article::where('category_id', $cate)->where('state', config('blog.number.publish'))->count()]);
@@ -264,8 +279,17 @@ class ArticleController extends Controller
             $cate = 1;
         }
         $userid = Auth::user()->id;
-        if (!Article::where('id', $id)->update(['user_id' => $userid, 'category_id' => $cate, 'title' => $title, 'description' => $description,
-            'markdown' => $md, 'html' => $html, 'state' => $state])) {
+        $article = Article::where('id', $id)->first();
+        $article['category_id'] = $cate;
+        $article['title'] = $title;
+        $article['description'] = $description;
+        $article['markdown'] = $md;
+        $article['html'] = $html;
+        $article['state'] = $state;
+        if ($state == 0 and !$article['published_at']) {
+            $article['published_at'] = Carbon::now();
+        }
+        if (!$article->update()) {
             $data = ['code' => config('error.code.article.update_fail'), 'info' => '更新失败'];
             $js = '<script>window.parent.showCreateResult(' . json_encode($data) . ')</script>';
             return $js;
