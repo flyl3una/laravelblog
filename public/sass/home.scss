@@ -126,12 +126,6 @@ main {
     }
 }
 
-.article_html {
-    blockquote {
-        font-style: normal;
-    }
-}
-
 .archive-container, .category-container {
     a {
         color: #000;
@@ -200,4 +194,31 @@ main {
 
 }
 
-
+.markdown-body {
+    ul {
+        list-style-type: disc;
+        li {
+            list-style-type: disc;
+            ul{
+                list-style-type: circle;
+                li {
+                    list-style-type: circle;
+                    ul{
+                        list-style-type: square;
+                        li {
+                            list-style-type: square;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    input[type="checkbox"] {
+        position: relative  ;
+        opacity: 1 ;
+        pointer-events: auto;
+    }
+    table {
+        width: 100%;
+    }
+}

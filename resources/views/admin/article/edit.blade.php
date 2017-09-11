@@ -3,13 +3,13 @@
 @section('css')
     @parent
     <link rel="stylesheet" href="/vendors/editor.md/css/editormd.css">
+
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <form class="form-horizontal" method="POST"
               action="{{ route('article.update', $article['id']) }}" target="target_iframe">
-            {{--                        <input hidden value="{{ csrf_token() }}">--}}
             {{ csrf_field() }}
             @if(isset($article))
                 {{ method_field('PUT') }}

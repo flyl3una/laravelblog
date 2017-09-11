@@ -103,25 +103,20 @@ main {
 }
 
 /* line 130, ../sass/home.scss */
-.article_html blockquote {
-  font-style: normal;
-}
-
-/* line 136, ../sass/home.scss */
 .archive-container a, .category-container a {
   color: #000;
 }
 
-/* line 141, ../sass/home.scss */
+/* line 135, ../sass/home.scss */
 .archive-container {
   border-left: 1px solid #e0e0e0;
   padding-left: 80px;
 }
-/* line 146, ../sass/home.scss */
+/* line 140, ../sass/home.scss */
 .archive-container .archive-month {
   position: relative;
 }
-/* line 149, ../sass/home.scss */
+/* line 143, ../sass/home.scss */
 .archive-container .archive-month .card:before {
   content: '';
   width: 20px;
@@ -136,11 +131,11 @@ main {
   left: -10px;
   top: 45px;
 }
-/* line 172, ../sass/home.scss */
+/* line 166, ../sass/home.scss */
 .archive-container .archive-month-date {
   position: relative;
 }
-/* line 176, ../sass/home.scss */
+/* line 170, ../sass/home.scss */
 .archive-container .month-flag {
   height: 36px;
   width: 50px;
@@ -149,7 +144,7 @@ main {
   position: absolute;
   left: -91px;
 }
-/* line 186, ../sass/home.scss */
+/* line 180, ../sass/home.scss */
 .archive-container .article-flag {
   height: 11px;
   width: 11px;
@@ -158,4 +153,39 @@ main {
   top: 50px;
   border-radius: 50%;
   background: #b0bec5;
+}
+
+/* line 198, ../sass/home.scss */
+.markdown-body ul {
+  list-style-type: disc;
+}
+/* line 200, ../sass/home.scss */
+.markdown-body ul li {
+  list-style-type: disc;
+}
+/* line 202, ../sass/home.scss */
+.markdown-body ul li ul {
+  list-style-type: circle;
+}
+/* line 204, ../sass/home.scss */
+.markdown-body ul li ul li {
+  list-style-type: circle;
+}
+/* line 206, ../sass/home.scss */
+.markdown-body ul li ul li ul {
+  list-style-type: square;
+}
+/* line 208, ../sass/home.scss */
+.markdown-body ul li ul li ul li {
+  list-style-type: square;
+}
+/* line 216, ../sass/home.scss */
+.markdown-body input[type="checkbox"] {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+/* line 221, ../sass/home.scss */
+.markdown-body table {
+  width: 100%;
 }

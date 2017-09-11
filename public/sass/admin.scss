@@ -264,7 +264,7 @@ a:hover {
     }
 
     .admin-content {
-        width: calc(100% - 170px);
+        width: calc(100% - 70px);
         margin-left: 70px;
     }
 
@@ -502,5 +502,34 @@ a:hover {
     margin-bottom: 30px;
     .card-content {
         word-wrap:break-word;
+    }
+}
+
+.markdown-body {
+    ul {
+        list-style-type: disc   !important;
+        li {
+            list-style-type: disc   !important;
+            ul{
+                list-style-type: circle !important;
+                li {
+                    list-style-type: circle !important;
+                    ul{
+                        list-style-type: square !important;
+                        li {
+                            list-style-type: square !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    input[type="checkbox"] {
+        position: relative  !important;
+        opacity: 1 ;
+        pointer-events: auto;
+    }
+    table {
+        width: 100%;
     }
 }

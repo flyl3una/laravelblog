@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <div class="container">
+    <div class="container-fluid">
         <form class="form-horizontal" method="POST" action="{{ route('article.store') }}" target="target_iframe"
         enctype="multipart/form-data">
             <div class="row top-title">

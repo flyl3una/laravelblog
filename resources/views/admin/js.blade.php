@@ -40,8 +40,8 @@
                 else if ($(".side-left").width() == 230) {
                     $(".side-left").animate({width: '70px'}, "fast");
                 }
-                $(".admin-content").toggleClass("side-sm");
-                $(".admin-content").toggleClass("side-md");
+                $("body").toggleClass("side-sm");
+                $("body").toggleClass("side-md");
             });
 
             $(".side-menu>li>a").click(function () {
