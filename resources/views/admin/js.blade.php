@@ -1,7 +1,7 @@
 @section("js")
     <script src="/vendors/jquery/dist/jquery.min.js"></script>
     <script src="/vendors/materialize/dist/js/materialize.min.js"></script>
-
+    <script src="/vendors/echarts/dist/echarts.js"></script>
     <script>
         toggleSideTreeView = function (click) {
             click.parent().toggleClass('active');
