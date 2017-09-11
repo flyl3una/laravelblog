@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li id="user_info">
-                <a href="{{ route('admin.index') }}" data-url="{{ route('admin.index') }}" class="waves-effect waves-light">
+                <a href="{{ route('admin.user', 1) }}" data-url="{{ route('admin.user', 1) }}" class="waves-effect waves-light">
                     {{--<i class="md-account-balance"></i>--}}
                     {{--<span class="fa fa-user-circle-o fa-fw"></span>--}}
                     <span class="iconfont icon-personal"></span>

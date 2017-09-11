@@ -507,3 +507,10 @@ a:hover {
 .markdown-body table {
   width: 100%;
 }
+
+/* line 537, ../sass/admin.scss */
+.user-picture {
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+}

@@ -34,6 +34,10 @@ Route::group(['namespace' => 'Site', 'prefix' => 'home'], function() {
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
 
+    Route::get('/user/{id}', 'AdminController@user')->name('admin.user');
+
+
+
     Route::post('article/moveToTrash', 'ArticleController@moveToTrash')->name('article.moveToTrash');
     Route::get('article/published', 'ArticleController@published')->name('article.published');
     Route::get('article/draft', 'ArticleController@draft')->name('article.draft');
