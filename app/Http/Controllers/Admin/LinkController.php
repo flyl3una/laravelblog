@@ -42,7 +42,6 @@ class LinkController extends Controller
         //
         $name = trim($request['linkName']);
         $url = trim($request['linkUrl']);
-//        Link::insert(['name' => $name, 'url' => $url]);
         $link = new Link();
         $link['name'] = $name;
         $link['url'] = $url;
@@ -85,7 +84,6 @@ class LinkController extends Controller
         $id = intval($id);
         $name = trim($request['name']);
         $url = trim($request['url']);
-//        Link::where('id', $id)->update(['name' => $name, 'url' => $url]);
         try {
             $link = Link::where('id', $id)->first();
             $link['name'] = $name;

@@ -4,13 +4,13 @@
     <div class="container">
         <h5>用户信息</h5>
         <div class="row">
-        <ul id="" class="tabs grey lighten-5">
+            <ul id="" class="tabs grey lighten-5">
 
-        <li class="tab"><a class="active" href="#">信息 </a>
-        <li class="tab"><a href="#">修改</a></li>
-        <li class="tab"><a href="#">找回密码</a></li>
-        </ul></div>
-        {{--<div class="row"></div>--}}
+                <li class="tab"><a class="active" href="#">信息 </a>
+                <li class="tab"><a href="#">修改</a></li>
+                <li class="tab"><a href="#">找回密码</a></li>
+            </ul>
+        </div>
         <div class="row">
             <div class="col m4 s4">账号</div>
             <div class="col m8 s8">

@@ -44,9 +44,7 @@ class CategoriesController extends Controller
         //
         $name = $request['cateName'];
         $name = trim($name);
-//        Categories::insert(['name' => trim($name)]);
         try {
-//            Categories::insert(['name' => trim($name)]);
             $cate = new Categories();
             $cate['name'] = $name;
             $cate->save();
@@ -54,8 +52,6 @@ class CategoriesController extends Controller
         } catch(Exception $e) {
             $data = ['code' => 1, 'info' => '更新失败'];
         }
-//        $js = "<script>window.parent.promptAddResult(".json_encode($data).")</script>";
-//        return $js;
         return redirect(route('categories.index'));
     }
 
@@ -94,7 +90,6 @@ class CategoriesController extends Controller
         $id = intval($id);
         $name = trim($request['name']);
         try {
-//            Categories::where('id', $id)->update(['name' => $name]);
             $cate = Categories::where('id', $id)->first();
             $cate['name'] = $name;
             $cate->update();
@@ -148,10 +143,6 @@ class CategoriesController extends Controller
                 continue;
             }
 //            将删除的目录下的文章移动到根目录下。
-//            $oldCount = Categories::where('id', 1)->first()['count'];
-//            $count = Categories::where('id', $id)->first()['count'];
-//            $count += $oldCount;
-//            Categories::where('id', 1)->update(['count' => $count]);
             Categories::where('id', $id)->delete();
             Categories::where('id', 1)->update(['count' =>
                 Article::where('category_id', 1)->where('state', config('blog.number.publish'))->count()]);

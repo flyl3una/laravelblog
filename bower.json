@@ -17,12 +17,8 @@
   ],
   "dependencies": {
     "jquery": "^3.2.1",
-    "bootstrap": "^3.3.7",
-    "bootstrap-material-design": "0.5.10",
-    "font-awesome": "fontawesome#^4.7.0",
-    "material-design-icons": "3.0.1",
-    "mdui": "^0.3.0",
     "materialize": "0.97.8",
-    "echarts": "^3.7.1"
+    "echarts": "^3.7.1",
+    "editor.md": "^1.5.0"
   }
 }

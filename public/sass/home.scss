@@ -1,7 +1,5 @@
-
-
 header {
-
+    //height: 30%;
     .valign-wrapper {
         height: 100%;
         font-weight: bold;
@@ -26,12 +24,11 @@ main {
 
 }
 
-//#tabs_id {
-//    margin-bottom: 50px;
-//    border-bottom: none;
-//}
+#article_search_form {
+    input[type=search] {
+        height: 4.5rem;
+    }
 
-#article_search_form{
     .input-field label {
         -webkit-transform: none !important;
         -moz-transform: none !important;
@@ -42,7 +39,7 @@ main {
 }
 
 .parallax-container {
-    height: 40%;
+    height: 350px;
 }
 
 #header_id {
@@ -97,13 +94,8 @@ main {
 
 .a-article {
     margin-right: 30px;
-    //border-bottom: 1px solid #EEEEEE;
-    //border-left: 5px solid transparent;
-    //.card-content, .card-action, .card-title {
     padding-left: 30px;
     padding-right: 30px;
-    //padding: 30px;
-    //}
 
     .card-action {
         .row {
@@ -147,15 +139,9 @@ main {
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
             background: white;
-            //border-left: 1px solid #EEEEEE;
-            //border-bottom: 1px solid #EEEEEE;
             -webkit-box-shadow: -2px 2px 0px #EEEEEE;
             -moz-box-shadow: -2px 2px 0px #EEEEEE;
             box-shadow: -2px 2px 0px #EEEEEE;
-            //border: 10px solid white;
-            //border-width: 5px 10px 15px 10px;
-            //border-right: #EEEEEE;
-            //box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
             position: absolute;
             left: -10px;
@@ -174,36 +160,30 @@ main {
         border-right-color: transparent;
         position: absolute;
         left: -91px;
-        //top: 4px;
     }
 
     .article-flag {
         height: 11px;
         width: 11px;
         position: absolute;
-        left:-86px;
+        left: -86px;
         top: 50px;
         border-radius: 50%;
         background: #b0bec5;
     }
-    //
-    //h5 {
-    //
-    //}
-
-
 }
 
 .markdown-body {
+
     ul {
         list-style-type: disc;
         li {
             list-style-type: disc;
-            ul{
+            ul {
                 list-style-type: circle;
                 li {
                     list-style-type: circle;
-                    ul{
+                    ul {
                         list-style-type: square;
                         li {
                             list-style-type: square;
@@ -213,9 +193,14 @@ main {
             }
         }
     }
+    .markdown-toc-list {
+        ul, li {
+            list-style-type: none;
+        }
+    }
     input[type="checkbox"] {
-        position: relative  ;
-        opacity: 1 ;
+        position: relative;
+        opacity: 1;
         pointer-events: auto;
     }
     table {

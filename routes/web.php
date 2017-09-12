@@ -47,8 +47,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('categories', 'CategoriesController', ['except' => 'show']);
 
 
-//    Route::resource('page', 'PageController', ['except' => 'edit']);
-
     Route::resource('media', 'MediaController');
 //    Route::get('media/picture', 'MediaController@pictureIndex')->name('media.picture.index');
 //    Route::get('media/video', 'MediaController@videoIndex')->name('media.video.index');
@@ -58,9 +56,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 
     Route::post('link/deleteMultiple', 'LinkController@deleteMultiple')->name('link.deleteMultiple');
     Route::resource('link', 'LinkController');
-//    Route::group(['namespace' => 'Site'], function () {
-//        Route::get('article/list/', 'ArticleController@articleList')->name('article.list');
-//        Route::resource('article/', 'ArticleController', ['except' => ['show', 'index']])->name('name.resource');
-//    });
 });
 

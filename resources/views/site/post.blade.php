@@ -15,11 +15,8 @@
         </div>
         <div id="article_markdown" hidden data-markdown="{{ $article['markdown'] }}"></div>
         <div id="article_html" hidden data-html="{{ $article['html'] }}"></div>
-{{--<div id="article_content" class="article_html editormd editormd-vertical editormd-theme-dark"></div>--}}
-            <div id="article_content" class="markdown-body editormd-preview-container editormd-html-preview">
-                {{--<div class="card-content ">--}}
-                    {{--</div>--}}
-            </div>
+        <div id="article_content" class="markdown-body editormd-preview-container editormd-html-preview">
+        </div>
 
         <div class="card-action">
             <div class="row">
@@ -57,33 +54,30 @@
             editormd.kaTeXLoaded = true;
             var testEditormdView = editormd.markdownToHTML("article_content", {
                 markdown: text,//+ "\r\n" + $("#append-test").text(),
-                path   : '/vendors/editor.md/lib/',
-                toc                  : true,
+                path: '/vendors/editor.md/lib/',
+                toc: true,
                 tocm: true,    // Using [TOCM]
                 emoji: true,
                 taskList: true,
-//                gfm : true,
-                autoLoadKaTeX        : true,
-                autoLoadModules       : true,
-                tex : true,                     // 开启科学公式 TeX 语言支持，默认关闭
-                pageBreak            : true,
-                atLink               : true,    // for @link
-                emailLink            : true,    // for mail address auto link
-                codeFold : true,
-                searchReplace : true,
-                saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
-                htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+                autoLoadKaTeX: true,
+                autoLoadModules: true,
+                gfm: true,
+                tex: true,                     // 开启科学公式 TeX 语言支持，默认关闭
+                pageBreak: true,
+                atLink: true,    // for @link
+                emailLink: true,    // for mail address auto link
+                codeFold: true,
+                searchReplace: true,
+                saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
+                htmlDecode: "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
                 //previewCodeHighlight : false,  // 关闭预览窗口的代码高亮，默认开启
-                flowChart : true,
-                sequenceDiagram : true,         // 同上
-                onload : function() {
+                flowChart: true,
+                sequenceDiagram: true,         // 同上
+                onload: function () {
                     console.log("onload =>", this, this.id, this.settings);
                 }
             });
 
-//        var text = $("#article_html").data('html');
-//        $("#article_content").html(text);
-//        $("#article_content").html(testEditormdView);
         });
     </script>
 

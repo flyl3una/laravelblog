@@ -18,10 +18,9 @@
 
     <div class="container-fluid">
         <form class="form-horizontal" method="POST" action="{{ route('article.store') }}" target="target_iframe"
-        enctype="multipart/form-data">
+              enctype="multipart/form-data">
             <div class="row top-title">
                 <div class="col m10 s10">
-                    {{--<h5>创建文章</h5>--}}
                     创建文章
                 </div>
                 <div class="col m2 s2">
@@ -30,7 +29,6 @@
                     </button>
                 </div>
             </div>
-
 
             {{ csrf_field() }}
             <div class="row">
@@ -50,10 +48,8 @@
                     <select id="select_category_id" class="initialized" name="category">
                         <option value="" disabled selected>选择目录</option>
                         @foreach($cates as $cate1)
-                            {{--@if($cate1['id'] != 1)--}}
-                                <option value="{{ $cate1['id'] }}"
-                                        @if(isset($cate) && $cate['id'] === $cate1['id']) selected @endif>{{ $cate1['name'] }}</option>
-                            {{--@endif--}}
+                            <option value="{{ $cate1['id'] }}"
+                                    @if(isset($cate) && $cate['id'] === $cate1['id']) selected @endif>{{ $cate1['name'] }}</option>
                         @endforeach
                     </select>
                     <label for="select_category_id">文章目录</label>
@@ -73,7 +69,7 @@
                 </div>
                 <div class="col m2 s12 right-align">
                     <p>
-                        <input type="checkbox" class="" name="draft" id="filled-in-box" />
+                        <input type="checkbox" class="" name="draft" id="filled-in-box"/>
                         <label for="filled-in-box">存为草稿</label>
                     </p>
                 </div>
@@ -82,18 +78,6 @@
                 <div id="editormd" class="editormd editormd-vertical" style="height: 640px">
                 </div>
             </div>
-            {{--<div class="row">--}}
-            {{--<div class="file-field input-field col m12 s12">--}}
-            {{--<div class="btn">--}}
-            {{--<span>上传markdown文件</span>--}}
-            {{--<input type="file" name="md_file">--}}
-            {{--</div>--}}
-            {{--<div class="file-path-wrapper">--}}
-            {{--<input class="file-path validate" name="file_name" type="text">--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
         </form>
 
     </div>
@@ -125,7 +109,6 @@
 
         $(document).ready(function () {
             setCurrentSide("side_article_create");
-//            Materialize.updateTextFields();
         });
     </script>
 @endsection

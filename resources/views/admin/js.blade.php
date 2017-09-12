@@ -6,8 +6,6 @@
         toggleSideTreeView = function (click) {
             click.parent().toggleClass('active');
             click.next().slideToggle("fast");
-//        click.toggleClass('active');
-//        click.children(".side-treeview").slideToggle("fast");
         };
 
         sideGetView = function (click) {
@@ -20,19 +18,18 @@
             }
         };
 
-        setCurrentSide = function (id){
+        setCurrentSide = function (id) {
             $("#" + id).addClass("current");
-            if($("#" + id).parent().hasClass("side-treeview")) {
+            if ($("#" + id).parent().hasClass("side-treeview")) {
                 $("#" + id).parent().parent().addClass("active");
                 $("#" + id).parent().show();
-            }else{
+            } else {
                 $("#" + id).parent().addClass("active");
             }
         };
 
         initAdmin = function () {
             $("#side-toggle").click(function () {
-//            $(".side-menu>li.active").toggleClass('active');
                 toggleSideTreeView($(".side-menu>li.active>a"));
                 if ($(".side-left").width() == 70) {
                     $(".side-left").animate({width: '230px'}, "fast");
@@ -46,7 +43,6 @@
 
             $(".side-menu>li>a").click(function () {
                 toggleSideTreeView($(this));
-//            sideGetView($(this));
             });
 
             $(".side-menu li").each(function (index) {
@@ -54,20 +50,18 @@
                     $(this).removeClass("current");
                 }
             });
-
-//            allSelectColumn();
         };
 
-        allSelectColumn = function() {
+        allSelectColumn = function () {
             $(".manage-row>label").click(function () {
-                if($("#all_select").is(":checked")) {
-                    $(".select-row>input[type='checkbox']").each(function(){
+                if ($("#all_select").is(":checked")) {
+                    $(".select-row>input[type='checkbox']").each(function () {
                         if ($(this).is(':checked')) {
                             $(this).next().click();
                         }
                     });
                 } else {
-                    $(".select-row>input[type='checkbox']").each(function(){
+                    $(".select-row>input[type='checkbox']").each(function () {
                         if (!$(this).is(':checked')) {
                             $(this).next().click();
                         }
@@ -80,7 +74,6 @@
             initAdmin();
             $('select').material_select();
             $('.modal').modal();
-//            $('#tabs_id').tabs();
         });
     </script>
 @endsection

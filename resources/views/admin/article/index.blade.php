@@ -12,7 +12,6 @@
     <div class="container">
         <h5>文章列表</h5>
         <div class="row">
-            {{--<div class="col m12 s12">--}}
                 <ul class="select-status">
                 <li><a @if ($currentTab == -1) class="active" @endif href="{{ route('article.index') }}">全部 ( {{ $count['all'] }} )</a>
                 </li>
@@ -21,14 +20,7 @@
                 <li>|</li>
                 <li><a @if ($currentTab == 1) class="active" @endif href="{{ route('article.draft') }}">草稿 ( {{ $count['draft'] }} )</a></li>
                 </ul>
-                {{--<ul id="tabs_id" class="tabs grey lighten-5">--}}
-                    {{--<li class="tab"><a class="active" href="#">全部 ( 3 ) </a>--}}
-                    {{--<li class="tab"><a href="#">已发布 ( 3 )</a></li>--}}
-                    {{--<li class="tab"><a href="#">草稿 ( 2 )</a></li>--}}
-                {{--</ul>--}}
-            {{--</div>--}}
         </div>
-        {{--<div class="card z-depth-4">--}}
 
         <table class="bordered highlight table-list">
             <thead class="grey lighten-4">

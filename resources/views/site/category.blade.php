@@ -8,8 +8,6 @@
 @extends("layouts.css")
 @extends("layouts.js")
 
-
-
 @section('js')
     @parent
     <script>

@@ -1,14 +1,14 @@
-/* line 5, ../sass/home.scss */
+/* line 3, ../sass/home.scss */
 header .valign-wrapper {
   height: 100%;
   font-weight: bold;
   color: white;
 }
-/* line 9, ../sass/home.scss */
+/* line 7, ../sass/home.scss */
 header .valign-wrapper .valign {
   width: 100%;
 }
-/* line 11, ../sass/home.scss */
+/* line 9, ../sass/home.scss */
 header .valign-wrapper .valign .user-img {
   width: 100px;
   height: 100px;
@@ -17,13 +17,17 @@ header .valign-wrapper .valign .user-img {
   border-radius: 50%;
 }
 
-/* line 22, ../sass/home.scss */
+/* line 20, ../sass/home.scss */
 main {
   min-height: 60%;
   position: relative;
 }
 
-/* line 35, ../sass/home.scss */
+/* line 28, ../sass/home.scss */
+#article_search_form input[type=search] {
+  height: 4.5rem;
+}
+/* line 32, ../sass/home.scss */
 #article_search_form .input-field label {
   -webkit-transform: none !important;
   -moz-transform: none !important;
@@ -32,12 +36,12 @@ main {
   transform: none !important;
 }
 
-/* line 44, ../sass/home.scss */
+/* line 41, ../sass/home.scss */
 .parallax-container {
-  height: 40%;
+  height: 350px;
 }
 
-/* line 48, ../sass/home.scss */
+/* line 45, ../sass/home.scss */
 #header_id {
   position: absolute;
   z-index: 100000;
@@ -46,7 +50,7 @@ main {
   -webkit-box-shadow: none;
 }
 
-/* line 63, ../sass/home.scss */
+/* line 60, ../sass/home.scss */
 #user_card img {
   margin-top: -40px;
   margin-left: calc(50% - 40px);
@@ -54,7 +58,7 @@ main {
   height: 80px;
 }
 
-/* line 73, ../sass/home.scss */
+/* line 70, ../sass/home.scss */
 .pagination li span {
   color: #444;
   display: inline-block;
@@ -62,61 +66,61 @@ main {
   padding: 0 10px;
   line-height: 30px;
 }
-/* line 81, ../sass/home.scss */
+/* line 78, ../sass/home.scss */
 .pagination li.active span, .pagination li.active a {
   color: #fff;
 }
 
-/* line 87, ../sass/home.scss */
+/* line 84, ../sass/home.scss */
 .card {
   margin-bottom: 40px;
 }
-/* line 89, ../sass/home.scss */
+/* line 86, ../sass/home.scss */
 .card .card-content {
   word-wrap: break-word;
 }
 
-/* line 94, ../sass/home.scss */
+/* line 91, ../sass/home.scss */
 .a-article-card {
   margin-right: 30px;
 }
 
-/* line 98, ../sass/home.scss */
+/* line 95, ../sass/home.scss */
 .a-article {
   margin-right: 30px;
   padding-left: 30px;
   padding-right: 30px;
 }
-/* line 109, ../sass/home.scss */
+/* line 101, ../sass/home.scss */
 .a-article .card-action .row {
   margin-bottom: 0;
 }
-/* line 116, ../sass/home.scss */
+/* line 108, ../sass/home.scss */
 .a-article .article-info span {
   padding-right: 8px;
   font-size: 16px;
 }
-/* line 122, ../sass/home.scss */
+/* line 114, ../sass/home.scss */
 .a-article .article-info .breadcrumb:before {
   content: '/';
   font-size: 1em;
 }
 
-/* line 130, ../sass/home.scss */
+/* line 122, ../sass/home.scss */
 .archive-container a, .category-container a {
   color: #000;
 }
 
-/* line 135, ../sass/home.scss */
+/* line 127, ../sass/home.scss */
 .archive-container {
   border-left: 1px solid #e0e0e0;
   padding-left: 80px;
 }
-/* line 140, ../sass/home.scss */
+/* line 132, ../sass/home.scss */
 .archive-container .archive-month {
   position: relative;
 }
-/* line 143, ../sass/home.scss */
+/* line 135, ../sass/home.scss */
 .archive-container .archive-month .card:before {
   content: '';
   width: 20px;
@@ -131,11 +135,11 @@ main {
   left: -10px;
   top: 45px;
 }
-/* line 166, ../sass/home.scss */
+/* line 152, ../sass/home.scss */
 .archive-container .archive-month-date {
   position: relative;
 }
-/* line 170, ../sass/home.scss */
+/* line 156, ../sass/home.scss */
 .archive-container .month-flag {
   height: 36px;
   width: 50px;
@@ -144,7 +148,7 @@ main {
   position: absolute;
   left: -91px;
 }
-/* line 180, ../sass/home.scss */
+/* line 165, ../sass/home.scss */
 .archive-container .article-flag {
   height: 11px;
   width: 11px;
@@ -155,37 +159,41 @@ main {
   background: #b0bec5;
 }
 
-/* line 198, ../sass/home.scss */
+/* line 178, ../sass/home.scss */
 .markdown-body ul {
   list-style-type: disc;
 }
-/* line 200, ../sass/home.scss */
+/* line 180, ../sass/home.scss */
 .markdown-body ul li {
   list-style-type: disc;
 }
-/* line 202, ../sass/home.scss */
+/* line 182, ../sass/home.scss */
 .markdown-body ul li ul {
   list-style-type: circle;
 }
-/* line 204, ../sass/home.scss */
+/* line 184, ../sass/home.scss */
 .markdown-body ul li ul li {
   list-style-type: circle;
 }
-/* line 206, ../sass/home.scss */
+/* line 186, ../sass/home.scss */
 .markdown-body ul li ul li ul {
   list-style-type: square;
 }
-/* line 208, ../sass/home.scss */
+/* line 188, ../sass/home.scss */
 .markdown-body ul li ul li ul li {
   list-style-type: square;
 }
-/* line 216, ../sass/home.scss */
+/* line 197, ../sass/home.scss */
+.markdown-body .markdown-toc-list ul, .markdown-body .markdown-toc-list li {
+  list-style-type: none;
+}
+/* line 201, ../sass/home.scss */
 .markdown-body input[type="checkbox"] {
   position: relative;
   opacity: 1;
   pointer-events: auto;
 }
-/* line 221, ../sass/home.scss */
+/* line 206, ../sass/home.scss */
 .markdown-body table {
   width: 100%;
 }

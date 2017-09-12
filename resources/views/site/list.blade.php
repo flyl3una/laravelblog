@@ -6,8 +6,6 @@
                     <h5>
                         {{ $article['title'] }}
                     </h5>
-                    {{--</div>--}}
-                    {{--<div class="card-content article-info">--}}
                     <div class="grey-text">
                 <span>{{ $article['user']['name'] }}
                 </span>
@@ -19,7 +17,6 @@
                         <span>{{ $article['published_at'] }}</span>
                     </div>
                     <div class="row">
-                        {{--<div class="divider"></div>--}}
                     </div>
 
                     <div>
@@ -34,7 +31,6 @@
                             @foreach($article['tags'] as $oneTag)
                                 <div class="chip grey lighten-2">{{ $oneTag['name'] }}</div>
                             @endforeach
-
                             <a class="right btn" href="{{ route('home.show', $article['id']) }}">Read</a>
                         </div>
                     </div>

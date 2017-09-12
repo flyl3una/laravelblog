@@ -4,55 +4,45 @@
 
     <div class="container">
         <h5>标签管理</h5>
-        {{--<div class="cart z-depth-4">--}}
-            <table class="table-list bordered highlight">
-                <thead class="grey lighten-4">
+        <table class="table-list bordered highlight">
+            <thead class="grey lighten-4">
+            <tr>
+                <th class="manage-row">
+                    <input type="checkbox" id="all_select">
+                    <label for="all_select"></label>
+                </th>
+                <th width="70%">名称</th>
+                <th width="10%">总数</th>
+                <th width="20%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach($tags as $tag)
                 <tr>
-                    <th class="manage-row">
-                        <input type="checkbox" id="all_select">
-                        <label for="all_select"></label>
-                    </th>
-                    <th width="70%">名称</th>
-                    <th width="10%">总数</th>
-                    <th width="20%">操作</th>
+                    <td class="select-row">
+                        <input type="checkbox" id="{{ $tag['id'] }}" class="delete-checkbox" name="tagIds"
+                               value="{{ $tag['id'] }}">
+                        <label for="{{ $tag['id'] }}"></label>
+                    </td>
+                    <td>{{ $tag['name'] }}</td>
+                    <td>{{ $tagCount[$tag['id']] }}</td>
+                    <td>
+                        <a class="edit-a" href="#edit_modal" data-target="edit_modal"
+                           data-id="{{ $tag['id'] }}" data-submit="{{ route('tag.update', $tag['id']) }}"
+                           data-name="{{ $tag['name'] }}">编辑
+                        </a>
+                        {{--模态框提示--}}
+                        <a class="delete-a" href="#delete_modal" data-target="delete_modal"
+                           data-id="{{ $tag['id'] }}" data-submit="{{ route('tag.destroy', $tag['id']) }}"
+                           data-name="{{ $tag['name'] }}" data-count="{{ $tag['count'] }}">删除</a>
+
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-
-                @foreach($tags as $tag)
-                    <tr>
-                        <td class="select-row">
-                            <input type="checkbox" id="{{ $tag['id'] }}" class="delete-checkbox" name="tagIds"
-                                   value="{{ $tag['id'] }}">
-                            <label for="{{ $tag['id'] }}"></label>
-                        </td>
-                        <td>{{ $tag['name'] }}</td>
-                        <td>{{ $tagCount[$tag['id']] }}</td>
-                        <td>
-                            <a class="edit-a" href="#edit_modal" data-target="edit_modal"
-                               data-id="{{ $tag['id'] }}" data-submit="{{ route('tag.update', $tag['id']) }}"
-                               data-name="{{ $tag['name'] }}">编辑
-                            </a>
-                            {{--模态框提示--}}
-                            <a class="delete-a" href="#delete_modal" data-target="delete_modal"
-                               data-id="{{ $tag['id'] }}" data-submit="{{ route('tag.destroy', $tag['id']) }}"
-                               data-name="{{ $tag['name'] }}" data-count="{{ $tag['count'] }}">删除</a>
-
-                            {{--<form hidden class="form-only-button col-sm-6" method="POST"--}}
-                                  {{--action="{{ route('tag.destroy', $tag['id']) }}">--}}
-                                {{--更改隐身提交方法为DELETE--}}
-                                {{--<input type="hidden" name="_method" value="DELETE"/>--}}
-                                {{--添加csrf认证--}}
-                                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-                                {{--<input type="submit" value="删除" class="btn btn-danger"/>--}}
-                            {{--</form>--}}
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+            @endforeach
+            </tbody>
+        </table>
         {{--</div>--}}
-        {{--{!! $tags->render() !!}--}}
         <div class="row">
             <div class="col m3 s8 input-field">
                 <select id="select_option" class="initialized">
@@ -61,7 +51,8 @@
                 </select>
             </div>
             <div class="col m2 s4">
-                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button">应用</button>
+                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button">应用
+                </button>
             </div>
             <div class="col m7 s12 right right-align">
                 {!! $tags->render() !!}
@@ -143,7 +134,8 @@
                 <div class="row">
                     <h5>删除所选标签</h5>
                 </div>
-                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe" action="{{ route('tag.deleteMultiple') }}">
+                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe"
+                      action="{{ route('tag.deleteMultiple') }}">
                     {{--添加csrf认证--}}
                     {{--{{ csrf_field() }}--}}
                     <input id="token_id" type="text" name="_token" hidden value="{{ csrf_token() }}">
@@ -155,7 +147,8 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-action modal-close waves-effect waves-light btn grey lighten-2">取消</a>
-                <a id="delete_multiple_tag_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
+                <a id="delete_multiple_tag_input"
+                   class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
         <!--（Modal）End -->
@@ -182,7 +175,7 @@
             }
         };
 
-        promptDeleteMultipleResult = function(data) {
+        promptDeleteMultipleResult = function (data) {
             if (data.code == 0) {
                 console.log(data.info);
                 location.reload();
@@ -219,7 +212,7 @@
             });
         };
 
-        deleteMultiple = function() {
+        deleteMultiple = function () {
             $("#apply_option").click(function () {
 
                 var option_obj = getOption();
@@ -253,12 +246,12 @@
         };
 
         //        获取应用批量删除操作的下拉选项选中的对象
-        getOption = function() {
+        getOption = function () {
             var select_id = $("#select_option").data('select-id');
-            var text = $("#select-options-"+select_id+">.selected>span").text();
+            var text = $("#select-options-" + select_id + ">.selected>span").text();
             var opt_value = "";
             var opt_value_obj = null;
-            $("#select_option>option").each(function() {
+            $("#select_option>option").each(function () {
                 if ($(this).data('value') == text) {
                     opt_value = $(this).val();
                     opt_value_obj = $(this);
@@ -270,7 +263,7 @@
         //        获取表格中选中的行id数组
         getSelectIds = function () {
             var select_ids = new Array();
-            $(".delete-checkbox").each(function() {
+            $(".delete-checkbox").each(function () {
                 if ($(this).is(":checked")) {
                     select_ids.push($(this).val());
                 }

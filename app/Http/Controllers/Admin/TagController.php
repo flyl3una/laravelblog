@@ -46,7 +46,6 @@ class TagController extends Controller
     {
         //
         $name = trim($request['name']);
-//        Tag::insert(['name' => trim($name)]);
         $tag = new Tag();
         $tag['name'] = $name;
         $tag->save();

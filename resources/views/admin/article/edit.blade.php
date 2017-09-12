@@ -16,7 +16,6 @@
             @endif
             <div class="row top-title">
                 <div class="col m10 s10">
-                    {{--<h5>创建文章</h5>--}}
                     编辑文章
                 </div>
                 <div class="col m2 s2">
@@ -65,7 +64,8 @@
                 </div>
                 <div class="col m2 s12 right-align">
                     <p>
-                        <input type="checkbox" class="" name="draft" id="filled-in-box" @if($article['state']!=0) checked @endif />
+                        <input type="checkbox" class="" name="draft" id="filled-in-box"
+                               @if($article['state']!=0) checked @endif />
                         <label for="filled-in-box">存为草稿</label>
                     </p>
                 </div>
@@ -76,18 +76,6 @@
                               name="editormd-markdown-doc">{{ $article['markdown'] }}</textarea>
                 </div>
             </div>
-            {{--<div class="row">--}}
-            {{--<div class="file-field input-field col m12 s12">--}}
-            {{--<div class="btn">--}}
-            {{--<span>重新上传markdown文件</span>--}}
-            {{--<input type="file" name="md_file">--}}
-            {{--</div>--}}
-            {{--<div class="file-path-wrapper">--}}
-            {{--<input class="file-path validate" name="file_name" type="text">--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
         </form>
     </div>
 @endsection

@@ -10,7 +10,7 @@
 
 @yield("header")
 <iframe name="target_iframe" hidden frameborder="0"></iframe>
-<main class="">
+<main class="grey lighten-5">
 
     @yield("content")
 

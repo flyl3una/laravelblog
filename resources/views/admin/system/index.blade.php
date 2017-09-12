@@ -3,22 +3,7 @@
 @section("content")
 
     <div class="container">
-        {{--<div class="row">--}}
         <h5>系统信息</h5>
-        {{--</div>--}}
-        {{--<div class="row"></div>--}}
-        {{--<div class="row">--}}
-        {{--<div class="col m4 s4">系统</div>--}}
-        {{--<div class="col m8 s8">windows</div>--}}
-        {{--</div>--}}
-        {{--<div class="row">--}}
-        {{--<div class="col m4 s4">内存</div>--}}
-        {{--<div class="col m8 s8">4G/16G</div>--}}
-        {{--</div>--}}
-        {{--<div class="row">--}}
-        {{--<div class="col m4 s4">磁盘</div>--}}
-        {{--<div class="col m8 s8">1000G/2000G</div>--}}
-        {{--</div>--}}
         <div id="get_charts_url" hidden data-url="{{ route('admin.systeminfo') }}"></div>
         <div class="row">
             <div class="col m6 s12">
@@ -120,7 +105,7 @@
 
         setInterval(updateCharts, 5000);
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             updateCharts();
         });
 

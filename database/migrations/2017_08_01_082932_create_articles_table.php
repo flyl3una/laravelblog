@@ -27,7 +27,7 @@ class CreateArticlesTable extends Migration
             $table->integer('state')->default(1)->comment("文章状态，0为已发布，1为草稿，2为垃圾箱")->index();
             $table->integer('click_count')->default(0)->comment("文章点击次数");
 
-            $table->time('published_at')->comment('文章发表日期');
+            $table->dateTime('published_at')->comment('文章发表日期');
             $table->timestamps();
         });
     }

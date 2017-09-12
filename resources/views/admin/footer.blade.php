@@ -1,6 +1,5 @@
 @section('footer')
 
-
     <footer class="page-footer teal lighten-2">
         <div class="container">
             <div class="row">

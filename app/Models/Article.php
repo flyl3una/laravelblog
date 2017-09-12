@@ -7,21 +7,9 @@ use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
+
+//    如果使用scout进行搜索，把这个加上，再到HomeController中的search更改搜索方法。
 //    use Searchable;
 
 
-    //
-//    public function tags()
-//    {
-//        return $this->belongsToMany('App\Models\Tag')->withTimestamps();
-//    }
-
-//    public function toSearchableArray()
-//    {
-//        $array = $this->toArray();
-//
-//        // 自定义数组数据...
-//
-//        return $array;
-//    }
 }

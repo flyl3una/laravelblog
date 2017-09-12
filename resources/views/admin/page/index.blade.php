@@ -14,7 +14,6 @@
                 <li><a href="#">草稿 ( 2 )</a></li>
             </ul>
         </div>
-        {{--<div class="card z-depth-4">--}}
         <table class="bordered highlight table-list">
             <thead class="grey lighten-4">
             <tr>
@@ -50,21 +49,7 @@
                     </td>
 
                     <td><span>5 / {{ $article['click_count'] }}</span></td>
-                    {{--<td><a href="article/{{ $article['id'] }}/edit">编辑</a>--}}
-                    {{--                                        <a href="article/{{ $article['id'] }}/destroy">删除</a> </td>--}}
                     <td>
-                        {{--<a href="{{ route('article.edit', $article['id']) }}"--}}
-                        {{--class="btn btn-raised btn-success">编辑</a>--}}
-                        {{--<a href="{{ route('article.destroy', $article['id']) }}" class="btn btn-danger">删除</a>--}}
-                        {{--<form method="POST"--}}
-                        {{--action="{{ route('article.destroy', $article['id']) }}">--}}
-                        {{--更改隐身提交方法为DELETE--}}
-                        {{--<input type="hidden" name="_method" value="DELETE"/>--}}
-                        {{--添加csrf认证--}}
-                        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-                        {{--<input type="submit" value="删除" class="btn btn-raised btn-danger"/>--}}
-                        {{--</form>--}}
-                        {{--<ul class="article-operator">--}}
                         <a href="">查看</a>
                         <a href="{{ route('article.edit', $article['id']) }}">编辑</a>
                         <a class="delete-a" href="#delete_modal" data-target="delete_modal"
@@ -84,7 +69,9 @@
                 </select>
             </div>
             <div class="col m2 s4">
-                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button" value="应用">应用</button>
+                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button"
+                        value="应用">应用
+                </button>
             </div>
             <div class="col m7 s12 right right-align">
                 {!! $articleAll->render() !!}
@@ -109,7 +96,8 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-action modal-close waves-effect waves-light btn grey lighten-2">取消</a>
-                <a id="delete_article_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
+                <a id="delete_article_input"
+                   class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
         <!--（Modal）End -->
@@ -119,7 +107,8 @@
                 <div class="row">
                     <h5>删除所选文章</h5>
                 </div>
-                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe" action="{{ route('article.moveToTrash') }}">
+                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe"
+                      action="{{ route('article.moveToTrash') }}">
                     {{--添加csrf认证--}}
                     {{--{{ csrf_field() }}--}}
                     <input id="token_id" type="text" name="_token" hidden value="{{ csrf_token() }}">
@@ -131,7 +120,8 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-action modal-close waves-effect waves-light btn grey lighten-2">取消</a>
-                <a id="delete_multiple_cate_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
+                <a id="delete_multiple_cate_input"
+                   class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
         <!--（Modal）End -->
@@ -143,9 +133,8 @@
 @section('js')
     @parent
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             setCurrentSide("side_page_list");
-//            Materialize.updateTextFields();
         });
     </script>
 @endsection

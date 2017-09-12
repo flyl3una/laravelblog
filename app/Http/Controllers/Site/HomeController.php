@@ -153,7 +153,7 @@ class HomeController extends Controller
         if(strlen($data) >= 16) {
             redirect(route('home.index'));
         }
-        $articles = Article::where('title', 'like', $data)->where('state', 0)->paginate(config('blog.article_per_page'));
+        $articles = Article::where('title', 'like', '%'.$data.'%')->where('state', 0)->paginate(config('blog.article_per_page'));
 //        $articles = Article::search($data)->where('state', 0)->paginate(config('blog.article_per_page'));
         foreach ($articles as &$article) {
             $cate = Categories::where('id', $article['category_id'])->first();

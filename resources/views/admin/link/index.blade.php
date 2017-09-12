@@ -4,44 +4,42 @@
 
     <div class="container">
         <h5>友情链接</h5>
-        {{--<div class="cart z-depth-4">--}}
-            <table class="table-list bordered highlight">
-                <thead class="grey lighten-4">
+        <table class="table-list bordered highlight">
+            <thead class="grey lighten-4">
+            <tr>
+                <th class="manage-row">
+                    <input type="checkbox" id="all_select">
+                    <label for="all_select"></label>
+                </th>
+                <th width="25%">名称</th>
+                <th width="55%">链接</th>
+                <th width="20%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($links as $link)
                 <tr>
-                    <th class="manage-row">
-                        <input type="checkbox" id="all_select">
-                        <label for="all_select"></label>
-                    </th>
-                    <th width="25%">名称</th>
-                    <th width="55%">链接</th>
-                    <th width="20%">操作</th>
+                    <td class="select-row">
+                        <input type="checkbox" id="{{ $link['id'] }}" class="delete-checkbox" name="linkIds"
+                               value="{{ $link['id'] }}">
+                        <label for="{{ $link['id'] }}"></label>
+                    </td>
+                    <td>{{ $link['name'] }}</td>
+                    <td><a href="{{$link['url']}}">{{ $link['url'] }}</a></td>
+                    <td>
+                        <a class="edit-a" href="#edit_modal" data-target="edit_modal"
+                           data-id="{{ $link['id'] }}" data-submit="{{ route('link.update', $link['id']) }}"
+                           data-name="{{ $link['name'] }}" data-url="{{ $link['url'] }}">编辑
+                        </a>
+                        {{--模态框提示--}}
+                        <a class="delete-a" href="#delete_modal" data-target="delete_modal"
+                           data-id="{{ $link['id'] }}" data-submit="{{ route('link.destroy', $link['id']) }}"
+                           data-name="{{ $link['name'] }}" data-url="{{ $link['url'] }}">删除</a>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                @foreach($links as $link)
-                    <tr>
-                        <td class="select-row">
-                            <input type="checkbox" id="{{ $link['id'] }}" class="delete-checkbox" name="linkIds"
-                            value="{{ $link['id'] }}">
-                            <label for="{{ $link['id'] }}"></label>
-                        </td>
-                        <td>{{ $link['name'] }}</td>
-                        <td><a href="{{$link['url']}}">{{ $link['url'] }}</a></td>
-                        <td>
-                            <a class="edit-a" href="#edit_modal" data-target="edit_modal"
-                               data-id="{{ $link['id'] }}" data-submit="{{ route('link.update', $link['id']) }}"
-                               data-name="{{ $link['name'] }}" data-url="{{ $link['url'] }}">编辑
-                            </a>
-                            {{--模态框提示--}}
-                            <a class="delete-a" href="#delete_modal" data-target="delete_modal"
-                               data-id="{{ $link['id'] }}" data-submit="{{ route('link.destroy', $link['id']) }}"
-                               data-name="{{ $link['name'] }}" data-url="{{ $link['url'] }}">删除</a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        {{--</div>--}}
+            @endforeach
+            </tbody>
+        </table>
         <div class="row">
             <div class="col m3 s8 input-field">
                 <select id="select_option" class="initialized">
@@ -50,7 +48,8 @@
                 </select>
             </div>
             <div class="col m2 s4">
-                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button">应用</button>
+                <button id="apply_option" type="submit" class="waves-effect waves-light btn input-field-button">应用
+                </button>
             </div>
             <div class="col m7 s12 right right-align">
                 {!! $links->render() !!}
@@ -69,7 +68,8 @@
                     <label for="link_url">链接url地址</label>
                 </div>
                 <div class="col m2 s12">
-                    <button type="submit" class="waves-effect waves-green input-field-button btn btn-success right">添加</button>
+                    <button type="submit" class="waves-effect waves-green input-field-button btn btn-success right">添加
+                    </button>
                 </div>
             </div>
         </form>
@@ -126,7 +126,8 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-action modal-close waves-effect waves-light btn grey lighten-2">取消</a>
-                <a id="delete_link_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
+                <a id="delete_link_input"
+                   class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
         <!--（Modal）End -->
@@ -136,7 +137,8 @@
                 <div class="row">
                     <h5>删除所选链接</h5>
                 </div>
-                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe" action="{{ route('link.deleteMultiple') }}">
+                <form id="delete_multiple_form" class="form" method="POST" target="target_iframe"
+                      action="{{ route('link.deleteMultiple') }}">
                     {{--添加csrf认证--}}
                     {{--{{ csrf_field() }}--}}
                     <input id="token_id" type="text" name="_token" hidden value="{{ csrf_token() }}">
@@ -148,7 +150,8 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-action modal-close waves-effect waves-light btn grey lighten-2">取消</a>
-                <a id="delete_multiple_link_input" class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
+                <a id="delete_multiple_link_input"
+                   class="modal-action modal-close waves-effect waves-red btn red darken-2">删除</a>
             </div>
         </div>
         <!--（Modal）End -->
@@ -157,7 +160,7 @@
 @endsection
 
 @section('js')
-@parent
+    @parent
     <script>
 
         promptChangeResult = function (data) {
@@ -177,7 +180,7 @@
             }
         };
 
-        promptDeleteMultipleResult = function(data) {
+        promptDeleteMultipleResult = function (data) {
             if (data.code == 0) {
                 console.log(data.info);
                 location.reload();
@@ -216,7 +219,7 @@
             });
         };
 
-        deleteMultiple = function() {
+        deleteMultiple = function () {
             $("#apply_option").click(function () {
 
                 var option_obj = getOption();
@@ -250,12 +253,12 @@
         };
 
         //        获取应用批量删除操作的下拉选项选中的对象
-        getOption = function() {
+        getOption = function () {
             var select_id = $("#select_option").data('select-id');
-            var text = $("#select-options-"+select_id+">.selected>span").text();
+            var text = $("#select-options-" + select_id + ">.selected>span").text();
             var opt_value = "";
             var opt_value_obj = null;
-            $("#select_option>option").each(function() {
+            $("#select_option>option").each(function () {
                 if ($(this).data('value') == text) {
                     opt_value = $(this).val();
                     opt_value_obj = $(this);
@@ -267,14 +270,14 @@
         //        获取表格中选中的行id数组
         getSelectIds = function () {
             var select_ids = new Array();
-            $(".delete-checkbox").each(function() {
+            $(".delete-checkbox").each(function () {
                 if ($(this).is(":checked")) {
                     select_ids.push($(this).val());
                 }
             });
             return select_ids;
         };
-        
+
         $(document).ready(function () {
 
             setCurrentSide("side_links_index");

@@ -89,7 +89,6 @@ class ArticleController extends Controller
     public function create()
     {
         //
-//        return 'create';
         $cates = Categories::all();
         $tagAll = Tag::all();
         return view('admin.article.create', compact('cates', 'tagAll'));
@@ -125,10 +124,7 @@ class ArticleController extends Controller
         }
         $userid = Auth::user()->id;
 
-//        $article = new Article(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
-//            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state]);
-//        $articleId = Article::insertGetId(['user_id' => $userid, 'category_id' => $cate, 'title' => $title,
-//            'description' => $description, 'markdown' => $md, 'html' => $html, 'state' => $state, 'created_at'=>Carbon::now()]);
+//      使用 new Model 然后进行save，此方法可以自动更新timestamps
         $article = new Article();
         $article->user_id = $userid;
         $article->category_id = $cate;
@@ -139,9 +135,6 @@ class ArticleController extends Controller
         if ($state == 0) {
             $article['published_at'] = Carbon::now();
         }
-//        else {
-//            $article['published_at']
-//        }
         $article->state = $state;
         $article->save();
         $articleId = $article['id'];
@@ -160,6 +153,7 @@ class ArticleController extends Controller
         return $js;
     }
 
+//    此方法已废弃，本来为上传文章，后改为后台直接编辑
     public function store1(Request $request)
     {
         $title = $request['title'];
@@ -211,11 +205,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
-//        return
         $article = Article::where('id', $id)->firstOrFail();
         $cate = Categories::where('id', $article['category_id'])->firstOrFail();
-//        $tags = $article->tags();
         $articleTags = ArticleTag::where('article_id', $id)->get();
         $tags = [];
         foreach ($articleTags as $articleTag) {
@@ -234,8 +225,6 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
-//        return 'edit' . $id;
         $article = Article::where('id', $id)->firstOrFail();
         $cate = Categories::where('id', $article['category_id'])->firstOrFail();
         $tagIds = ArticleTag::where('article_id', $article['id'])->get();
@@ -310,6 +299,7 @@ class ArticleController extends Controller
         return $js;
     }
 
+//    此方法已废弃，作用为更新上传的文件。
     public function update1(Request $request, $id)
     {
         //
@@ -374,6 +364,7 @@ class ArticleController extends Controller
         return $js;
     }
 
+//    移至回收站，目前没有使用。
     public function moveToTrash(Request $request)
     {
         $ids = $request['ids'];

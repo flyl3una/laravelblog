@@ -40,6 +40,7 @@ class ArticleSeeder extends Seeder
                 'state' => random_int(0, 2),
                 'click_count' => random_int(1, 100),
                 'created_at' => $this->rand_time($start_time, $end_time),
+                'published_at' => $this->rand_time($start_time, $end_time),
                 'updated_at' => $this->rand_time($start_time, $end_time),
 //                'created_at' =>  strval(random_int(2000, 2017)).'-'.strval(random_int(1, 12)).'-'.strval(random_int(1,30)).' '
 //                .strval(random_int(1,12)).strval(random_int(1,12)).':00',
