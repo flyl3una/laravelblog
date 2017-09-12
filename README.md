@@ -36,19 +36,19 @@
     
 ### 使用截图
 - 首页
-![]('https://www.github.com/laravelblog/public/images/screen/1.png')
+![]('https://www.github.com/flyl3una/laravelblog/public/images/screen/1.png')
 - 查看文章
-![]('https://www.github.com/laravelblog/public/images/screen/2.png')
+![]('https://www.github.com/flyl3una/laravelblog/public/images/screen/2.png')
 - 归档
-![]('https://www.github.com/laravelblog/public/images/screen/3.png')
+![]('https://www.github.com/flyl3una/laravelblog/public/images/screen/3.png')
 - 后台
-![]('https://www.github.com/laravelblog/public/images/screen/4.png')
+![]('https://www.github.com/flyl3una/laravelblog/public/images/screen/4.png')
 - 文章列表
-![]('https://www.github.com/laravelblog/public/images/screen/5.png')
+![]('https://www.github.com/flyl3una/laravelblog/public/images/screen/5.png')
 - 创建文章
-![]('https://www.github.com/laravelblog/public/images/screen/6.png')
+![]('https://www.github.com/flyl3una/laravelblog/public/images/screen/6.png')
 - 目录分类
-![]('https://www.github.com/laravelblog/public/images/screen/7.png')
+![]('https://www.github.com/flyl3una/laravelblog/public/images/screen/7.png')
 ### 附注
 1. 后台一些不重要的功能没做完，一些细节已被忽略。
 2. 文章搜索功能可以使用scout。需要自己注册algolia账号，并在.env中进行配置。
