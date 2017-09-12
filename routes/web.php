@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('/', 'AdminController@index')->name('admin.index');
 
     Route::get('/user/{id}', 'AdminController@user')->name('admin.user');
-
+    Route::get('/systeminfo/', 'AdminController@systeminfo')->name('admin.systeminfo');
 
 
     Route::post('article/moveToTrash', 'ArticleController@moveToTrash')->name('article.moveToTrash');
