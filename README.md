@@ -34,21 +34,22 @@
 - 用户
     - 单管理员登录
     
-### 使用截图
-- 首页
-![]('https://github.com/flyl3una/laravelblog/tree/master/public/screen/1.png')
-- 查看文章
-![]('https://github.com/flyl3una/laravelblog/tree/master/public/screen/2.png')
-- 归档
-![]('https://github.com/flyl3una/laravelblog/tree/master/public/screen/3.png')
-- 后台
-![]('https://github.com/flyl3una/laravelblog/tree/master/public/screen/4.png')
-- 文章列表
-![]('https://github.com/flyl3una/laravelblog/tree/master/public/screen/5.png')
-- 创建文章
-![]('https://github.com/flyl3una/laravelblog/tree/master/public/screen/6.png')
-- 目录分类
-![]('https://github.com/flyl3una/laravelblog/tree/master/public/screen/7.png')
 ### 附注
 1. 后台一些不重要的功能没做完，一些细节已被忽略。
 2. 文章搜索功能可以使用scout。需要自己注册algolia账号，并在.env中进行配置。
+
+### 使用截图
+- 首页
+![image](./public/screen/1.png)
+- 查看文章
+![image](./public/screen/2.png)
+- 归档
+![image](./public/screen/3.png)
+- 后台
+![image](./public/screen/4.png)
+- 文章列表
+![image](./public/screen/5.png)
+- 创建文章
+![image](./public/screen/6.png)
+- 目录分类
+![image](./public/screen/7.png)
